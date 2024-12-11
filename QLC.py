@@ -1,8 +1,7 @@
 ﻿# Qu?n ly Chuồng
 class QuanLyChuong:
     def __init__(self):
-        self.phong = ["P
-                      hong A", "Phong B", "Phong C"]  # Danh sách các chuồng/phòng hiện có
+        self.phong = ["Phong A", "Phong B", "Phong C"]  # Danh sách các chuồng/phòng hiện có
 
     def hien_thi_phong(self):
         """Hiển thị danh sách các chuồng (phòng) hiện có trong hệ thống."""
