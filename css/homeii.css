@@ -1,0 +1,105 @@
+body{
+
+}
+.row {
+        float: left;
+        width: 100%;
+}
+.top {
+        min-height: 50px;
+        border-bottom: 2px #ffdfdf solid;
+        padding: 5px 2px;
+ }
+ .content {
+        background-color: rgb(171, 255, 184);
+        min-height: 800px;
+      }
+      .tinnew {
+        background-color: rgb(11, 127, 57);
+        min-height: 200px;
+      }
+      .footer {
+        min-height: 200px;
+      }
+      .boxcenter {
+        width: 80%;
+        margin: 0 auto;
+      }
+      .boxcenter img {
+        max-width: 100px; /* Đặt chiều rộng tối đa của logo */
+        height: auto;
+        float: left;
+        padding: 20px;
+      }
+      .mrgtb {
+        margin: 5px 0px;
+      }
+      .mgr {
+        margin-right: 2%;
+      }
+      .minh {
+        min-height: 600px;
+      }
+      .boxleft {
+        float: left;
+        width: 25%;
+      }
+      .boxmid {
+        float: left;
+        width: 46%;
+      }
+      .boxright {
+        float: left;
+        width: 25%;
+      }
+      .bgtest {
+        background-color: rgb(253, 253, 253);
+      }
+      .bgsize {
+        background-size: auto;
+      }
+      .boxnews1 {
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+      }
+      .boxnews1 img {
+        width: 40%;
+        margin-right: 10px;
+        float: left;
+      }
+      .boxnews1 a {
+        color: black;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      .boxnews1 a:hover {
+        color: rgb(22, 163, 6);
+      }
+      .brdbot {
+        border-bottom: 1px #606060 solid;
+      }
+      .menu ul,
+      .menu li {
+        margin: 0;
+        padding: 0;
+      }
+      .menu ul li {
+        list-style-type: none;
+        display: flex;
+        justify-content: center;
+        padding: 50px 10px;
+        float: left;
+        margin-top: 2px;
+      }
+      .menu ul {
+        padding: 0px;
+        text-align: center;
+      }
+      .menu a {
+        font-size: 1.2em;
+        color: rgb(2, 49, 11);
+        text-decoration: none;
+      }
+      .menu a:hover {
+        color: rgb(255, 32, 32);
+      }
