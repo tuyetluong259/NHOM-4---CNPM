@@ -10,17 +10,22 @@
     <link
       rel="icon"
       type="C:\Users\ASUS\OneDrive\Hình ảnh\anhthe\z5717362567455_8a9cf8677f35c17a38182cfa4020cd7b.jpg/x-icon"
-      href="/C:\Users\ASUS\OneDrive\Hình ảnh\anhthe\z5717362567455_8a9cf8677f35c17a38182cfa4020cd7b.jpg/favicon.ico"
+      href="{/C:\Users\ASUS\OneDrive\Hình ảnh\anhthe\z5717362567455_8a9cf8677f35c17a38182cfa4020cd7b.jpg/favicon.ico"
     />
     <title>Pet Health Care</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/homeii.css" />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css2/home.css' %}" />
   </head>
   <body>
     <div class="row top">
       <div class="boxcenter">
-        <img src="images/Ảnh chụp màn hình 2024-12-14 001838.png" alt="logo" />
+        <img
+          src="{% static 'images/anh001.png'%}"
+          alt="logo"  
+          
+        />
       </div>
       <div class="menu">
         <ul>
@@ -37,23 +42,23 @@
         <div class="row">
           <div class="boxleft mgr minh">
             <div class="row boxnews1 brdbot">
-              <img src="images/anh1.jpeg" alt="" />
+              <img src="{% static 'images/anh1.jpeg' %}" alt="" />
               <a href="*"> Chăm sóc thú cưng tận tình</a>
             </div>
             <div class="row boxnews1 brdbot">
-              <img src="images/2.jpg.jpg" alt="" />
+              <img src="{% static 'images/2.jpg'%}" alt="" />
               <a href="*"> Chăm sóc thú cưng tận tình</a>
             </div>
             <div class="row boxnews1 brdbot">
-              <img src="images/3.jpg.jpg" alt="" />
+              <img src="{% static 'images/3.jpg' %}" alt="" />
               <a href="*"> Chăm sóc thú cưng tận tình</a>
             </div>
             <div class="row boxnews1 brdbot">
-              <img src="images/4.jpg" alt="" />
+              <img src="{% static 'images/4.jpg'%}" alt="" />
               <a href="*"> Chăm sóc thú cưng tận tình</a>
             </div>
             <div class="row boxnews1">
-              <img src="images/6.jpg" alt="" />
+              <img src="{% static 'images/6.jpg'%}" alt="" />
               <a href="*"> Chăm sóc thú cưng tận tình</a>
             </div>
           </div>
