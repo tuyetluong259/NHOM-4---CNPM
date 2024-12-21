@@ -13,64 +13,271 @@
       href="{/C:\Users\ASUS\OneDrive\Hình ảnh\anhthe\z5717362567455_8a9cf8677f35c17a38182cfa4020cd7b.jpg/favicon.ico"
     />
     <title>Pet Health Care</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>CHAM SOC THU CUNGCUNG</title>
     <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--<link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/bootstrap.bundle.min.js"></script>-->
     {% load static %}
     <link rel="stylesheet" href="{% static 'css2/home.css' %}" />
   </head>
   <body>
-    <div class="row top">
-      <div class="boxcenter">
-        <img src="{% static 'images/anh001.png'%}" alt="logo" />
-      </div>
-      <div class="menu">
-        <ul>
-          <li><a href="">CẨM NANG CHĂM SÓC</a></li>
-          <li><a href="">GỬI TRÔNG GIỮ</a></li>
-          <li><a href="">TIÊM PHÒNG</a></li>
-          <li><a href="">LIÊN HỆ GÓP Ý</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="row content">
-      <div class="boxcenter">
-        <div class="row mrgtb"></div>
-        <div class="row">
-          <div class="boxleft mgr minh">
-            <div class="row boxnews1 brdbot">
-              <img src="{% static 'images/anh1.jpeg' %}" alt="" />
-              <a href="*"> Chăm sóc thú cưng tận tình</a>
-            </div>
-            <div class="row boxnews1 brdbot">
-              <img src="{% static 'images/2.jpg'%}" alt="" />
-              <a href="*"> tam meo ne </a>
-            </div>
-            <div class="row boxnews1 brdbot">
-              <img src="{% static 'images/3.jpg' %}" alt="" />
-              <a href="*"> Chăm sóc thú cưng tận tình</a>
-            </div>
-            <div class="row boxnews1 brdbot">
-              <img src="{% static 'images/4.jpg'%}" alt="" />
-              <a href="*"> Chăm sóc thú cưng tận tình</a>
-            </div>
-            <div class="row boxnews1">
-              <img src="{% static 'images/6.jpg'%}" alt="" />
-              <a href="*"> Chăm sóc thú cưng tận tình</a>
-            </div>
-          </div>
-          <div class="boxmid mgr bgtest minh">2</div>
-          <div class="boxright bgtest minh">3</div>
+    <header>
+      <div class="container-fluid p-1 bgtop1 text-center">
+        <div class="container">
+          Chăm Sóc Thú Cưng Số 1 Tại Thành Phố Hồ Chí Minh
         </div>
       </div>
+
+      <div class="container col-10">
+        <div class="row pt-3">
+          <div class="col-md-2">
+            <img src="hinhanh/anh001.png" alt="" class="w-50 m-0" />
+          </div>
+          <div class="col-md-10 text-center menu">
+            <ul>
+              <li><a href="">CẨM NANG CHĂM SÓC</a></li>
+              <li><a href="">GỬI TRÔNG GIỮ</a></li>
+              <li><a href="">TIÊM PHÒNG</a></li>
+              <li><a href="">ĐĂNG NHẬP</a></li>
+              <li>
+                <a href="*">
+                  <span class="glyphicon glyphicon-search"></span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Carousel -->
+    <div id="demo" class="carousel slide pt-3" data-bs-ride="carousel">
+      <!-- Indicators/dots -->
+      <div class="carousel-indicators">
+        <button
+          type="button"
+          data-bs-target="#demo"
+          data-bs-slide-to="0"
+          class="active"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#demo"
+          data-bs-slide-to="1"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#demo"
+          data-bs-slide-to="2"
+        ></button>
+      </div>
+
+      <!-- The slideshow/carousel -->
+      <div class="carousel-inner">
+        <div
+          class="carousel-item active d-flex justify-content-center align-items-center"
+        >
+          <img
+            src="hinhanh/cham-soc-thu-cung.jpg"
+            alt=" "
+            class="d-block w-90"
+          />
+        </div>
+        <div class="carousel-item">
+          <img src="hinhanh/BANNER1.webp" alt=" " class="d-block w-100" />
+        </div>
+        <div class="carousel-item">
+          <img src="hinhanh/hinh9.jpg" alt=" " class="d-block w-100" />
+        </div>
+      </div>
+
+      <!-- Left and right controls/icons -->
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#demo"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#demo"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon"></span>
+      </button>
     </div>
-    <div class="row tinnew"></div>
-    <div class="row footer"></div>
-    <!--[if lt IE 7]>
-      <p class="browsehappy">
-        You are using an <strong>outdated</strong> browser. Please
-        <a href="#">upgrade your browser</a> to improve your experience.
-      </p>
-    <![endif]-->
+
+    <section class="pt-5 pb-5">
+      <div class="container col-10">
+        <div class="row">
+          <div class="col-md-6">
+            <img src="hinhanh/hinh4.jpg" alt="" class="w-100" />
+            <a href="*"> cham soc thu cung </a>
+            <p>
+              Danh mục những sản phẩm bán tại "giá tốt hơn" chỉ được bán kênh
+              online
+            </p>
+          </div>
+          <div class="col-md-6">
+            <img src="hinhanh/hinh6.jpg" alt="" class="w-100" />
+            <a href="*"> cham soc thu cung </a>
+            <p>
+              Danh mục những sản phẩm bán tại "giá tốt hơn" chỉ được bán kênh
+              online
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="pt-5 pb-5">
+      <div class="container col-10">
+        <h2 class="text-center pb-3">DANH MỤC MUA HÀNG</h2>
+        <div class="row">
+          <div class="inpic col-md-4 mb-3">
+            <div>
+              <h4>Thức Ăn</h4>
+              <a href="thuc an cho meo/cho">Thức Ăn Mèo/Chó</a>
+            </div>
+            <img src="hinhanh/thucan1.jpg" alt="" class="w-100" />
+          </div>
+          <div class="inpic col-md-4 mb-3">
+            <div>
+              <h4>Đồ Chơi</h4>
+              <a href="do choi cho meo/cho"> Đồ Chơi Mèo/Chó</a>
+            </div>
+            <img src="hinhanh/dochoi.jpg" alt="" class="w-100" />
+          </div>
+          <div class="inpic col-md-4 mb-3">
+            <div>
+              <h4>Thời Trang</h4>
+              <a href="quan ao cho meo/cho"> Thời Trang Mèo/Chó</a>
+            </div>
+            <img src="hinhanh/thoitrang.jpg" alt="" class="w-100" />
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="banner1">
+      <img src="hinhanh/anh1.jpeg" alt="" class="w-100" />
+    </div>
+    <section class="pt-5 pb-5">
+      <h3 class="text-center mb-3">BÀI VIẾT LIÊN QUAN</h3>
+      <div class="container col-10">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="card">
+              <div class="card-body">
+                <img src="hinhanh/web1.webp " alt="" class="w-100" />
+                <h5>HƯỚNG DẪN CHĂM SÓC</h5>
+                <p class="card-text">
+                  Những chú cún, chó mèo sẽ là người bạn tâm giao của bạn
+                  trong...
+                </p>
+                <a
+                  href="https://paddy.vn/blogs/cham-soc-thu-cung/huong-dan-cach-cham-soc-cho-meo-luon-khoe-manh-cho-nguoi-moi?srsltid=AfmBOorSoCF-hYNqUs5wxJvoVWzF9FFpd1_6qurRODBgDSawmKXeNEQa"
+                  class="card-link"
+                >
+                  Đọc Thêm
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card">
+              <div class="card-body">
+                <img src="hinhanh/hinh13.jpg " alt="" class="w-100" />
+                <h5>DỊCH VỤ CHĂM SÓC DỊP TẾT</h5>
+                <p class="card-text">
+                  Để đảm bảo việc chăm sóc thú cưng cho những ngày về...
+                </p>
+                <a
+                  href="https://laodong.vn/xa-hoi/gia-dat-do-dich-vu-cham-soc-thu-cung-van-hut-khach-dip-tet-quy-mao-1139439.ldo"
+                  class="card-link"
+                >
+                  Đọc Thêm
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card">
+              <div class="card-body">
+                <img src="hinhanh/web3.jpg " alt="" class="w-100" />
+                <h5>TOP DỊCH VỤ</h5>
+                <p class="card-text">
+                  Dịch vụ chăm sóc thú cưng uy tín tại Sài Gòn...
+                </p>
+                <a
+                  href="https://helenexpress.com/top-10-dich-vu-cham-soc-thu-cung-uy-tin-nhat-tai-tphcm.html"
+                  class="card-link"
+                >
+                  Đọc Thêm
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card">
+              <div class="card-body">
+                <img src="hinhanh/hinh14.jpg " alt="" class="w-100" />
+                <h5>SPA THÚ CƯNG</h5>
+                <p class="card-text">
+                  Dịch vụ Spa cho thú cưng tại PET GALAXY được...
+                </p>
+                <a href="https://www.ohmypet.vn/" class="card-link">
+                  Đọc Thêm</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="container-fluid col-10">
+        <div class="row pt-3 pb-3">
+          <div class="inpic2 col-md-4 care">
+            <h4 class="care">Đánh Giá Của Khách Hàng</h4>
+            <div>
+              <a href="Xem them " class="inpic"> Nhấn Vào Để Xem </a>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <h4 class="care">Pet Care</h4>
+            <ul>
+              <li>Phone: 0889969020</li>
+              <li>Maps: 25 Tô Ký - Tân Chánh Hiệp - Quận 12</li>
+              <li>Social:</li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <ul>
+              <h4 class=" ">Hỗ Trợ Khách Hàng</h4>
+              <li><a href="*"> Chính Sách Mua Hàng </a></li>
+              <li><a href="*"> Điều Khoản Dịch Vụ </a></li>
+              <li><a href="*"> Hình Thức Thanh Toán </a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
     <script src="" async defer></script>
   </body>
 </html>

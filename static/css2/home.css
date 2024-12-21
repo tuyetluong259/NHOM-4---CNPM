@@ -1,4 +1,82 @@
-body{
+.bgtop1{
+  background-color: rgb(40, 126, 98);
+  color: #ffffffee;
+}
+.logo{
+  padding: 5px;
+}
+.banner img{
+  height: 500px;
+  object-fit: cover;
+}
+.banner1 img{
+  height: 900px;
+  object-fit: cover;
+}
+.boxcenter{
+  width: 50%;
+  margin: 0 auto;
+}
+.inpic{
+  position: relative;
+}
+.inpic div{
+  position: absolute;
+  top: calc(50% - 30px);
+  left: calc(50% - 80px);
+  text-align: center;
+  background-color: rgba(83, 176, 230, 0.5);
+  padding: 5px;
+  color: rgb(9, 23, 34);
+}
+.footer{
+  background-color: rgb(40, 126, 98);
+  color:#ffffffee
+}
+.care{
+  text-align: center;
+}
+.menu ul{
+  margin: 0;
+  padding: 20px;
+}
+.menu ul li{
+  list-style-type: none;
+  display: inline;
+  padding: 20px 20px;
+  position: relative;
+}
+.menu ul li a{
+  font-size: 1.4em;
+  color: rgb(2, 49, 11);
+  text-decoration: none;
+  font-weight: bold;
+}
+.menu ul li a:hover {
+  color: rgb(40, 126, 9);
+  
+} 
+.menu ul li a:hover::before{
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-bottom: 2px rgb(40, 126, 98) solid;
+}
+.footer ul li{
+  text-decoration: none;
+  list-style-type: none;
+}
+.footer a{
+  color: #ffffffee;
+}
+.footer ul li a:hover {
+  color: rgb(246, 160, 171);
+}
+
+/** cai' css cũ
+body {
   margin: 0;
   font-family: Arial, sans-serif;
 }
@@ -27,7 +105,7 @@ body{
         margin: 0 auto;
       }
       .boxcenter img {
-        max-width: 100px; /* Đặt chiều rộng tối đa của logo */
+        max-width: 100px; /* Đặt chiều rộng tối đa của logo
         height: auto;
         float: left;
         padding: 20px;
@@ -104,3 +182,4 @@ body{
       .menu a:hover {
         color: rgb(255, 32, 32);
       }
+*/
