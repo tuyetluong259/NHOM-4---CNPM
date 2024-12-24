@@ -1,0 +1,434 @@
+
+.logo{
+    width: 80%;
+    margin:0 auto;
+  }
+  .top1{
+  min-height: 50px;
+  border-bottom: 2px #280000 solid;
+  padding: 5px 2px;
+  }
+  .body{
+  font-family:'Courier New', Courier, monospace;
+  }
+  .bgtop1{
+  background-color: rgb(16, 165, 130);
+  color: #ffffffee;
+  }
+  .logo{
+  padding: 5px;
+  }
+  .banner img{
+  height: 500px;
+  object-fit: cover;
+  }
+  .banner1 img{
+  height: 900px;
+  object-fit: cover;
+  }
+  .inpic{
+  position: relative;
+  overflow: hidden;
+  }
+  .inpic img {
+  width: 100%;
+  }
+  .inpic div{
+  position: absolute;
+  top: calc(50% - 30px);
+  left: calc(50% - 80px);
+  text-align: center;
+  background-color: rgba(83, 176, 230, 0.747);
+  padding: 5px;
+  color: rgb(9, 23, 34);
+  }
+  .inpic a{
+  color: rgb(55, 93, 159);
+  }
+  .inpic a:hover{
+    color: rgb(203, 248, 248);
+  }
+  .box{
+    border-top: 2px #cffbca solid;
+  }
+  .box1{
+    border-bottom: 2px #c6e0c2 solid;
+    border-top: 2px #c6e0c2 solid;
+    padding: 5px 2px;
+  position: relative;
+  overflow: hidden;
+  }
+  .box1 img{
+  object-fit: cover;
+  border-radius: 5px;
+  transition: 0.5s ease;
+  }
+  .box1 .inpic:hover img{
+  transform: scale(1.5);
+  }
+  .box2{
+    
+    border-top: 2px #cffbca solid;
+    border-bottom: 1px #606060 solid;
+  }
+  .brdbot{
+  border-bottom: 1px #606060 solid;
+  }
+  .text1{
+  color: rgb(12, 20, 98);
+  }
+  .boxcenter{
+  width: 50%;
+  margin: 0 auto;
+  }
+  
+  .footer{
+  background-color: rgb(40, 126, 98);
+  color:#ffffffee
+  }
+  .care{
+  text-align: center;
+  }
+  .menu ul{
+  margin: 0;
+  padding: 20px;
+  }
+  .menu ul li{
+  list-style-type: none;
+  display: inline;
+  padding: 20px 20px;
+  position: relative;
+  }
+  .menu ul li a{
+  font-size: 1.4em;
+  color: rgb(2, 49, 11);
+  text-decoration: none;
+  font-weight: bold;
+  }
+  .menu ul li a:hover {
+  color: rgb(40, 126, 9);
+  
+  } 
+  .menu ul li a:hover::before{
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-bottom: 2px rgb(40, 126, 98) solid;
+  }
+  .footer ul li{
+  text-decoration: none;
+  list-style-type: none;
+  }
+  .footer a{
+  color: #ffffffee;
+  }
+  .footer ul li a:hover {
+  color: rgb(246, 160, 171);
+  }
+  .body1 {
+  color: rgb(6, 44, 10);
+  font-size: 1.4em;
+  text-decoration: none;
+  list-style-type: none;
+  }
+  .body1 a{
+  font-size: 1.4em;
+  color: rgb(12, 95, 34);
+  font-weight: bold;
+  }
+  .body1 a:hover{
+    color: rgb(8, 165, 3);
+  }
+  .ts{
+  font-weight: 100;
+  }
+  .text2{
+    color: rgb(12, 92, 75);
+    }
+    .box{
+      border-top: 2px #cffbca solid;
+    }
+    .box3{
+      border-bottom: 2px #040317 solid;
+      border-top: 2px #0b3106 solid;
+      padding: 5px 2px;
+    position: relative;
+    overflow: hidden;
+    }
+    .box3 img{
+    object-fit: cover;
+    border-radius: 5px;
+    transition: 0.5s ease;
+    }
+    
+  .card-body img:hover{
+    overflow: hidden;
+    transform: scale(1.1);
+    cursor: pointer;
+  }
+  /*     .menu ul li {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    padding: 50px 20px;
+    float: left;
+    margin-top: 2px;
+  }
+  .menu ul {
+    padding: 0px;
+    text-align: center;
+  }
+  .menu a {
+    font-size: 1.2em;
+    color: rgb(2, 49, 11);
+    text-decoration: none;
+  }
+  .menu a:hover {
+    color: rgb(255, 32, 32);
+  } */
+  
+  
+  /*.bgtop1{
+    background-color: rgb(40, 126, 98);
+    color: #ffffffee;
+  }
+  .logo{
+    padding: 5px;
+  }
+  .box1{
+    float: left;
+    position: relative;
+    overflow: hidden;
+  }
+  .box1 img{
+    width: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+    transition: 0.5s;
+  }
+  .box1:hover img{
+    transform: scale(1.5);
+  }
+  .banner img{
+    height: 500px;
+    object-fit: cover;
+  }
+  .banner1 img{
+    height: 900px;
+    object-fit: cover;
+  }
+  .boxcenter{
+    width: 50%;
+    margin: 0 auto;
+  }
+  .inpic{
+    position: relative;
+  }
+  .inpic div{
+    position: absolute;
+    top: calc(50% - 30px);
+    left: calc(50% - 80px);
+    text-align: center;
+    background-color: rgba(83, 176, 230, 0.5);
+    padding: 5px;
+    color: rgb(9, 23, 34);
+  }
+  .footer{
+    background-color: rgb(40, 126, 98);
+    color:#ffffffee
+  }
+  .care{
+    text-align: center;
+  }
+  .menu ul{
+    margin: 0;
+    padding: 20px;
+  }
+  .menu ul li{
+    list-style-type: none;
+    display: inline;
+    padding: 20px 20px;
+    position: relative;
+  }
+  .menu ul li a{
+    font-size: 1.4em;
+    color: rgb(2, 49, 11);
+    text-decoration: none;
+    font-weight: bold;
+  }
+  .menu ul li a:hover {
+    color: rgb(40, 126, 9);
+    
+  } 
+  .menu ul li a:hover::before{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-bottom: 2px rgb(40, 126, 98) solid;
+  }
+  .footer ul li{
+    text-decoration: none;
+    list-style-type: none;
+  }
+  .footer a{
+    color: #ffffffee;
+  }
+  .footer ul li a:hover {
+    color: rgb(246, 160, 171);
+  }
+  .bang1 {
+    color: rgb(8, 41, 17);
+    list-style-type: none;
+    font-size: 1.2em;
+    position: relative;
+  }
+  .bang1 a{
+    font-size: 1.3em;
+    color: rgb(9, 67, 20);
+    text-decoration: none;
+    font-weight: bold;
+  }
+  .bang1 a:hover{
+    color: rgb(17, 173, 14)!important;
+  }
+  .bang1 a:hover::after{
+    content: " ";
+    border-bottom: 1px rgb(23, 199, 23) solid;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+  .f1{
+    font-size: 1.3em;
+    position: relative;
+  }
+  .f1 a{
+    
+    color: rgb(9, 67, 20);
+  }
+  .f1 a:hover{
+    color: rgb(253, 13, 13);
+    text-decoration: none;
+  }
+  .f1 a:hover::after{
+    content: " ";
+    border-bottom: 1px rgb(243, 6, 6) solid;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+  /** cai' css cũ
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  .row {
+          float: left;
+          width: 100%;
+  }
+  .top {
+          min-height: 50px;
+          border-bottom: 2px #ffdfdf solid;
+          padding: 5px 2px;
+   }
+   .content {
+          background-color: rgb(216, 254, 222);
+          min-height: 800px;
+        }
+        .tinnew {
+          background-color: rgb(11, 127, 57);
+          min-height: 200px;
+        }
+        .footer {
+          min-height: 200px;
+        }
+        .boxcenter {
+          width: 80%;
+          margin: 0 auto;
+        }
+        .boxcenter img {
+          max-width: 100px; /* Đặt chiều rộng tối đa của logo
+          height: auto;
+          float: left;
+          padding: 20px;
+        }
+        .mrgtb {
+          margin: 5px 0px;
+        }
+        .mgr {
+          margin-right: 2%;
+        }
+        .minh {
+          min-height: 600px;
+        }
+        .boxleft {
+          float: left;
+          width: 25%;
+        }
+        .boxmid {
+          float: left;
+          width: 46%;
+        }
+        .boxright {
+          float: left;
+          width: 25%;
+        }
+        .bgtest {
+          background-color: rgb(253, 253, 253);
+        }
+        .bgsize {
+          background-size: auto;
+        }
+        .boxnews1 {
+          padding-bottom: 20px;
+          margin-bottom: 20px;
+        }
+        .boxnews1 img {
+          width: 100%;
+          margin-right: 10px;
+          float: left;
+        }
+        .boxnews1 a {
+          color: black;
+          text-decoration: none;
+          font-weight: bold;
+        }
+        .boxnews1 a:hover {
+          color: rgb(22, 163, 6);
+        }
+        .brdbot {
+          border-bottom: 1px #606060 solid;
+        }
+        .menu ul,
+        .menu li {
+          margin: 0;
+          padding: 0;
+        }
+        .menu ul li {
+          list-style-type: none;
+          display: flex;
+          justify-content: center;
+          padding: 50px 20px;
+          float: left;
+          margin-top: 2px;
+        }
+        .menu ul {
+          padding: 0px;
+          text-align: center;
+        }
+        .menu a {
+          font-size: 1.2em;
+          color: rgb(2, 49, 11);
+          text-decoration: none;
+        }
+        .menu a:hover {
+          color: rgb(255, 32, 32);
+        }
+  */
+  
