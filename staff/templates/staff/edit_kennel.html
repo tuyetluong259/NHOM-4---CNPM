@@ -1,0 +1,21 @@
+<!-- staff/templates/staff/edit_kennel.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sửa Chuồng</title>
+</head>
+<body>
+    <h1>Sửa Chuồng: {{ kennel.name }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="name">Tên Chuồng:</label><br>
+        <input type="text" id="name" name="name" value="{{ kennel.name }}"><br><br>
+        
+        <label for="description">Mô Tả:</label><br>
+        <textarea id="description" name="description">{{ kennel.description }}</textarea><br><br>
+        
+        <input type="submit" value="Cập Nhật">
+    </form>
+    <a href="{% url 'kennel_list' %}">Quay lại danh sách chuồng</a>
+</body>
+</html>

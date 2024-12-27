@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thêm Lịch Khám Thú Y</title>
+</head>
+<body>
+    <h1>Thêm Lịch Khám Thú Y</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="pet_admission">Pet Admission:</label>
+        <select name="pet_admission" id="pet_admission" required>
+            {% for admission in pet_admissions %}
+                <option value="{{ admission.id }}">{{ admission.pet_name }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        <label for="vet_name">Tên Thú Y:</label>
+        <input type="text" name="vet_name" id="vet_name" required>
+        <br><br>
+
+        <label for="schedule_date">Ngày Lịch Khám:</label>
+        <input type="date" name="schedule_date" id="schedule_date" required>
+        <br><br>
+
+        <button type="submit">Lưu Lịch Khám</button>
+    </form>
+    <br>
+    <a href="{% url 'vet_schedule_list' %}">Trở lại danh sách lịch khám</a>
+</body>
+</html>

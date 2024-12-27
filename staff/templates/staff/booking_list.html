@@ -1,0 +1,26 @@
+<!-- staff/templates/staff/booking_list.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Danh sách Booking</title>
+</head>
+<body>
+    <h1>Danh sách Booking</h1>
+    <table>
+        <tr>
+            <th>Tên Pet</th>
+            <th>Ngày Booking</th>
+            <th>Hành Động</th>
+        </tr>
+        {% for booking in bookings %}
+        <tr>
+            <td>{{ booking.pet_name }}</td>
+            <td>{{ booking.booking_date }}</td>
+            <td>
+                <a href="{% url 'cancel_booking' booking.pk %}">Hủy</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

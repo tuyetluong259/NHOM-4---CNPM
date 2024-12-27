@@ -1,0 +1,28 @@
+<!-- staff/templates/staff/kennel_list.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Danh sách Chuồng</title>
+</head>
+<body>
+    <h1>Danh sách Chuồng</h1>
+    <table>
+        <tr>
+            <th>Tên Chuồng</th>
+            <th>Mô Tả</th>
+            <th>Hành Động</th>
+        </tr>
+        {% for kennel in kennels %}
+        <tr>
+            <td>{{ kennel.name }}</td>
+            <td>{{ kennel.description }}</td>
+            <td>
+                <a href="{% url 'edit_kennel' kennel.pk %}">Sửa</a>
+                <a href="{% url 'delete_kennel' kennel.pk %}">Xóa</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{% url 'add_kennel' %}">Thêm Chuồng</a>
+</body>
+</html>

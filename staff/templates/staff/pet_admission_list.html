@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh Sách Pet Admissions</title>
+</head>
+<body>
+    <h1>Danh Sách Pet Admissions</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Pet Name</th>
+                <th>Admission Date</th>
+                <th>Kenel</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for admission in admissions %}
+                <tr>
+                    <td>{{ admission.pet_name }}</td>
+                    <td>{{ admission.admission_date }}</td>
+                    <td>{{ admission.kennel.name }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="3">Không có pet admission nào.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="{% url 'add_pet_admission' %}">Thêm Pet Admission</a>
+</body>
+</html>

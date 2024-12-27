@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Chủ</title>
+</head>
+<body>
+    <h1>Chào Mừng Đến Với Hệ Thống Quản Lý Thú Cưng</h1>
+    <nav>
+        <ul>
+            <li><a href="{% url 'kennel_list' %}">Danh Sách Chuồng</a></li>
+            <li><a href="{% url 'booking_list' %}">Danh Sách Booking</a></li>
+            <li><a href="{% url 'pet_admission_list' %}">Danh Sách Pet Admissions</a></li>
+            <li><a href="{% url 'vet_schedule_list' %}">Danh Sách Lịch Khám Thú Y</a></li>
+        </ul>
+    </nav>
+
+    <p>Chọn một mục từ menu để bắt đầu quản lý hệ thống của bạn.</p>
+</body>
+</html>
