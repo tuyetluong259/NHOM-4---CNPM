@@ -27,6 +27,7 @@
   object-fit: cover;
   }
   .inpic{
+    text-decoration: none;
   position: relative;
   overflow: hidden;
   }
@@ -34,6 +35,7 @@
   width: 100%;
   }
   .inpic div{
+  font-size: 1.5em;
   position: absolute;
   top: calc(50% - 30px);
   left: calc(50% - 80px);
@@ -42,9 +44,12 @@
   color: rgb(9, 23, 34);
   }
   .inpic a{
+  
+  font-size: 1.5em;
   color: rgb(55, 93, 159);
   }
   .inpic a:hover{
+    text-decoration: none;
     color: rgb(203, 248, 248);
   }
   .box{
@@ -82,6 +87,7 @@
   }
   
   .footer{
+    text-decoration: none;
   background-color: rgb(40, 126, 98);
   color:#ffffffee
   }
@@ -121,9 +127,11 @@
   list-style-type: none;
   }
   .footer a{
+    text-decoration: none;
   color: #ffffffee;
   }
   .footer ul li a:hover {
+    text-decoration: none;
   color: rgb(246, 160, 171);
   }
   .body1 {
@@ -167,6 +175,9 @@
     transform: scale(1.1);
     cursor: pointer;
   }
+.main{
+
+}
   /*     .menu ul li {
     list-style-type: none;
     display: flex;
