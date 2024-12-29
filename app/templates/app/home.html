@@ -13,8 +13,8 @@
             <img src="/static/app/images/banner/chodai.jpg" class="d-block w-100" alt="Điều trị nấm da" height='500'>
 
             <div class="carousel-caption d-none d-md-block">
-                <h5>Điều trị nấm da</h5>
-                <p>Da khoẻ và phục hồi.</p>
+                <h5>Điều trị - Khám sức khoẻ</h5>
+                <p>Uy tín, chất lượng khỏi phải bàn.</p>
             </div>
         </div>
         <div class="carousel-item" data-bs-interval="2000">
@@ -51,5 +51,21 @@
 {% endblock banner_slider %}
 
 {% block main_content %} 
-Welcome to my site!
+<div class="row">
+    <div class="col-lg-4">
+        <img class="thumbnail" src="{% static 'app/images/banner/taixuong.jpg' %}">
+        <div class="box-element product">
+            <h6><strong>Sản phẩm</strong></h6>
+            <hr>
+            <button class="btn btn-outline-secondary add-btn">Thêm vào giỏ hàng</button>
+            <a class="btn btn-outline-success" href="#">Xem</a>
+            <h3 style="display: inline-block; float: right"><strong>199.000 VND</strong></h3> 
+
+
+
+        </div>
+    </div>
+</div>
+<br /><br /><br />
+
 {% endblock main_content %}
