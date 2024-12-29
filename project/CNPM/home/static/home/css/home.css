@@ -3,6 +3,19 @@
     width: 80%;
     margin:0 auto;
   }
+  .sticky {
+    position: fixed;
+    left:0;
+    width: 100%;
+    background: #fffdfd;
+    color: #f1f1f1;
+    z-index: 99999999;
+    border-bottom: 2px rgb(214, 237, 221)solid;;
+  }
+  
+  .sticky .content {
+    padding-top: 102px;
+  }
   .top1{
   min-height: 50px;
   border-bottom: 2px #280000 solid;
@@ -35,22 +48,22 @@
   width: 100%;
   }
   .inpic div{
-  font-size: 1.5em;
+  font-size: 1.2em;
   position: absolute;
   top: calc(50% - 30px);
   left: calc(50% - 80px);
   text-align: center;
   padding: 5px;
-  color: rgb(9, 23, 34);
+  color: rgb(4, 63, 18);
   }
   .inpic a{
   
-  font-size: 1.5em;
-  color: rgb(55, 93, 159);
+  font-size: 1.2em;
+  color: rgb(236, 239, 244);
   }
   .inpic a:hover{
     text-decoration: none;
-    color: rgb(203, 248, 248);
+    color: rgb(254, 20, 20);
   }
   .box{
     border-top: 2px #cffbca solid;
@@ -94,6 +107,9 @@
   .care{
   text-align: center;
   }
+  .care a{
+    font-weight: bold;
+  }
   .menu ul{
   margin: 0;
   padding: 20px;
@@ -101,7 +117,7 @@
   .menu ul li{
   list-style-type: none;
   display: inline;
-  padding: 20px 20px;
+  padding: 20px 30px;
   position: relative;
   }
   .menu ul li a{
@@ -122,6 +138,30 @@
   width: 100%;
   border-bottom: 2px rgb(40, 126, 98) solid;
   }
+  .menu ul li:hover ul{
+    /*display: block;*/
+    opacity: 1;
+  }
+  .menu ul li ul{
+    background-color: rgba(187, 246, 204, 0.907);
+    position: absolute;
+    top: 54px;
+    left: 20px;
+    width: 100;
+    z-index: 9;
+    /*display: none;*/
+    opacity: 0;
+    transition: 0.5s;
+  }
+  .menu ul li ul li{
+    display: block;
+  }
+  .menu ul li ul li a{
+    color: #0c2608;
+    font-weight: normal;
+    font-size: 1.2em;
+  }
+  
   .footer ul li{
   text-decoration: none;
   list-style-type: none;
@@ -158,11 +198,17 @@
       border-top: 2px #cffbca solid;
     }
     .box3{
-      border-bottom: 2px #040317 solid;
-      border-top: 2px #0b3106 solid;
+      border-bottom: 2px #e0d9d9 solid;
+      border-top: 2px #efd6d3 solid;
       padding: 5px 2px;
     position: relative;
     overflow: hidden;
+    }
+    .box3 a{
+      color:rgb(8, 165, 3);
+    }
+    .box3 a:hover{
+      color: rgb(238, 114, 168);
     }
     .box3 img{
     object-fit: cover;
@@ -175,9 +221,7 @@
     transform: scale(1.1);
     cursor: pointer;
   }
-.main{
 
-}
   /*     .menu ul li {
     list-style-type: none;
     display: flex;
