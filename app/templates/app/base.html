@@ -4,108 +4,36 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <!--css-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <link href="{%static 'app/css/style.css'%}" rel="stylesheet" />
-        <link href="{%static 'app/css/owl.carousel.min.css'%}" rel="stylesheet" />
-        <link href="{%static 'app/css/all.min.css'%}" rel="stylesheet" />
-        <link href="{%static 'app/css/bootstrap.min.css'%}" rel="stylesheet" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-        <link rel="stylesheet" type="text/css" href="{% static 'app/css/main.css'%}">
-        <!--js-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-        <script src="{%static 'app/js/s3.js'%}" > </script>
-        <script src="{%static 'app/js/all.min.js'%}" > </script>
-        <script src="{%static 'app/js/myscrip.js'%}" > </script>
-       
-
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="{% static 'app/css/style.css' %}" rel="stylesheet" />
         <title>Bác sĩ thú y</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
     </head>
     <body>
-      <!--header-->
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-              <a class="navbar-brand" href="#">
-                <img src="/static/app/images/banner/logomoi.jpg" width="50" height="50" />
-                
-
-              </a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Trang chủ</a>
-                  </li>
-                  
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Sản phẩm
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Thức ăn cho pet</a></li>
-                      <li><a class="dropdown-item" href="#">Thuốc trị rụng lông</a></li>
-                      <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="#">Đồ mặc cho pet </a></li>
+                <a class="navbar-brand" href="#">
+                    <img src="/static/app/images/banner/logomoi.jpg" width="50" height="50" />
+                </a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/">Trang chủ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/record_medical/">Ghi nhận hồ sơ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/inpatient_care/">Chăm sóc thú cưng</a>
+                        </li>
                     </ul>
-                  </li>
-
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Giới thiệu</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Liên hệ</a>
-                  </li>
-                </ul>
-                <form class="d-flex" role="search">
-                  <input class="form-control me-2" type="gõ vào đây" placeholder="gõ vào đây" aria-label="gõ vào đây">
-                  <button class="btn btn-outline-success" type="submit">Tìm kiếm</button>
-                </form>
-              </div>
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Người dùng
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Trang cá nhân</a></li>
-                    <li><a class="dropdown-item" href="#">Đơn hàng</a></li>
-                    <li><a class="dropdown-item" href="#">Thoát</a></li>
-
-                  </ul>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Giỏ hàng</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Đăng nhập</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Đăng kí</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Đăng xuất</a>
-                </li>
-              </ul>
-
+                </div>
             </div>
-          </nav>
+        </nav>
 
-          <!-- main body-->
-           {%block banner_slider%} {%endblock banner_slider%}
-           {% block main_content %}{% endblock main_content  %}
-           <!--footer-->
-           <footer class="container--fluid bg-success text-center fixed-bottom p-2 mt-5">
-                xin chào 2024
-           </footer>
-        
-        <script src="" async defer></script>
+        {% block content %}{% endblock content %}
+
+        <footer class="container-fluid bg-success text-center p-2 mt-5">
+            &copy; 2024 - Bác sĩ thú y
+        </footer>
     </body>
 </html>

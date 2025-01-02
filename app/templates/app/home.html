@@ -1,71 +1,8 @@
 {% extends 'app/base.html' %}
-{% load static %}
-{% block banner_slider %} 
-<div id="carouselExampleDark" class="carousel carousel-dark slide">
-    <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3" aria-label="Slide 4"></button>
-    </div>
-    <div class="carousel-inner">
-        <div class="carousel-item active" data-bs-interval="10000">
-            <img src="/static/app/images/banner/chodai.jpg" class="d-block w-100" alt="Điều trị nấm da" height='500'>
 
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Điều trị - Khám sức khoẻ</h5>
-                <p>Uy tín, chất lượng khỏi phải bàn.</p>
-            </div>
-        </div>
-        <div class="carousel-item" data-bs-interval="2000">
-            <img src="/static/app/images/banner/domac3.jpg" class="d-block w-100" alt="Đồ cho thú cưng" height='700'>
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Đồ cho thú cưng</h5>
-                <p>Dễ thương, màu sắc.</p>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <img src="{% static 'app/images/banner/doan.jpg' %}" class="d-block w-100" alt="Thức ăn thú cưng" height='700'>
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Thức ăn thú cưng</h5>
-                <p>Đầy đủ dinh dưỡng và dưỡng chất.</p>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <img src="{% static 'app/images/banner/pe.webp' %}" class="d-block w-100" alt="Cắt tỉa lông thú cưng" height='700'>
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Cắt tỉa lông thú cưng</h5>
-                <p>Xinh xắn, đáng yêu.</p>
-            </div>
-        </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
+{% block content %}
+<div class="container mt-5">
+    <h1>Chào mừng đến với hệ thống Bác sĩ thú y</h1>
+    <img src="/static/app/images/hix.jpg" class="img-fluid mt-3" alt="Welcome Image">
 </div>
-{% endblock banner_slider %}
-
-{% block main_content %} 
-<div class="row">
-    <div class="col-lg-4">
-        <img class="thumbnail" src="{% static 'app/images/banner/taixuong.jpg' %}">
-        <div class="box-element product">
-            <h6><strong>Sản phẩm</strong></h6>
-            <hr>
-            <button class="btn btn-outline-secondary add-btn">Thêm vào giỏ hàng</button>
-            <a class="btn btn-outline-success" href="#">Xem</a>
-            <h3 style="display: inline-block; float: right"><strong>199.000 VND</strong></h3> 
-
-
-
-        </div>
-    </div>
-</div>
-<br /><br /><br />
-
-{% endblock main_content %}
+{% endblock content %}
