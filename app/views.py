@@ -1,4 +1,5 @@
-from django.shortcuts import render
+# views.py
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import MedicalRecord
 
@@ -37,3 +38,22 @@ def inpatient_care(request):
     pets_in_hospital = MedicalRecord.objects.all()
     context = {'pets': pets_in_hospital}
     return render(request, 'app/inpatient_care.html', context)
+
+# Sửa hồ sơ khám bệnh
+def edit_medical(request, pk):
+    pet = get_object_or_404(MedicalRecord, pk=pk)
+    if request.method == 'POST':
+        pet.name = request.POST.get('name')
+        pet.species = request.POST.get('species')
+        pet.progress = request.POST.get('progress')
+        pet.save()
+        return redirect('inpatient_care')  # Redirect to inpatient care page
+
+    context = {'pet': pet}
+    return render(request, 'app/edit_medical.html', context)
+
+# Xóa hồ sơ khám bệnh
+def delete_medical(request, pk):
+    pet = get_object_or_404(MedicalRecord, pk=pk)
+    pet.delete()
+    return redirect('inpatient_care')
