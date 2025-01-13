@@ -29,194 +29,308 @@
 
     <!--<link rel="stylesheet" href="css/bootstrap.min.css">
         <script src="js/bootstrap.bundle.min.js"></script>-->
-    <link rel="stylesheet" href="css/thucan.css" />
-    <script src="js/tta.js"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home/css/thucan.css' %}" />
+    <script
+      type="text/javascript"
+      src="{% static 'home/js/home.js' %}"
+    ></script>
   </head>
   <body>
     <header>
-      <div class="top sticky">
-        <div class="container-fluid p-1 bgtop1 text-center text-light">
-          <div class="container">
-            <marquee>
-              Chăm Sóc Thú Cưng Số 1 Tại Thành Phố Hồ Chí Minh
-            </marquee>
+      <div class="top1">
+        <div class="top sticky">
+          <div class="container-fluid p-1 bgtop1 text-center text-light">
+            <div class="container">
+              <marquee>
+                Chăm Sóc Thú Cưng Số 1 Tại Thành Phố Hồ Chí Minh
+              </marquee>
+            </div>
+          </div>
+
+          <div class="container col-10">
+            <div class="row pt-2 pb-2">
+              <div class="col-md-2">
+                <a href="#" target="home">
+                  <img
+                    src="{% static 'home/images/anh001.png'%}"
+                    alt=""
+                    class="w-50 m-0"
+                    loading="lazy"
+                  />
+                </a>
+              </div>
+              <div class="col-md-10 navbar-expand-lg text-center">
+                <div class="menu">
+                  <ul>
+                    <li><a href="*">CẨM NANG CHĂM SÓC</a></li>
+
+                    <li class="nav-item dropdown">
+                      <a
+                        class="nav-link dropdown-toggle"
+                        href="#"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        >DỊCH VỤ CHO PET</a
+                      >
+                      <ul class="dropdown-menu">
+                        <li>
+                          <a class="dropdown-item" href="#">Gửi trông giữ</a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item" href="#">Tiêm phòng</a>
+                        </li>
+                      </ul>
+                    </li>
+
+                    <li><a href="../Templates/login.html">ĐĂNG NHẬP</a></li>
+                    <li>
+                      <a href="*">
+                        <i class="glyphicon glyphicon-search"> </i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="*">
+                        <span class="fas fa-shopping-cart"></span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-
-        <div class="container col-10">
-          <div class="row pt-2 pb-2">
-            <div class="col-md-2">
-              <a href="#" target="home">
-                <img
-                  src="hinhanh/anh001.png"
-                  alt=""
-                  class="w-50 m-0"
-                  loading="lazy"
-                />
-              </a>
+      </div>
+    </header>
+    <main>
+      <div class="content">
+        <div>
+          <div
+            class="w3-sidebar w3-bar-block w3-card msb chung"
+            style="width: 20%"
+          >
+            <a href="#" class="w3-bar-item w3-button">Link 1</a>
+            <button
+              class="w3-button w3-block w3-left-align"
+              onclick="myAccFunc()"
+            >
+              Accordion <i class="fa fa-caret-down"></i>
+            </button>
+            <div id="demoAcc" class="w3-hide w3-white w3-card">
+              <a href="#" class="w3-bar-item w3-button">Link</a>
+              <a href="#" class="w3-bar-item w3-button">Link</a>
             </div>
-            <div class="col-md-10 navbar-expand-lg text-center">
-              <div class="menu">
+
+            <a href="#" class="w3-bar-item w3-button">Link 2</a>
+            <a href="#" class="w3-bar-item w3-button">Link 3</a>
+          </div>
+        </div>
+        <div class="mgl chung">
+          <div id="content">
+            <h1>Thức Ăn</h1>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            Hạt cho chó/meo` được chế biến từ các nguồn đạm động vật, chất xơ,
+            rau củ,... được cân bằng đầy đủ dưỡng chất và thành phần dinh dưỡng
+            cho từng giống chó khác nhau. Ngoài ra, kích thước hạt và hương vị
+            của hạt cũng là một trong những yếu tố giúp bạn chọn hạt phù hợp cho
+            thu' cưng.
+          </div>
+          <section>
+            <div class="container mt-3">
+              <div class="row d-flex">
+                <div class="col-md-3">
+                  <div class="card border-0">
+                    <img
+                      class="card-img-top"
+                      src="{% static 'home/images/thucan6.webp'%}"
+                      alt="Card image"
+                      style="width: 100%"
+                    />
+                    <div class="card-body">
+                      <h4 class="card-title">John Doe</h4>
+                      <p class="card-text">
+                        Some example text some example text. John Doe is an
+                        architect and engineer
+                      </p>
+                      <a href="#" class="btn btn-primary">See Profile</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card border-0">
+                    <img
+                      class="card-img-top"
+                      src="{% static 'home/images/thucan2.webp'%}"
+                      alt="Card image"
+                      style="width: 100%"
+                    />
+                    <div class="card-body">
+                      <h4 class="card-title">John Doe</h4>
+                      <p class="card-text">
+                        Some example text some example text. John Doe is an
+                        architect and engineer
+                      </p>
+                      <a href="#" class="btn btn-primary">See Profile</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card border-0">
+                    <img
+                      class="card-img-top"
+                      src="{% static 'home/images/thucan3.jpg'%}"
+                      alt="Card image"
+                      style="width: 100%"
+                    />
+                    <div class="card-body">
+                      <h4 class="card-title">John Doe</h4>
+                      <p class="card-text">
+                        Some example text some example text. John Doe is an
+                        architect and engineer
+                      </p>
+                      <a href="#" class="btn btn-primary">See Profile</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card border-0">
+                    <img
+                      class="card-img-top"
+                      src="{% static 'home/images/'%}"
+                      alt="Card image"
+                      style="width: 100%"
+                    />
+                    <div class="card-body">
+                      <h4 class="card-title">John Doe</h4>
+                      <p class="card-text">
+                        Some example text some example text. John Doe is an
+                        architect and engineer
+                      </p>
+                      <a href="#" class="btn btn-primary">See Profile</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <div class="container mt-3 row d-flex">
+              <div class="col-md-3">
+                <div class="card border-0">
+                  <img
+                    class="card-img-top"
+                    src="{% static 'home/images/thucan5.webp'%}"
+                    alt="Card image"
+                    style="width: 100%"
+                  />
+                  <div class="card-body">
+                    <h4 class="card-title">John Doe</h4>
+                    <p class="card-text">
+                      Some example text some example text. John Doe is an
+                      architect and engineer
+                    </p>
+                    <a href="#" class="btn btn-primary">See Profile</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card border-0">
+                  <img
+                    class="card-img-top"
+                    src="{% static 'home/images/thucan7.webp'%}"
+                    alt="Card image"
+                    style="width: 100%"
+                  />
+                  <div class="card-body">
+                    <h4 class="card-title">John Doe</h4>
+                    <p class="card-text">
+                      Some example text some example text. John Doe is an
+                      architect and engineer
+                    </p>
+                    <a href="#" class="btn btn-primary">See Profile</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card border-0">
+                  <img
+                    class="card-img-top"
+                    src="{% static 'home/images/thucan8.webp'%}"
+                    alt="Card image"
+                    style="width: 100%"
+                  />
+                  <div class="card-body">
+                    <h4 class="card-title">John Doe</h4>
+                    <p class="card-text">
+                      Some example text some example text. John Doe is an
+                      architect and engineer
+                    </p>
+                    <a href="#" class="btn btn-primary">See Profile</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card border-0">
+                  <img
+                    class="card-img-top"
+                    src="{% static 'home/images/thucan9.webp'%}"
+                    alt="Card image"
+                    style="width: 100%"
+                  />
+                  <div class="card-body">
+                    <h4 class="card-title">John Doe</h4>
+                    <p class="card-text">
+                      Some example text some example text. John Doe is an
+                      architect and engineer
+                    </p>
+                    <a href="#" class="btn btn-primary">See Profile</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <div class="news">
+        <p></p>
+      </div>
+    </main>
+    <footer>
+      <div class="footer">
+        <div class="container-fluid col-10 footer">
+          <div class="row pt-3 pb-3">
+            <div class="col-md-4 care">
+              <h4>Đánh Giá Của Khách Hàng</h4>
+              <div>
                 <ul>
-                  <li><a href="*">CẨM NANG CHĂM SÓC</a></li>
-
-                  <li class="nav-item dropdown">
-                    <a
-                      class="nav-link dropdown-toggle"
-                      href="#"
-                      role="button"
-                      data-bs-toggle="dropdown"
-                      >DỊCH VỤ CHO PET</a
-                    >
-                    <ul class="dropdown-menu">
-                      <li>
-                        <a class="dropdown-item" href="#">Gửi trông giữ</a>
-                      </li>
-                      <li><a class="dropdown-item" href="#">Tiêm phòng</a></li>
-                    </ul>
-                  </li>
-
-                  <li><a href="../Templates/login.html">ĐĂNG NHẬP</a></li>
-                  <li>
-                    <a href="*">
-                      <i class="glyphicon glyphicon-search"> </i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="*">
-                      <span class="fas fa-shopping-cart"></span>
-                    </a>
-                  </li>
+                  <li><a href="Xem them"> Nhấn Vào Để Xem </a></li>
                 </ul>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="w3-sidebar w3-bar-block w3-card msb chung" style="width: 20%">
-        <a href="#" class="w3-bar-item w3-button">Link 1</a>
-        <button class="w3-button w3-block w3-left-align" onclick="myAccFunc()">
-          Accordion <i class="fa fa-caret-down"></i>
-        </button>
-        <div id="demoAcc" class="w3-hide w3-white w3-card">
-          <a href="#" class="w3-bar-item w3-button">Link</a>
-          <a href="#" class="w3-bar-item w3-button">Link</a>
-        </div>
-
-        <a href="#" class="w3-bar-item w3-button">Link 2</a>
-        <a href="#" class="w3-bar-item w3-button">Link 3</a>
-      </div>
-    </header>
-    <div class="mgl chung">
-      <div id="content">
-        <h1>Thức Ăn</h1>
-        <p></p>
-        <p></p>
-        <p></p>
-        <p></p>
-        Hạt cho chó/meo` được chế biến từ các nguồn đạm động vật, chất xơ, rau
-        củ,... được cân bằng đầy đủ dưỡng chất và thành phần dinh dưỡng cho từng
-        giống chó khác nhau. Ngoài ra, kích thước hạt và hương vị của hạt cũng
-        là một trong những yếu tố giúp bạn chọn hạt phù hợp cho thu' cưng.
-      </div>
-      <section>
-        <div class="container mt-3">
-          <div class="row d-flex">
-            <div class="col-md-3">
-              <div class="card">
-                <img
-                  class="card-img-top"
-                  src="hinhanh/4.jpg"
-                  alt="Card image"
-                  style="width: 100%"
-                />
-                <div class="card-body">
-                  <h4 class="card-title">John Doe</h4>
-                  <p class="card-text">
-                    Some example text some example text. John Doe is an
-                    architect and engineer
-                  </p>
-                  <a href="#" class="btn btn-primary">See Profile</a>
-                </div>
-              </div>
+            <div class="col-md-4">
+              <h4 class="care">Pet Care</h4>
+              <ul>
+                <li>Phone: 0889969020</li>
+                <li>Maps: 25 Tô Ký - Tân Chánh Hiệp - Quận 12</li>
+                <li>Social:</li>
+              </ul>
             </div>
-            <div class="col-md-3">
-              <div class="card">
-                <img
-                  class="card-img-top"
-                  src="hinhanh/3.jpg"
-                  alt="Card image"
-                  style="width: 100%"
-                />
-                <div class="card-body">
-                  <h4 class="card-title">John Doe</h4>
-                  <p class="card-text">
-                    Some example text some example text. John Doe is an
-                    architect and engineer
-                  </p>
-                  <a href="#" class="btn btn-primary">See Profile</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card">
-                <img
-                  class="card-img-top"
-                  src="hinhanh/4.jpg"
-                  alt="Card image"
-                  style="width: 100%"
-                />
-                <div class="card-body">
-                  <h4 class="card-title">John Doe</h4>
-                  <p class="card-text">
-                    Some example text some example text. John Doe is an
-                    architect and engineer
-                  </p>
-                  <a href="#" class="btn btn-primary">See Profile</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card">
-                <img
-                  class="card-img-top"
-                  src="hinhanh/4.jpg"
-                  alt="Card image"
-                  style="width: 100%"
-                />
-                <div class="card-body">
-                  <h4 class="card-title">John Doe</h4>
-                  <p class="card-text">
-                    Some example text some example text. John Doe is an
-                    architect and engineer
-                  </p>
-                  <a href="#" class="btn btn-primary">See Profile</a>
-                </div>
-              </div>
+            <div class="col-md-4">
+              <ul>
+                <h4 class=" ">Hỗ Trợ Khách Hàng</h4>
+                <li><a href="*"> Chính Sách Mua Hàng </a></li>
+                <li><a href="*"> Điều Khoản Dịch Vụ </a></li>
+                <li><a href="*"> Hình Thức Thanh Toán </a></li>
+              </ul>
             </div>
           </div>
         </div>
-      </section>
-
-      <div class="col-md-3">
-        <div class="card">
-          <img
-            class="card-img-top"
-            src="hinhanh/4.jpg"
-            alt="Card image"
-            style="width: 100%"
-          />
-          <div class="card-body">
-            <h4 class="card-title">John Doe</h4>
-            <p class="card-text">
-              Some example text some example text. John Doe is an architect and
-              engineer
-            </p>
-            <a href="#" class="btn btn-primary">See Profile</a>
-          </div>
-        </div>
       </div>
-    </div>
+    </footer>
     <script src="js/tta.js"></script>
   </body>
 </html>
