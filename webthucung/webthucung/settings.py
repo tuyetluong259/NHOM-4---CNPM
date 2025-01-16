@@ -55,7 +55,9 @@ ROOT_URLCONF = 'webthucung.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / 'templates',  # Đảm bảo thư mục templates nằm trong thư mục gốc dự án
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
