@@ -11,13 +11,20 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
+        <style>
+        .nav-link:hover {
+          background-color: hsl(203, 89.90%, 64.90%); /* Màu nền chuyển sang đỏ khi hover */
+          color: white; /* Chữ chuyển sang màu trắng */
+        }
+        </style>
+    
     </head>
     <body>
         <!-- Thanh menu -->
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Staff
-      <img src="{% static 'app/images/logo.png'%}" width="50" height="50" alt"Logo">
+      <img src="{% static 'app/images/logo.png'%}" width="30" height="30" alt"Logo">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -26,13 +33,13 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <!-- Mục menu đã sửa -->
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Quản lý Chuồng</a>
+          <a class="nav-link active" aria-current="page" href="#">Quản lý  Chuồng</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Quản lý Thú cưng</a>
+          <a class="nav-link" href="#" >Quản lý Thú cưng</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Quản lý Lịch bác sĩ</a>
+          <a class="nav-link" href="#" >Quản lý Lịch bác sĩ</a>
         </li>
         <!-- Giữ lại phần còn lại của menu như cũ -->
       </ul>
