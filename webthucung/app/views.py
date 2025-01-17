@@ -21,4 +21,5 @@ def danh_gia_nguoi_dung(request):
 # Trang thông tin khác
 def thong_tin_khac(request):
     return render(request, 'thong_tin_khac.html')
+    
 
