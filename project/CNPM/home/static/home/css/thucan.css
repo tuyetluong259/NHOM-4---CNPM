@@ -23,7 +23,7 @@
   }
   .top1{
   min-height: 50px;
-  border-bottom: 2px #280000 solid;
+  border-bottom: 2px #9be9d7 solid;
   margin-bottom: 30px;
   }
   .bgtop1{
@@ -78,7 +78,7 @@
     display: block;
   }
   .menu ul li ul li a{
-    color: #0c2608;
+    color: #4ea940;
     font-weight: normal;
     font-size: 1.2em;
   }

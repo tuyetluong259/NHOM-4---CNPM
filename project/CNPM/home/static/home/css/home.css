@@ -6,6 +6,7 @@
   .sticky {
     position: fixed;
     left:0;
+    top: 0;
     width: 100%;
     background: #fffdfd;
     color: #f1f1f1;
@@ -19,7 +20,7 @@
   .top1{
   min-height: 50px;
   border-bottom: 2px #280000 solid;
-  padding: 5px 2px;
+  margin-bottom: 30px;
   }
   .body{
   font-family: Verdana, sans-serif;
@@ -57,12 +58,12 @@
   color: rgb(4, 63, 18);
   }
   .inpic a{
-  
+    text-decoration: none;
   font-size: 1.2em;
   color: rgb(236, 239, 244);
   }
   .inpic a:hover{
-    text-decoration: none;
+    text-decoration: dashed;
     color: rgb(254, 20, 20);
   }
   .box{
@@ -112,15 +113,16 @@
   }
   .menu ul{
   margin: 0;
-  padding: 20px;
+  padding: 2px;
   }
   .menu ul li{
   list-style-type: none;
-  display: inline;
-  padding: 20px 30px;
+  float: left;
+  /*display: inline;*/
+  padding: 20px 25px;
   position: relative;
   }
-  .menu ul li a{
+  .menu ul li a{ 
   font-size: 1.4em;
   color: rgb(2, 49, 11);
   text-decoration: none;
@@ -139,7 +141,7 @@
   border-bottom: 2px rgb(40, 126, 98) solid;
   }
   .menu ul li:hover ul{
-    /*display: block;*/
+    display: block;
     opacity: 1;
   }
   .menu ul li ul{
@@ -148,8 +150,8 @@
     top: 54px;
     left: 20px;
     width: 100;
-    z-index: 9;
-    /*display: none;*/
+    z-index: 9999999;
+    display: none;
     opacity: 0;
     transition: 0.5s;
   }
@@ -181,6 +183,7 @@
   list-style-type: none;
   }
   .body1 a{
+    text-decoration: none;
   font-size: 1.4em;
   color: rgb(12, 95, 34);
   font-weight: bold;
@@ -205,7 +208,8 @@
     overflow: hidden;
     }
     .box3 a{
-      color:rgb(8, 165, 3);
+      text-decoration: none;
+      color:rgb(8, 153, 3);
     }
     .box3 a:hover{
       color: rgb(238, 114, 168);
