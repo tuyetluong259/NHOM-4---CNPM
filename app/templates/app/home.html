@@ -1,5 +1,115 @@
-{% extends 'app/base.html'%}
 {% load static %}
-{% block main-content %}
-Wellcome mysite
-{% endblock main-content %}
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href=" app/css/style.css">
+
+        <title>Web chăm sóc thú cưng</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <style>
+          .nav-link:hover {
+              background-color: hsl(203, 89.90%, 64.90%); /* Màu nền chuyển sang đỏ khi hover */
+              color: white; /* Chữ chuyển sang màu trắng */
+        }
+          footer {
+            background-color: #f8f9fa;
+            text-align: center;
+            padding: 10px;
+            font-size: 14px;
+            color:rgb(233, 33, 33);
+          }
+          .btn-primary {
+              background-color:rgb(83, 180, 249) !important; /* Màu nền tùy ý */
+              border-color:rgb(55, 108, 242)     /* Màu viền */
+              color: white !important;            /* Màu chữ */
+          }
+      
+          .btn-primary:hover {
+              background-color:rgb(83, 180, 249) !important; /* Màu khi hover */
+              border-color:rgb(255, 0, 0);
+              border-width: 1.5px !important;
+          }
+      </style>  
+        
+    </head>
+    <body>
+        <!-- Thanh menu -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+              Staff
+              <img src="{% static 'app/images/logo.png'%}" width="30" height="30" alt="Logo">
+            </a>
+            <!-- Nút Toggle cho mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>            
+            
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{% url 'home'%}">Trang chính</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'booking'%}" >Quản lý Booking</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'pet'%}">Quản lý Thú cưng</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'schedule'%}">Sắp lịch bác sĩ</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'room'%}">Quản lý Chuồng</a>
+                </li>
+              </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Tìm Kiếm" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Tìm Kiếm</button>
+      </form>
+    </div>
+  </div>
+</nav>
+  <!--Main-->
+  <main class="container mt-4">
+    <h1 class="text-center">Chào mừng đến với Web chăm sóc thú cưng</h1>
+    <p class="text-center">Trang nhân viên (xin quý khách vui lòng chọn trang phù hợp):</p>
+    <div class="d-flex justify-content-center">
+      <img src="{% static 'app/images/base1.png'%}" width="200" height="300" alt="img">
+      <img src="{% static 'app/images/base2.jpg'%}" width="200" height="300" alt="img">
+      <img src="{% static 'app/images/base3.jpg'%}" width="200" height="300" alt="img">
+      <img src="{% static 'app/images/base4.jpg'%}" width="200" height="300" alt="img">
+    </div>
+    <div class="row text-center mt-5">
+        <div class="col-md-3">
+            <a href="{% url 'booking'%}" class="btn btn-primary btn-lg w-100">Quản lý Booking</a>
+            <p>Hệ thống đặt chỗ, hủy chỗ, hoàn tiền.</p>
+        </div>
+        <div class="col-md-3">
+            <a href="{% url 'pet'%}" class="btn btn-primary btn-lg w-100">Quản lý Thú cưng nhập viện</a>
+            <p>Theo dõi thông tin thú cưng lưu chuồng.</p>
+        </div>
+        <div class="col-md-3">
+            <a href="{% url 'schedule'%}" class="btn btn-primary btn-lg w-100">Sắp lịch bác sĩ</a>
+            <p>Lịch khám bệnh, lịch chăm sóc.</p>
+        </div>
+        <div class="col-md-3">
+            <a href="{% url 'room'%}" class="btn btn-primary btn-lg w-100">Quản lý Chuồng</a>
+            <p>Thông tin chuồng hệ thống tìm kiếm.</p>
+        </div>
+    </div>
+  </main>
+  <!--Footer-->
+  <footer class="mt-4">
+    <p>Hotline: 9999909999</p>
+    <p>&copy; 2025 Web chăm sóc thú cưng.</p>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>
