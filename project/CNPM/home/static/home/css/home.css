@@ -225,7 +225,14 @@
     transform: scale(1.1);
     cursor: pointer;
   }
-
+.menu2 {
+  display: block;
+  text-align: center;
+  align-items:center ;
+}
+.menu2 img{
+  width: 70px;
+}
   /*     .menu ul li {
     list-style-type: none;
     display: flex;
