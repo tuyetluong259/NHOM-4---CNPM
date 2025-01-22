@@ -12,3 +12,5 @@ def pet(request):
     return render(request, 'app/pet.html')
 def room(request):
     return render(request, 'app/room.html')
+def login(request):
+    return render(request, 'app/login.html')

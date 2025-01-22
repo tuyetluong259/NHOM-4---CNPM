@@ -35,6 +35,17 @@
               border-color:rgb(255, 0, 0);
               border-width: 1.5px !important;
           }
+          .tab-button {
+            padding: 10px 10px;
+            background:rgb(36, 228, 249);
+            cursor: pointer; /*con trỏ hình bàn tay*/
+            border-radius: 5px;
+            font-weight: bold;
+            color: white;
+        }
+        .tab-button:hover {
+          color:rgb(234, 83, 66);
+      }
       </style>  
         
     </head>
@@ -69,10 +80,14 @@
                   <a class="nav-link" href="{% url 'room'%}">Quản lý Chuồng</a>
                 </li>
               </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Tìm Kiếm" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Tìm Kiếm</button>
-      </form>
+              <div class="auth-container">
+                <!-- Tab để chuyển đến trang Đăng Nhập hoặc Đăng Ký -->
+                <div class="tabs">
+                    <a href="{% url 'login'%}" class="tab-button">Đăng Nhập</a>
+                    <a> / </a>
+                    <a href="{% url 'login'%}#registerForm" class="tab-button">Đăng Ký</a>
+                </div>
+            </div>            
     </div>
   </div>
 </nav>
