@@ -15,7 +15,6 @@
             font-family: Arial, sans-serif;
             background-color:rgb(255, 255, 255);
             margin: 0;
-            padding: 20px;
         }
         h1 {
             text-align: center;
@@ -35,7 +34,7 @@
             background-color:rgb(143, 214, 243);
         }
         tr:nth-child(even) {
-            background-color:rgb(7, 163, 253);
+            background-color:rgb(255, 255, 255);
         }
         button {
             padding: 5px 10px;
@@ -72,17 +71,15 @@
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'room'%}">
-                Room
-            </a>
+            <a class="navbar-brand" href="{% url 'home'%}">
+                Staff
+                <img src="{% static 'app/images/logo.png'%}" width="30" height="30" alt="Logo">
+              </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home'%}">Trang chính</a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link " href="/booking/">Quản lý Booking</a>
                         <li class="nav-item">
