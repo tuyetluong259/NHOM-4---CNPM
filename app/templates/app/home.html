@@ -14,9 +14,14 @@
 
         <style>
           .nav-link:hover {
-              background-color: hsl(203, 89.90%, 64.90%); /* Màu nền chuyển sang đỏ khi hover */
+              background-color: rgb(16, 207, 255); /* Màu nền chuyển sang đỏ khi hover */
               color: white; /* Chữ chuyển sang màu trắng */
         }
+        .nav-link.active {
+          color: black; /* Màu chữ khi active */
+          background-color:rgb(16, 207, 255); /* Màu nền khi active */
+          border-radius: 5px;
+      }
           footer {
             background-color: #f8f9fa;
             text-align: center;
@@ -37,13 +42,13 @@
           }
           .tab-button {
             padding: 10px 10px;
-            background:rgb(36, 228, 249);
             cursor: pointer; /*con trỏ hình bàn tay*/
             border-radius: 5px;
             font-weight: bold;
-            color: white;
+            color: ;
         }
         .tab-button:hover {
+          background:rgb(36, 228, 249);
           color:rgb(234, 83, 66);
       }
       </style>  
