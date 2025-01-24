@@ -129,9 +129,7 @@
     </footer>
 
     <script>
-        let bookingId = 1;
-
-        function addBooking() {
+        async function addBooking() {
             const name = document.getElementById('roomName').value;
             const type = document.getElementById('roomType').value;
             const status = document.getElementById('status').value;
@@ -141,40 +139,58 @@
                 return;
             }
 
-            const table = document.getElementById('bookingList');
-            const row = table.insertRow();
+            const response = await fetch('/add', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams({ roomName: name, roomType: type, status: status })
+            });
 
-            row.innerHTML = `
-                <td>${bookingId++}</td>
-                <td>${name}</td>
-                <td>${type}</td>
-                <td>${status}</td>
-                <td>
-                    <button onclick="editBooking(this)">Sửa</button>
-                    <button onclick="deleteBooking(this)">Xóa</button>
-                </td>
-            `;
-
-            document.getElementById('roomName').value = '';
-            document.getElementById('roomType').value = '';
-            document.getElementById('status').value = '';
+            if (response.ok) {
+                const booking = await response.json();
+                const table = document.getElementById('bookingList');
+                const row = table.insertRow();
+                row.innerHTML = `
+                    <td>${booking.id}</td>
+                    <td>${booking.name}</td>
+                    <td>${booking.type}</td>
+                    <td>${booking.status}</td>
+                    <td>
+                        <button onclick="editBooking(${booking.id}, this)">Sửa</button>
+                        <button onclick="deleteBooking(${booking.id}, this)">Xóa</button>
+                    </td>
+                `;
+            } else {
+                const error = await response.json();
+                alert(error.error);
+            }
         }
 
-        function editBooking(button) {
+        async function editBooking(id, button) {
             const row = button.parentNode.parentNode;
             const name = prompt('Nhập tên phòng mới:', row.cells[1].innerText);
             const type = prompt('Nhập loại phòng mới:', row.cells[2].innerText);
             const status = prompt('Nhập trạng thái mới:', row.cells[3].innerText);
 
-            if (name) row.cells[1].innerText = name;
-            if (type) row.cells[2].innerText = type;
-            if (status) row.cells[3].innerText = status;
+            const response = await fetch(`/edit/${id}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams({ name, type, status })
+            });
+
+            if (response.ok) {
+                const booking = await response.json();
+                row.cells[1].innerText = booking.name;
+                row.cells[2].innerText = booking.type;
+                row.cells[3].innerText = booking.status;
+            }
         }
 
-        function deleteBooking(button) {
+        async function deleteBooking(id, button) {
             if (confirm('Bạn có chắc chắn muốn xóa booking này?')) {
-                const row = button.parentNode.parentNode;
-                row.remove();
+                const response = await fetch(`/delete/${id}`, { method: 'DELETE' });
+                if (response.ok) {
+                    button.parentNode.parentNode.remove();
+                }
             }
         }
     </script>
