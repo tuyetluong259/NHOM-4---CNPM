@@ -18,99 +18,103 @@
     <script src="{% static 'app/js/myscript.js' %}"></script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Pet Health Care System</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>     
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Khách Hàng
-                </a>
+  <header>
+    <!-- Intro settings -->
+    <style>
+      #intro {
+        /* Margin to fix overlapping fixed navbar */
+        margin-top: 58px;
+      }
 
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="{% url 'quan_ly_thu_cung' %}">Quản lý danh sách thú cưng</a></li>
-                  <li><a class="dropdown-item" href="{% url 'chi_tiet_thu_cung' %}">Thông tin chi tiết của thú cưng</a></li>
-                  <li><a class="dropdown-item" href="{% url 'dang_ky_kham_benh' %}">Đăng ký khám bệnh</a></li>
-                  <li><a class="dropdown-item" href="{% url 'danh_gia_nguoi_dung' %}">Đánh giá người dùng</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="{% url 'thong_tin_khac' %}">Thông tin khác</a></li>
-                </ul>
-              </li>
-            </ul>
-        </li>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-          </div>
-        </div>
-      </nav>
+      @media (max-width: 991px) {
+        #intro {
+          /* Margin to fix overlapping fixed navbar */
+          margin-top: 45px;
+        }
+      }
+    </style>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+      <div class="container-fluid">
+        <!-- Navbar brand -->
+        <!-- logo -->
+        <a class="navbar-brand" target="_blank" href="http://127.0.0.1:8000/">
+          <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/473723691_1002491608374754_5189314962434618562_n.png?_nc_cat=111&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeEDeShnCPyE1crSUjUpyJ8js4fz9kghMoezh_P2SCEyh6VuAGwQzZ1lHCBkryZeVShFS0ItXLDNl8s1ggq5ca-g&_nc_ohc=BOXPLlxyVEkQ7kNvgH0roAq&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1gEg1AWa_qVQ541W40Cwr2BLuMcVt_VZi5_YO2B74wu-BA&oe=67B493C8" 
+          height="60" alt=""
+            loading="lazy" style="margin-top: -3px;" />
+        <!-- logo -->
+        <a class="navbar-brand" href="#">Pet Health Care System</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>     
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Khách Hàng
+              </a>
+
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'quan_ly_thu_cung' %}">Quản lý danh sách thú cưng</a></li>
+                <li><a class="dropdown-item" href="{% url 'chi_tiet_thu_cung' %}">Thông tin chi tiết của thú cưng</a></li>
+                <li><a class="dropdown-item" href="{% url 'dang_ky_kham_benh' %}">Đăng ký khám bệnh</a></li>
+                <li><a class="dropdown-item" href="{% url 'danh_gia_nguoi_dung' %}">Đánh giá người dùng</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="{% url 'thong_tin_khac' %}">Thông tin khác</a></li>
+              </ul>
+            </li>
+          </ul>
+      </li>
+          <!-- Right elements -->
+    <div class="d-flex align-items-center">
+      <!-- Icon -->
+      <a class="text-reset me-3" href="#">
+        <i class="fas fa-shopping-cart"></i>
+      </a>
+
+      <!-- Notifications -->
+      <div class="dropdown">
+        <a
+          data-mdb-dropdown-init
+          class="text-reset me-3 dropdown-toggle hidden-arrow"
+          href="#"
+          id="navbarDropdownMenuLink"
+          role="button"
+          aria-expanded="false"
+        >
+          <i class="fas fa-bell"></i>
+          <span class="badge rounded-pill badge-notification bg-danger">99+</span>
+        </a>       
+      </div>
+      <!-- Avatar -->
+      <div class="dropdown">
+        <a
+          data-mdb-dropdown-init
+          class="dropdown-toggle d-flex align-items-center hidden-arrow"
+          href="#"
+          id="navbarDropdownMenuAvatar"
+          role="button"
+          aria-expanded="false"
+        >
+          <img
+            src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxITEhUSExMVFRUXFRUXFRUVFRAVFRUVFRUXFxUVFRUYHSggGBolGxcVITEhJSkrLi4uFx8zODMtNygtLisBCgoKDg0OFRAQFSsdFR0rLS0tLS0tLS0rKystLS0tLSstKy0tLS0tLS0xLS0tLS0tLSstKy03LSstLTc3LSstK//AABEIALoBDwMBIgACEQEDEQH/xAAbAAABBQEBAAAAAAAAAAAAAAACAQMEBQYAB//EADoQAAEDAgQDBQcCBQQDAAAAAAEAAhEDIQQFEjFBUWEGcYGRoRMiMrHB0fBS8RQjQmLhFTOTsgdDcv/EABgBAQEBAQEAAAAAAAAAAAAAAAEAAgME/8QAHREBAQEBAAMAAwAAAAAAAAAAAAERAhIhMQNBYf/aAAwDAQACEQMRAD8A83CUJqjihsfP7pxeSvfBaU25qPWheUtGXBCU44JpLNCVyKEBKWSpdKUBC4pDiUrWo8LT1OaOZhW+IyGoPgh45AjV5HfwSlSEhTrmRbiNxxCaQ04FEkCIhQKwI4SMRhZqDpISSnS6EwmCllKAkCdpBLODptsjJXBOU2qahW01wCIpEaYMBcd0jU5TbKiINFkpanBTgSiDeKQaaxERCdLJv1/ZB7Mm8KFI1mowAe/6lOV8OdJkWgfP1Rslo2knwjonaz5YfD5jgkX4xelOMKRoRrLcKHQl1oQElQQjDrqj+CFqFcSnBa57kjQhldKWdOEoAUsynGMSknL3aXavLxWgw9YrOcFf4Blghi32PNcH7Zpe0fzWj/kaOB/uA48dlmiFtmN5GFTZ/l4B9q2wcff6POzu43U3KoWiU9FggIMx5p8D3fH7Jaw3CJqUNshLVlAeZSMTulIGwmAsIjICRqMqQqZTzH+qYa1OjeShHQEjlYYDLi8ane6zgeJ/+Rx79lOpYak3/wBYPV3vHy2CComNT1NWWZUR7paA0cQBAlQX2bPgBzKQXXdOwo1Bh3JuVMa7hv8ARKPUz49Ahe8m3AG/f39PzZH73wMs4mdXIcT+cYQuw5Z8EuA/Ub8TvxUgE237heU1ifhMtI2+aeYQ7ex9QieyWukh22/eLhQvxjgEq6EJMIjQiUKBEkOcgKIlG1QMLkT2JGMlIO0WJ8WTekhchqH6DZIHVaXLbWi35xVBl3xDv+i0WCMOg/nglz6+rRlEHimMZSGkgj3TYjmD9eI7lMpaSN48EOIoyCAZ7lKMRjsKabtJvBiefI+XyKbpCx7x8itVXys1m6SPe4Ed/wCeaqHZFWEt0H4gOlg8LNdJVW5DKscRlFZkS07cvzoov8K6CdJgcYUdCxqTQuBhOEHdRAKc2XO5qTTG88P2+ybNNWo00q2y3DNs6peT7refU9FAYwTfbktDgMLsSCT4W7lM6nOE/lh0CjkKYWW2KikXQEfMh/L8QqRr9RngNh9VcZ4wmm0C0u8wB/lUrLWuOh+iYqlQnqVrmwAueibo0SbQpfspdpkaWfF/c/kejfmei0lhg8KWsLy4S6Hdzf6WgzwHqSm3DeLxx8FGDyDY24jdvl9lLGI1D4NLuYNis61DRYOPLnHqkxVJ7aZtqBi+zt+6IuprKY0k6m2BMGZtewQYirLDblHLdSs9POnvTcyjhcGKAQUQMpYQJQkQKAJYUhhKQgXSlHg5BK5pXQhJOC38j6/5WsY0uaHNs4bxuR9VjKRdrbpmZiBxBgfVeg5cxwbA3G4KWbNP4SkSJIIUtlG8lBTqeXHmPBI+te1+nNAxMY5oT9JwPDYA+d1HwWGJJ1bbjy2Pn6K3o0wFElLDawdbBE2m8oquV0zHuiBeIG/AqewIwEaWdxvZmg9zHloloI5TJBHksh2vpBlRlMMiXWPMF9/SSvUdCpc/yhlYNmxa4OaeRBB+keKoOteQ4ysWt1W95waPKXepao7cU4bwSeAk77LV5xkImQ2zdUN/U6Yb6AA9yyWJouYZBO5BO8njHS3lC3kc9qyyupqfqcNuf2Wuw55gfRYzLq42Ez3fP0WiwWIEQR9fNZrcXDyRwtzCZaySgYeVu7ZTKLIF+Uk9Bust4o89rQWN5AnzMR6KA1odY/4T2YVNdQuERNu6ITDRF0xUTXPYCGEEnzHXlYc1Z0KjIinw+IEX7z1UXDiBPE+iGmIMmxMwfnCQkbEkcU/Tix/LpsYqANV5sCB4XASmnEEbdENCqPM6QONwTYg2PonqujTBGnkBHA8EFEOmQZ6ECfBPYymSwiwFibcZCFb6eeJShlcFoOcEhCcKEqQQESFFKkVJC6EqUQImlIAlDboSTgaZc6GkB0iJ2/dejnBEw4TMA+l5VR2S7OgAVqgk7tB+a1+9kUKOvb78lDrY+kwankA85IjvVj2iwzadF1U2gTP5+XXmedYpzSGkzVIBcTcMnZrRsqTaLcek5b2lpO4gj9QLT4mDZaTDVQ64Nl4LhsZVHv6g6HAQS3USQYLR8UW3G0hendhcxL2upkzpAI56TtKupg568m6pvUloVVQfdWAesuhx5hQ6xkIMXXUDE40U2F7zAF5UKTE4cOBssF2jwMExSIG1hw6cjsgzf/yDUJLaDBH63TB6hvLvVO7tRXf/ALokHw35Qunty6sV5lp90xyN+HDvWkyjE6wAYjxnx/OCpMQ4bgDnu4kW6+Kfyt95G877AeCFzfbZU9rBDmdYtoug+8YHgTdHlTC6xNo3hNZ45rKfVzgB8/osPR+lLTaB9UpEmeA3jimyU40RAHJaYoqVYREHpClG/DuUKoCbcE/SJ2nZQ0vs4E/dKxzomY8r94TuIqta2XGBxmFncw7SskimJHPa6ZKr1I0uEM3cTPAcOkFTHB2h1p234XC88PaKtO8dwH1U0dp6mmC6Btt47fVPi538mq4riUqTSh0K1ydhMEImFSOEJCEQC4hRCuASwkUcKFZZFhRUrNadtz4KsV/2OH87wP0VRXo1KA0Ack5Q3UVrrI6VWCsBMzTL216D6R4j9l5R2iyjFUa7qraZuC0kta5sEQdJIImPEL1ujiU/rB3TLgvOx4VleTVHOBcC0AgzN/CFvOxVICrWcGw0hrQeENJJ7rla6th2GYaBPIBR20m0xpa0NHQAKtvS45nKUHoxXVecQEDcSZU6+Kc98lZHto/2hZRkht3OA/qgS0Hpx8FpPazcKjzrKX1HU3sIs46p5EG4HG8KZx5bmFB7XA1Glod7zerJIBb6qTlbGuqilJNOo5zWzGtsH3HECwO21t1ps27DVnnVTaJ5AiPUhDkvYzF03ioaXvD4ZdTawGN3GSY7gum+nn8LL/FLVpPNMmJ0ktJHAix77qFhcXpP3BMFbqvkn8NR0F5dUJLnOFvecZMTwWVzDAyTYF0cyTPkLIjXUyr3Ie0cHQ8AE7HYeZKXNK9Sq/aRs0DaFjaMi3Ir0bsniw+nECR5n0VYZ0qqOWVf0Hx2UkZU8cFrAxN1qazrbKVqBaLqnxWctpzF3enctbj8JqCxed5fpuQfFM+ufVqhx+ZVKplzu4bAKEpNWg4bgpiF2jjQriUpQlQXzqaCFJKFwXB7MMBDCMtXAJBGuhHqQFcApDSFc0o/FTQIV12UfFa43Bv6/RVAHX0VnkDCa7SSfHu4XVRXoAegDySmdaAVoKwytqb4CdbU6qn/AInvTjMTfdBi49oqHMcye1xDgQOB3t5Ke3FocVVY9pFilvlX4DMmVWy10wYPMFSnVgBMqmswugRN+/kkxdIVmezdMEjpsZS9GTFpTx4abkQeoV1hnggEbFZ/KOzlBgBLZPAOMgLQMAFghw7xNZWHFPCuFVl6QVlMJePoMqNggX5ALJ1ezDC+bEC4tx8VcVcXodfYqVTqA3CdYseR9ocIadZw0xex6dyu+w74qxPxDa+/VaPtRkYrDWB7ypOxmAPtoM+4eE2K1bsYk9twGFd7NTBSXezXPXVWVcLKr8XgGwfd8StGaajYijK1KzY8s7QYYSQBxtG3nzWXqMItsvVM3wrblzZjpw87LB5pT1S5tM2MX1fMwPRdOa42KOAheET2kFKAIK6ayvyEmlIwolwevTZYhcxOrolSMuahhPlqVSMFq7bqnHBCXCL7pATVO3ysrfs02KwJ5FVTSejRzgfuVYZNViq2JN4JPyHJQbR1SEw4oikLVgai1apCrm5g9puPK6tntUd2GBSYGlm3ePBH/qo5pt2DCD/TxyWsblDi8cCN+PO/zU3D4kQI5BV5wQ5eYQOwkbA+ZCm/OtFSx1t7cuHoU+caN9+n7rKCm/e/qiIqcz6Ixi1pnYwTP1R0sWO75LLUKrwbmRx/ArCjW8kYzq5xDtVuSkZc6LKtokwFa4SOCGVhVw+ockmXYIMdO5PFPUipeHbdWoZYh0KQQkhZ1pHLEFSjZS/ZpfZpVZvMsC8g6QPzqsbnmGqNkFzPCSe7a3ovUK1GQsxnGHY0EkAc1rmufUeN46jBtfmVHZccPNajPGMeTp4bFxd8p+azjmCCI8gV2lcrFm50JadXmmkoXLHfTxMriE218J+m4KalcHrnBI9cCo64O5pgu5eZ+gSVHSZSNbxKWaJrSTz5/wCVZ5O0e1aAbzc8Aqt1Q7bDkPrzVx2Zp/zE1NWEUJao2QNesUFcxMubCkApHtlCRiuRuppspWuKSE25yQ1VezpyoAAmS7kmqjylBRo0gpKXRphNNUrDsKhqTIiFMwNio9GkrHDUkVRY0HKywzOKrsM2Va0Qs61BpGhGQiY1DRQ1LCcAS6VBGqNVRmeBY4e80HvV5Uaq7HU5BsD3rUYrzvPsnYLhro/t0R6hY3HYFokgOE8458V6BnOBcT/SO4Ec1ic0wb+DWHkSIPd8Urvw59RXgJQiXFZb+GnImFIFyVDzao2KF1yeSjVmylpyArD5HTZC5yEmVxfy/PuladYwC79uAG5+yvuzlYFx4DkJ9eazUqflNcteD9uKC9BAkKNUbBTtCpICOo2VzSM1ycD0DmIdJUDpKZISpUIy+kmn0CpcpCUpD/hyjZh1IDkZeFAtHCqdSoiyZw7lNaAonKVLoplFqZCl4alKxqSsIxWLAo9KkpdJqGoUBONCMNRNapoiRGQhKgB4UTENUwlR6zVqUVlM9woI2PgfpsvN830tm7ge4gRPHj6wvVM5YQ0nccY3XnOdudcth/QwCL+vmuvLl0zrjC6EIdKcUQFASiKEsSiakBcucUEpiETyXNhASulI05CVvNC2ogJRjWtn2fzHU3SYBHBaKk5eaZZX0VA75r0bCVAQDzErHUMo6zE2GqZUbZRysk1CXQnGtTmhQxGdTTb6SnGmiFBSxAFA8k4KHRWTaKfoYcLOrFfh8OeSn0MIeKnUMPCnUaAWdpxFw+DVnSogLmNARymQnGp9oTDVIpqRwBKUISoJEhSlCpETVQJ4pt6RVLmTIEn5wsD2jYAC9ha47Oa9oDom228H5r02vhw4Qsvn2TjSXC21xEi+0mRC6c1zseVaIQOTrk09aRsORJtidSobqBMEKS5R3qiAuSFcVpgpQokhSSsctl2ZzPUNB3HNYsq37Nk+1b4rPTT0em6QhexBQTrlybgA1OsCAJ4IpxwYnqdJIxSKayjjKKk4elBgoaKltF0J2gTZPNCAbpxyYhBECgCQlLKZTTkpihsicgw6Sk1JlI0qNqRKWU2xG9S10oHJVxUKZeoGatmk7w/7BWL1DzP/AG3eH/YJlYr/2Q=="
+            class="rounded-circle"
+            height="25"
+            alt="Black and White Portrait of a Man" 
+            loading="lazy"
+          />
+        </a>
+      </div>
+    </div>
+    <!-- Right elements -->
+    </nav>
     </head>
     <body>
-      <header>
-        <!-- Intro settings -->
-        <style>
-          #intro {
-            /* Margin to fix overlapping fixed navbar */
-            margin-top: 58px;
-          }
-    
-          @media (max-width: 991px) {
-            #intro {
-              /* Margin to fix overlapping fixed navbar */
-              margin-top: 45px;
-            }
-          }
-        </style>
-    
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
-          <div class="container-fluid">
-            <!-- Navbar brand -->
-            <!-- logo -->
-            <a class="navbar-brand" target="_blank" href="http://127.0.0.1:8000/">
-              <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/473723691_1002491608374754_5189314962434618562_n.png?_nc_cat=111&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeEDeShnCPyE1crSUjUpyJ8js4fz9kghMoezh_P2SCEyh6VuAGwQzZ1lHCBkryZeVShFS0ItXLDNl8s1ggq5ca-g&_nc_ohc=BOXPLlxyVEkQ7kNvgH0roAq&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1gEg1AWa_qVQ541W40Cwr2BLuMcVt_VZi5_YO2B74wu-BA&oe=67B493C8" 
-              height="60" alt=""
-                loading="lazy" style="margin-top: -3px;" />
-            <!-- logo -->
-            <a class="navbar-brand" href="#">Pet Health Care System</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">Home</a>     
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Khách Hàng
-                  </a>
-  
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{% url 'quan_ly_thu_cung' %}">Quản lý danh sách thú cưng</a></li>
-                    <li><a class="dropdown-item" href="{% url 'chi_tiet_thu_cung' %}">Thông tin chi tiết của thú cưng</a></li>
-                    <li><a class="dropdown-item" href="{% url 'dang_ky_kham_benh' %}">Đăng ký khám bệnh</a></li>
-                    <li><a class="dropdown-item" href="{% url 'danh_gia_nguoi_dung' %}">Đánh giá người dùng</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="{% url 'thong_tin_khac' %}">Thông tin khác</a></li>
-                  </ul>
-                </li>
-              </ul>
-          </li>
-              <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-              </form>
-            </div>
-          </div>   
-        </nav>
+    </header>
         <!-- Navbar -->
         <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-mdb-ride="carousel">
           <div class="carousel-indicators">
@@ -139,7 +143,7 @@
             </div>     
           </div>       
 
-  </header>
+
 
       <!--Main layout-->
       <main class="my-5">
@@ -193,7 +197,9 @@
        <a href="#" class="list-group-item list-group-item-action px-3 border-0" data-mdb-ripple-init>KIỂM TRA TÌNH TRẠNG THÚ CƯNG</a>
      </div>
       <div class="offcanvas-body">
-        <p>Try scrolling the rest of the page to see this option in action.</p>
+        <p>Mọi thắc mắc khách hàng về "Pet House" liên hệ:               
+          Hotline: 0675048574 - Chuyên viên tư vấn
+        </p>        
       </div>
     </div>
     <!--tab -->
@@ -332,43 +338,34 @@
       <!--Main layout-->
     
       <!--Footer-->
-      <footer class="bg-light text-lg-start">
-        <div class="py-4 text-center">
-          <a role="button" class="btn btn-primary btn-lg m-2" data-mdb-ripple-init
-            href="https://www.youtube.com/channel/UC5CF7mLQZhvx8O5GODZAhdA" rel="nofollow" target="_blank">
-            Learn Bootstrap 5
-          </a>
-          <a role="button" class="btn btn-primary btn-lg m-2" data-mdb-ripple-init href="https://mdbootstrap.com/docs/standard/" target="_blank">
-            Download MDB UI KIT
-          </a>
-        </div>
-    
+      <footer class="bg-light text-lg-start">       
+        
+        
         <hr class="m-0" />
     
         <div class="text-center py-4 align-items-center">
-          <p>Follow MDB on social media</p>
-          <a href="https://www.youtube.com/channel/UC5CF7mLQZhvx8O5GODZAhdA" class="btn btn-primary m-1" role="button" data-mdb-ripple-init
+          <p>Follow PetHouse on social media</p>
+          <a href="#" class="btn btn-success" role="button" data-mdb-ripple-init
             rel="nofollow" target="_blank">
             <i class="fab fa-youtube"></i>
           </a>
-          <a href="https://www.facebook.com/mdbootstrap" class="btn btn-primary m-1" role="button" rel="nofollow" data-mdb-ripple-init
+          <a href="#"  class="btn btn-success" role="button" rel="nofollow" data-mdb-ripple-init
             target="_blank">
             <i class="fab fa-facebook-f"></i>
           </a>
-          <a href="https://twitter.com/MDBootstrap" class="btn btn-primary m-1" role="button" rel="nofollow" data-mdb-ripple-init
+          <a href="#"  class="btn btn-success"  role="button" rel="nofollow" data-mdb-ripple-init
             target="_blank">
             <i class="fab fa-twitter"></i>
           </a>
-          <a href="https://github.com/mdbootstrap/mdb-ui-kit" class="btn btn-primary m-1" role="button" rel="nofollow" data-mdb-ripple-init
+          <a href="#"  class="btn btn-success"  role="button" rel="nofollow" data-mdb-ripple-init
             target="_blank">
             <i class="fab fa-github"></i>
           </a>
         </div>
     
         <!-- Copyright -->
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-          © 2020 Copyright:
-          <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+        <div class="text-center p-3" style="background-color: rgba(50, 195, 62, 0.2);">
+          <a class="text-dark" href="https://mdbootstrap.com/">PETHOUSE.COM</a>
         </div>
         <!-- Copyright -->
       </footer>
