@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Thú Cưng</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Quản lý Thú Cưng</h1>
+        </header>
+
+        <section>
+            <form method="POST" action="{% url 'list_thucung' %}">
+                {% csrf_token %}
+                <label for="pet_name">Tên thú cưng:</label>
+                <input type="text" id="pet_name" name="pet_name" required>
+                
+                <label for="pet_type">Loại thú cưng:</label>
+                <input type="text" id="pet_type" name="pet_type" required>
+                
+                <label for="phong">Chọn chuồng:</label>
+                <select id="phong" name="phong" required>
+                    {% for room in rooms %}
+                    <option value="{{ room.id }}">{{ room.ten_phong }}</option>
+                    {% endfor %}
+                </select>
+                
+                <button type="submit">Thêm Thú Cưng</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Danh sách Thú Cưng</h2>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên Thú Cưng</th>
+                    <th>Loại</th>
+                    <th>Chuồng</th>
+                </tr>
+                {% for pet in pets %}
+                <tr>
+                    <td>{{ pet.id }}</td>
+                    <td>{{ pet.ten }}</td>
+                    <td>{{ pet.loai }}</td>
+                    <td>{{ pet.phong.ten_phong }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </section>
+    </div>
+</body>
+</html>

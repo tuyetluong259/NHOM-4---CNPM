@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Quản Lý</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <header>
+        <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo">
+        <h1>Hệ Thống Quản Lý Thú Cưng</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="{% url 'list_booking' %}">Quản lý Booking</a></li>
+            <li><a href="{% url 'list_thucung' %}">Quản lý Thú Cưng</a></li>
+            <li><a href="{% url 'list_phong' %}">Quản lý Chuồng</a></li>
+            <li><a href="{% url 'list_lichkham' %}">Quản lý Lịch Khám</a></li>
+        </ul>
+    </nav>
+
+    <footer>
+        <p>Bản quyền &copy; 2024 - Quản lý thú cưng</p>
+    </footer>
+</body>
+</html>
