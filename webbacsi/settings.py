@@ -76,10 +76,17 @@ WSGI_APPLICATION = 'webbacsi.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'webbacsi',  # Tên database
+        'USER': 'root',         # Tên user MySQL
+        'PASSWORD': 'bangbang',  # Mật khẩu MySQL
+        'HOST': 'localhost',    # Địa chỉ database server
+        'PORT': '3306',         # Cổng mặc định của MySQL
+    
+        }
     }
-}
+
+
 
 
 # Password validation
