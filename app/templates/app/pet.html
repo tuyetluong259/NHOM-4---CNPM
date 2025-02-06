@@ -15,7 +15,7 @@
             font-family: Arial, sans-serif;
             background-color: #f9f9f9;
             color: #333;
-            padding: 20px;
+            padding: 5 px;
         }
         h1 {
             text-align: center;
@@ -82,10 +82,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" href="/booking/">Quản lý Booking</a>
+                        <a class="nav-link" href="/booking/">Quản lý Booking</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'pet'%}">Quản lý Thú cưng</a>
+                        <a class="nav-link active" href="{% url 'pet'%}">Quản lý Thú cưng</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'schedule'%}">Sắp lịch bác sĩ</a>
@@ -130,7 +130,7 @@
                 <th>Loài</th>
                 <th>Chủ</th>
                 <th>Sức Khỏe</th>
-                <th>Chuồng</th>
+                <th>ID Chuồng</th>
                 <th>Hành động</th>
             </tr>
         </thead>
