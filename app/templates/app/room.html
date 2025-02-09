@@ -43,6 +43,16 @@
             cursor: pointer;
             margin: 5px;
         }
+        .btn-primary {
+            background-color: #4CAF50; !important; /* Màu nền tùy ý */
+            border-color:rgb(55, 108, 242)     /* Màu viền */
+            color: white !important;            /* Màu chữ */
+        }
+        .btn-primary:hover {
+            background-color:rgb(53, 142, 57); !important; /* Màu khi hover */
+            border-color:rgb(255, 0, 0);
+            border-width: 1.5px !important;
+        }
         .add-form {
             margin: 20px 0;
         }
@@ -51,12 +61,12 @@
             margin-right: 10px;
         }
         .nav-link:hover {
-            background-color: hsl(203, 89.90%, 64.90%); /* Màu nền chuyển sang đỏ khi hover */
+            background-color:  #4CAF50; /* Màu nền chuyển sang đỏ khi hover */
             color: white; /* Chữ chuyển sang màu trắng */
       }
       .nav-link.active {
           color: black; /* Màu chữ khi active */
-          background-color:rgb(16, 207, 255); /* Màu nền khi active */
+          background-color: #4CAF50; /* Màu nền khi active */
           border-radius: 5px;
       }
         footer {
@@ -97,26 +107,54 @@
         </div>
     </nav>
     <h1>Quản lý thông tin chuồng</h1>
-    <div class="add-form">
-        <input type="text" id="roomName" placeholder="Tên phòng" />
-        <input type="text" id="roomType" placeholder="Loại phòng" />
-        <input type="text" id="status" placeholder="Trạng thái" />
-        <button onclick="addRoom()">Thêm phòng</button>
-    </div>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Tên phòng</th>
-                <th>Loại phòng</th>
-                <th>Trạng thái</th>
-                <th>Hành động</th>
-            </tr>
-        </thead>
-        <tbody id="roomList">
-            <!-- Danh sách chuồng sẽ được thêm vào đây -->
-        </tbody>
-    </table>
+            <!-- Form thêm hồ sơ nhập viện -->
+            <div class="card p-3 mb-3">
+                <h4>Thêm Hồ Sơ Nhập Viện</h4>
+                <div class="row">
+                    <div class="col-md-3">
+                        <input type="text" id="recordId" class="form-control" placeholder="Mã hồ sơ">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="date" id="admissionDate" class="form-control" placeholder="Ngày nhập viện">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" id="admissionReason" class="form-control" placeholder="Lý do nhập viện">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" id="cageNumber" class="form-control" placeholder="Số chuồng">
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-3">
+                        <input type="text" id="serviceType" class="form-control" placeholder="Dịch vụ đi kèm">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" id="doctor" class="form-control" placeholder="Bác sĩ phụ trách">
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-primary" onclick="addRecord()">Thêm</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bảng danh sách hồ sơ nhập viện -->
+            <table class="table table-bordered">
+                <thead class="table">
+                    <tr>
+                        <th>Mã hồ sơ</th>
+                        <th>Ngày nhập viện</th>
+                        <th>Lý do nhập viện</th>
+                        <th>Số chuồng</th>
+                        <th>Dịch vụ đi kèm</th>
+                        <th>Bác sĩ phụ trách</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody id="admissionTable">
+                    <!-- Danh sách sẽ được cập nhật từ JavaScript -->
+                </tbody>
+            </table>
+        </div>
     <!-- Modal thông báo -->
 <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -140,74 +178,44 @@
     <p>&copy; 2025 Web chăm sóc thú cưng.</p>
   </footer>
   <script>
-    let roomId = 1; // ID tạm thời
-
     function showSuccessModal(message) {
         document.getElementById("modalMessage").innerText = message;
-        let modal = new bootstrap.Modal(document.getElementById("successModal"));
-        modal.show();
+        new bootstrap.Modal(document.getElementById("successModal")).show();
     }
-
-    function addRoom() {
-        let roomName = document.getElementById("roomName").value.trim();
-        let roomType = document.getElementById("roomType").value.trim();
-        let status = document.getElementById("status").value.trim();
-
-        if (!roomName || !roomType || !status) {
-            alert("Vui lòng nhập đầy đủ thông tin!");
-            return;
+    function addRecord() {
+        let table = document.getElementById("admissionTable");
+        let row = table.insertRow();
+        let recordId = document.getElementById("recordId").value.trim();
+        let admissionDate = document.getElementById("admissionDate").value;
+        let admissionReason = document.getElementById("admissionReason").value.trim();
+        let cageNumber = document.getElementById("cageNumber").value.trim();
+        let serviceType = document.getElementById("serviceType").value.trim();
+        let doctor = document.getElementById("doctor").value.trim();
+        if (!recordId || !admissionDate || !admissionReason || !cageNumber || !serviceType || !doctor) {
+            alert("Vui lòng nhập đầy đủ thông tin!"); return;
         }
-
-        let roomList = document.getElementById("roomList");
-        let row = document.createElement("tr");
-        row.innerHTML = `
-            <td>${roomId}</td>
-            <td>${roomName}</td>
-            <td>${roomType}</td>
-            <td>${status}</td>
-            <td>
-                <button onclick="editRoom(this)">Sửa</button>
-                <button onclick="deleteRoom(this)">Xóa</button>
-            </td>
-        `;
-        roomList.appendChild(row);
-        roomId++;
-
-        showSuccessModal("Thêm phòng thành công!");
-
-        // Reset form
-        document.getElementById("roomName").value = "";
-        document.getElementById("roomType").value = "";
-        document.getElementById("status").value = "";
+        row.innerHTML = `<td>${recordId}</td><td>${admissionDate}</td><td>${admissionReason}</td><td>${cageNumber}</td><td>${serviceType}</td><td>${doctor}</td>
+            <td><button onclick="editRecord(this)" class="btn btn-warning">Sửa</button>
+                <button onclick="deleteRecord(this)" class="btn btn-danger">Xóa</button></td>`;
+        showSuccessModal("Thêm hồ sơ thành công!");
     }
-
-    function editRoom(button) {
+    function editRecord(button) {
         let row = button.closest("tr");
-        let name = row.cells[1].innerText;
-        let type = row.cells[2].innerText;
-        let status = row.cells[3].innerText;
-
-        let newName = prompt("Nhập tên phòng mới:", name);
-        let newType = prompt("Nhập loại phòng mới:", type);
-        let newStatus = prompt("Nhập trạng thái mới:", status);
-
-        if (newName && newType && newStatus) {
-            row.cells[1].innerText = newName;
-            row.cells[2].innerText = newType;
-            row.cells[3].innerText = newStatus;
-
-            showSuccessModal("Cập nhật thông tin phòng thành công!");
+        let newData = prompt("Nhập thông tin mới (cách nhau bởi dấu ,)", row.innerText);
+        if (newData) {
+            let values = newData.split(",");
+            for (let i = 0; i < values.length; i++) row.cells[i].innerText = values[i].trim();
+            showSuccessModal("Cập nhật thành công!");
         }
     }
-
-    function deleteRoom(button) {
-        if (confirm("Bạn có chắc chắn muốn xóa phòng này?")) {
-            let row = button.closest("tr");
-            row.remove();
-            showSuccessModal("Xóa phòng thành công!");
+    function deleteRecord(button) {
+        if (confirm("Bạn có chắc muốn xóa hồ sơ này?")) {
+            button.closest("tr").remove();
+            showSuccessModal("Xóa hồ sơ thành công!");
         }
     }
 </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

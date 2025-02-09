@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản lý Thú cưng Nhập viện</title>
+    <title>Quản lý lịch bác sĩ </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -24,37 +24,13 @@
             border-collapse: collapse;
             margin-top: 20px;
         }
-        th, td {
-            border: 1px solid #ccc;
-            padding: 10 px;
-            text-align: center;
-        }
-        th {
-            background-color:rgb(143, 214, 243);
-        }
-        tr:nth-child(even) {
-            background-color:rgb(255, 255, 255);
-        }
-        button {
-            padding: 5px 10px;
-            font-size: 14px;
-            cursor: pointer;
-            margin: 5px;
-        }
-        .add-form {
-            margin: 20px 0;
-        }
-        .add-form input {
-            padding: 5px;
-            margin-right: 10px;
-        }
         .nav-link:hover {
-            background-color: hsl(203, 89.90%, 64.90%); /* Màu nền chuyển sang đỏ khi hover */
+            background-color:  #4CAF50; /* Màu nền chuyển sang đỏ khi hover */
             color: white; /* Chữ chuyển sang màu trắng */
       }
       .nav-link.active {
           color: black; /* Màu chữ khi active */
-          background-color:rgb(16, 207, 255); /* Màu nền khi active */
+          background-color: #4CAF50; /* Màu nền khi active */
           border-radius: 5px;
       }
         footer {
@@ -64,8 +40,74 @@
           font-size: 14px;
           color:rgb(233, 33, 33);
         }
+        header {
+            background-color:rgb(61, 207, 252);
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        section {
+            padding: 20px;
+        }
+        .doctor-schedule, .hospitalization, .direct-visit {
+            background-color: #fff;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #confirmation-message {
+            background-color: #f0f0f0;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            display: none;
+        }
+        #hospitalization-list p {
+            margin: 10px 0;
+        }
+        .hospitalization-record {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        #direct-visit-list {
+            margin-top: 20px;
+        }
+        .direct-visit-record {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
         .search-box {
-            margin: 20px 0;
+            margin: 15px 0;
             display: flex;
             justify-content: center;
         }
@@ -93,10 +135,10 @@
                         <a class="nav-link" href="/booking/">Quản lý Booking</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'pet'%}">Quản lý Thú cưng</a>
+                        <a class="nav-link" href="{% url 'pet'%}">Quản lý Thú cưng</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'schedule'%}">Sắp lịch bác sĩ</a>
+                        <a class="nav-link active" href="{% url 'schedule'%}">Sắp lịch bác sĩ</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'room'%}">Quản lý Chuồng</a>
@@ -107,62 +149,207 @@
     </nav>
     <div class="container mt-4">
 
-        <h2 class="text-center">Quản lý Thú cưng Nhập viện</h2>
-	<div class="search-box">
-        <input type="text" id="search" placeholder="Tìm kiếm theo tên, ID hoặc chủ sở hữu">
+        <h1 class="text-center">Quản lý lịch bác sĩ</h1>
+        <div class="search-box">
+            <input type="text" id="search" placeholder="Tìm kiếm theo tên, ID hoặc chủ sở hữu">
         <button onclick="searchPet()">🔍 Tìm</button>
-    </div>
-        
-        <!-- Form thêm hồ sơ nhập viện -->
-        <div class="card p-3 mb-3">
-            <h4>Thêm Hồ Sơ Nhập Viện</h4>
-            <div class="row">
-                <div class="col-md-3">
-                    <input type="text" id="recordId" class="form-control" placeholder="Mã hồ sơ">
-                </div>
-                <div class="col-md-3">
-                    <input type="date" id="admissionDate" class="form-control" placeholder="Ngày nhập viện">
-                </div>
-                <div class="col-md-3">
-                    <input type="text" id="admissionReason" class="form-control" placeholder="Lý do nhập viện">
-                </div>
-                <div class="col-md-3">
-                    <input type="text" id="cageNumber" class="form-control" placeholder="Số chuồng">
-                </div>
-            </div>
-            <div class="row mt-2">
-                <div class="col-md-3">
-                    <input type="text" id="serviceType" class="form-control" placeholder="Dịch vụ đi kèm">
-                </div>
-                <div class="col-md-3">
-                    <input type="text" id="doctor" class="form-control" placeholder="Bác sĩ phụ trách">
-                </div>
-                <div class="col-md-3">
-                    <button class="btn btn-primary" onclick="addRecord()">Thêm</button>
-                </div>
-            </div>
         </div>
-        
-        <!-- Bảng danh sách hồ sơ nhập viện -->
-        <table class="table table-bordered">
-            <thead class="table">
-                <tr>
-                    <th>Mã hồ sơ</th>
-                    <th>Ngày nhập viện</th>
-                    <th>Lý do nhập viện</th>
-                    <th>Số chuồng</th>
-                    <th>Dịch vụ đi kèm</th>
-                    <th>Bác sĩ phụ trách</th>
-                    <th>Hành động</th>
-                </tr>
-            </thead>
-            <tbody id="admissionTable">
-                <!-- Danh sách sẽ được cập nhật từ JavaScript -->
-            </tbody>
-        </table>
-    </div>
+            <!-- Chọn loại lịch hẹn -->
+        <section class="schedule-selection">
+            <h2>Chọn Lịch Hẹn</h2>
+            <button id="direct-visit-choice">Sắp Lịch Khám Trực Tiếp</button>
+            <button id="hospitalization-choice">Sắp Lịch Chăm Sóc Thú Cưng Nhập Viện</button>
+        </section>
 
+        <!-- Sắp lịch cho bác sĩ thú y khi khách hàng mang thú cưng đến khám trực tiếp -->
+        <section class="direct-visit" id="direct-visit-section" style="display:none;">
+            <h2>Sắp Lịch Khám Trực Tiếp</h2>
+            <form id="direct-visit-form">
+                <label for="customer-name-direct">Tên khách hàng:</label>
+        <input type="text" id="customer-name-direct" required>
+
+                <label for="doctor-direct">Chọn bác sĩ:</label>
+                <select id="doctor-direct" required>
+                    <option value="">Chọn bác sĩ</option>
+                </select>
+
+                <label for="pet-condition-direct">Tình trạng thú cưng:</label>
+                <textarea id="pet-condition-direct" placeholder="Mô tả tình trạng thú cưng" required></textarea>
+
+                <button type="submit">Sắp Lịch Khám</button>
+            </form>
+
+            <div id="direct-visit-list">
+                <h3>Danh sách lịch khám trực tiếp:</h3>
+                <!-- Danh sách khám trực tiếp sẽ hiển thị tại đây -->
+            </div>
+        </section>
+
+        <!-- Sắp lịch cho bác sĩ thú y chăm sóc thú cưng nhập viện -->
+        <section class="hospitalization" id="hospitalization-section" style="display:none;">
+            <h2>Chăm Sóc Thú Cưng Nhập Viện</h2>
+            <form id="hospitalization-form">
+                <label for="customer-name-hospital">Tên khách hàng:</label>
+                <input type="text" id="customer-name-hospital" required>
+
+                <label for="doctor-hospital">Chọn bác sĩ:</label>
+                <select id="doctor-hospital" required>
+                    <option value="">Chọn bác sĩ</option>
+                </select>
+
+                <label for="pet-condition-hospital">Tình trạng thú cưng:</label>
+                <textarea id="pet-condition-hospital" placeholder="Mô tả tình trạng thú cưng" required></textarea>
+
+                <label for="pet-kennel">Chuồng thú cưng:</label>
+                <input type="text" id="pet-kennel" placeholder="Lưu thông tin chuồng thú cưng" required>
+
+                <button type="submit">Sắp Lịch</button>
+            </form>
+
+            <div id="hospitalization-list">
+                <h3>Danh sách chăm sóc thú cưng nhập viện:</h3>
+                <!-- Danh sách chăm sóc thú cưng nhập viện sẽ hiển thị tại đây -->
+            </div>
+        </section>
+
+        <!-- Xác nhận lịch hẹn -->
+        <div id="confirmation-message">
+            <h3>Lịch Hẹn Được Xác Nhận</h3>
+            <p id="confirmation-details"></p>
+            <button onclick="clearConfirmation()">Đóng</button>
+        </div>
     <script>
+                // Dữ liệu bác sĩ và lịch hẹn giả lập
+        const availableDoctors = ["Bác Sĩ A", "Bác Sĩ B", "Bác Sĩ C"];
+        const directVisitRecords = [];
+        const hospitalizationRecords = [];
+
+        // Hiển thị danh sách bác sĩ vào dropdown
+        function displayAvailableDoctors() {
+            const doctorDirectSelect = document.getElementById("doctor-direct");
+            const doctorHospitalSelect = document.getElementById("doctor-hospital");
+
+            // Xóa danh sách cũ để tránh trùng lặp
+            doctorDirectSelect.innerHTML = '<option value="">Chọn bác sĩ</option>';
+            doctorHospitalSelect.innerHTML = '<option value="">Chọn bác sĩ</option>';
+
+            availableDoctors.forEach(doctor => {
+                doctorDirectSelect.innerHTML += `<option value="${doctor}">${doctor}</option>`;
+                doctorHospitalSelect.innerHTML += `<option value="${doctor}">${doctor}</option>`;
+            });
+        }
+
+        // Kiểm tra bác sĩ đã có lịch hẹn chưa
+        function isDoctorAvailable(doctor, records) {
+            return !records.some(record => record.doctor === doctor);
+        }
+
+        // Xử lý đặt lịch khám trực tiếp
+        document.getElementById("direct-visit-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Ngăn form reload trang
+
+            const customerName = document.getElementById("customer-name-direct").value;
+            const doctor = document.getElementById("doctor-direct").value;
+            const petCondition = document.getElementById("pet-condition-direct").value;
+
+            if (!customerName || !doctor || !petCondition) {
+                alert("Vui lòng điền đầy đủ thông tin.");
+                return;
+            }
+
+            if (!isDoctorAvailable(doctor, directVisitRecords)) {
+                alert("Bác sĩ này đã có lịch hẹn.");
+                return;
+            }
+
+            const record = { customerName, doctor, petCondition };
+            directVisitRecords.push(record);
+            updateDirectVisitList();
+
+            // Hiển thị xác nhận
+            showConfirmation(`Lịch hẹn khám trực tiếp cho ${customerName} với ${doctor}.`);
+            
+            // Reset form
+            document.getElementById("direct-visit-form").reset();
+        });
+
+        // Cập nhật danh sách lịch khám trực tiếp
+        function updateDirectVisitList() {
+            const listContainer = document.getElementById("direct-visit-list");
+            listContainer.innerHTML = "<h3>Danh sách lịch khám trực tiếp:</h3>";
+
+            directVisitRecords.forEach(record => {
+                const recordElement = document.createElement("div");
+                recordElement.classList.add("direct-visit-record");
+                recordElement.innerHTML = `<p><strong>${record.customerName}</strong> - ${record.doctor}<br>${record.petCondition}</p>`;
+                listContainer.appendChild(recordElement);
+            });
+        }
+
+        // Xử lý đặt lịch chăm sóc thú cưng nhập viện
+        document.getElementById("hospitalization-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const customerName = document.getElementById("customer-name-hospital").value;
+            const doctor = document.getElementById("doctor-hospital").value;
+            const petCondition = document.getElementById("pet-condition-hospital").value;
+            const petKennel = document.getElementById("pet-kennel").value;
+
+            if (!customerName || !doctor || !petCondition || !petKennel) {
+                alert("Vui lòng điền đầy đủ thông tin.");
+                return;
+            }
+
+            if (!isDoctorAvailable(doctor, hospitalizationRecords)) {
+                alert("Bác sĩ này đã có lịch chăm sóc.");
+                return;
+            }
+
+            const record = { customerName, doctor, petCondition, petKennel };
+            hospitalizationRecords.push(record);
+            updateHospitalizationList();
+
+            showConfirmation(`Lịch chăm sóc cho ${customerName} với ${doctor} tại chuồng ${petKennel}.`);
+
+            document.getElementById("hospitalization-form").reset();
+        });
+
+        // Cập nhật danh sách chăm sóc nhập viện
+        function updateHospitalizationList() {
+            const listContainer = document.getElementById("hospitalization-list");
+            listContainer.innerHTML = "<h3>Danh sách chăm sóc thú cưng nhập viện:</h3>";
+
+            hospitalizationRecords.forEach(record => {
+                const recordElement = document.createElement("div");
+                recordElement.classList.add("hospitalization-record");
+                recordElement.innerHTML = `<p><strong>${record.customerName}</strong> - ${record.doctor}<br>Tình trạng: ${record.petCondition}<br>Chuồng: ${record.petKennel}</p>`;
+                listContainer.appendChild(recordElement);
+            });
+        }
+
+        // Hiển thị thông báo xác nhận
+        function showConfirmation(message) {
+            const confirmationBox = document.getElementById("confirmation-message");
+            document.getElementById("confirmation-details").textContent = message;
+            confirmationBox.style.display = "block";
+        }
+
+        // Xóa thông báo xác nhận
+        function clearConfirmation() {
+            document.getElementById("confirmation-message").style.display = "none";
+        }
+
+        // Chuyển sang phần sắp lịch khám trực tiếp
+        document.getElementById("direct-visit-choice").addEventListener("click", function() {
+            document.getElementById("direct-visit-section").style.display = "block";
+            document.getElementById("hospitalization-section").style.display = "none";
+        });
+
+        // Chuyển sang phần sắp lịch chăm sóc thú cưng nhập viện
+        document.getElementById("hospitalization-choice").addEventListener("click", function() {
+            document.getElementById("hospitalization-section").style.display = "block";
+            document.getElementById("direct-visit-section").style.display = "none";
+        });
         function addRecord() {
             let recordId = document.getElementById("recordId").value;
             let admissionDate = document.getElementById("admissionDate").value;
@@ -224,6 +411,68 @@
                 button.closest("tr").remove();
             }
         }
+        // Hàm tìm kiếm thú cưng theo tên, ID hoặc chủ sở hữu
+        function searchPet() {
+            const keyword = document.getElementById("search").value.toLowerCase().trim();
+            if (!keyword) {
+                alert("Vui lòng nhập từ khóa tìm kiếm!");
+                return;
+            }
+
+            // Kết quả tìm kiếm
+            let searchResults = [];
+
+            // Tìm trong lịch khám trực tiếp
+            directVisitRecords.forEach(record => {
+                if (record.customerName.toLowerCase().includes(keyword) || record.petCondition.toLowerCase().includes(keyword)) {
+                    searchResults.push({ type: "Khám trực tiếp", ...record });
+                }
+            });
+
+            // Tìm trong lịch nhập viện
+            hospitalizationRecords.forEach(record => {
+                if (record.customerName.toLowerCase().includes(keyword) || record.petCondition.toLowerCase().includes(keyword) || record.petKennel.toLowerCase().includes(keyword)) {
+                    searchResults.push({ type: "Nhập viện", ...record });
+                }
+            });
+
+            // Hiển thị kết quả tìm kiếm
+            displaySearchResults(searchResults);
+        }
+
+        // Hiển thị kết quả tìm kiếm
+        function displaySearchResults(results) {
+            const resultContainer = document.getElementById("search-results");
+            resultContainer.innerHTML = "<h3>Kết quả tìm kiếm:</h3>";
+
+            if (results.length === 0) {
+                resultContainer.innerHTML += "<p>Không tìm thấy kết quả.</p>";
+                return;
+            }
+
+            results.forEach(record => {
+                const recordElement = document.createElement("div");
+                recordElement.classList.add("search-result");
+                recordElement.innerHTML = `
+                    <p><strong>${record.customerName}</strong> - ${record.type}<br>
+                    Bác sĩ: ${record.doctor}<br>
+                    Tình trạng: ${record.petCondition}${record.petKennel ? `<br>Chuồng: ${record.petKennel}` : ""}</p>`;
+                resultContainer.appendChild(recordElement);
+            });
+        }
+
+        // Thêm một div để hiển thị kết quả tìm kiếm
+        document.addEventListener("DOMContentLoaded", function() {
+            const searchResultsDiv = document.createElement("div");
+            searchResultsDiv.id = "search-results";
+            searchResultsDiv.style.marginTop = "20px";
+            document.body.appendChild(searchResultsDiv);
+        });
+
+        // Gọi khi trang tải xong
+        window.onload = function() {
+            displayAvailableDoctors();
+        };
     </script>
 </body>
 </html>

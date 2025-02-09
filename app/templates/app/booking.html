@@ -37,6 +37,16 @@
         tr:nth-child(even) {
             background-color:rgb(255, 255, 255);
         }
+        .btn-primary {
+            background-color: #4CAF50; !important; /* Màu nền tùy ý */
+            border-color:rgb(55, 108, 242)     /* Màu viền */
+            color: white !important;            /* Màu chữ */
+        }
+        .btn-primary:hover {
+            background-color:rgb(53, 142, 57); !important; /* Màu khi hover */
+            border-color:rgb(255, 0, 0);
+            border-width: 1.5px !important;
+        }
         button {
             padding: 5px 10px;
             font-size: 14px;
@@ -51,12 +61,12 @@
             margin-right: 10px;
         }
         .nav-link:hover {
-            background-color: hsl(203, 89.90%, 64.90%); /* Màu nền chuyển sang đỏ khi hover */
+            background-color:  #4CAF50; /* Màu nền chuyển sang đỏ khi hover */
             color: white; /* Chữ chuyển sang màu trắng */
       }
       .nav-link.active {
           color: black; /* Màu chữ khi active */
-          background-color:rgb(16, 207, 255); /* Màu nền khi active */
+          background-color: #4CAF50; /* Màu nền khi active */
           border-radius: 5px;
       }
         footer {
@@ -97,30 +107,57 @@
             </div>
         </div>
     </nav>
+    <div class="add-form text-center">
+        <h1 class="text-center mt-3">Quản lý Booking</h1>
     
-    <h1>Quản lý Booking</h1>
-    
-    <div class="add-form">
-        <input type="text" id="roomName" placeholder="Tên phòng" />
-        <input type="text" id="roomType" placeholder="Loại phòng" />
-        <input type="text" id="status" placeholder="Trạng thái" />
-        <button onclick="addBooking()">Thêm Booking</button>
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-3">
+                <input type="text" id="customerName" class="form-control" placeholder="Tên khách hàng" />
+            </div>
+            <div class="col-md-3">
+                <input type="date" id="bookingDate" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary w-100" onclick="addBooking()">Thêm Booking</button>
+            </div>
+        </div>
     </div>
+    
 
-    <table>
-        <thead>
+    <h2 class="text-center mt-4">Danh sách Booking</h2>
+    <table class="table table-bordered mt-3">
+        <thead class="table-light">
             <tr>
                 <th>ID</th>
-                <th>Tên phòng</th>
-                <th>Loại phòng</th>
+                <th>Khách hàng</th>
+                <th>Ngày khám</th>
                 <th>Trạng thái</th>
                 <th>Hành động</th>
             </tr>
         </thead>
-        <tbody id="bookingList">
-            <!-- Danh sách booking sẽ được thêm vào đây -->
-        </tbody>
+        <tbody id="bookingTable"></tbody>
     </table>
+</div>
+        <!-- Modal chỉnh sửa -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Chỉnh sửa Booking</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" id="editCustomerName" class="form-control mb-2" placeholder="Tên khách hàng">
+                    <input type="date" id="editBookingDate" class="form-control mb-2">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-success" onclick="updateBooking()">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     
     <!-- Footer -->
     <footer class="mt-4">
@@ -129,68 +166,63 @@
     </footer>
 
     <script>
-        async function addBooking() {
-            const name = document.getElementById('roomName').value;
-            const type = document.getElementById('roomType').value;
-            const status = document.getElementById('status').value;
+        let bookings = [];
+        let bookingId = 1;
+        let editingIndex = null;
 
-            if (!name || !type || !status) {
-                alert('Vui lòng điền đầy đủ thông tin!');
+        function addBooking() {
+            let customerName = document.getElementById("customerName").value.trim();
+            let bookingDate = document.getElementById("bookingDate").value;
+            
+            if (!customerName || !bookingDate) {
+                alert("Vui lòng nhập đầy đủ thông tin!");
                 return;
             }
+            
+            bookings.push({ id: bookingId++, customer: customerName, date: bookingDate, status: "Chờ xác nhận" });
+            renderBookings();
+            document.getElementById("customerName").value = "";
+            document.getElementById("bookingDate").value = "";
+        }
 
-            const response = await fetch('/add', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams({ roomName: name, roomType: type, status: status })
+        function renderBookings() {
+            let tableBody = document.getElementById("bookingTable");
+            tableBody.innerHTML = "";
+            bookings.forEach((booking, index) => {
+                tableBody.innerHTML += `
+                    <tr>
+                        <td>${booking.id}</td>
+                        <td>${booking.customer}</td>
+                        <td>${booking.date}</td>
+                        <td>${booking.status}</td>
+                        <td>
+                            <button class="btn btn-warning btn-sm" onclick="openEditModal(${index})">Sửa</button>
+                            <button class="btn btn-danger btn-sm" onclick="cancelBooking(${index})">Hủy</button>
+                        </td>
+                    </tr>`;
             });
+        }
 
-            if (response.ok) {
-                const booking = await response.json();
-                const table = document.getElementById('bookingList');
-                const row = table.insertRow();
-                row.innerHTML = `
-                    <td>${booking.id}</td>
-                    <td>${booking.name}</td>
-                    <td>${booking.type}</td>
-                    <td>${booking.status}</td>
-                    <td>
-                        <button onclick="editBooking(${booking.id}, this)">Sửa</button>
-                        <button onclick="deleteBooking(${booking.id}, this)">Xóa</button>
-                    </td>
-                `;
-            } else {
-                const error = await response.json();
-                alert(error.error);
+        function openEditModal(index) {
+            editingIndex = index;
+            document.getElementById("editCustomerName").value = bookings[index].customer;
+            document.getElementById("editBookingDate").value = bookings[index].date;
+            new bootstrap.Modal(document.getElementById("editModal")).show();
+        }
+
+        function updateBooking() {
+            if (editingIndex !== null) {
+                bookings[editingIndex].customer = document.getElementById("editCustomerName").value;
+                bookings[editingIndex].date = document.getElementById("editBookingDate").value;
+                renderBookings();
+                bootstrap.Modal.getInstance(document.getElementById("editModal")).hide();
             }
         }
 
-        async function editBooking(id, button) {
-            const row = button.parentNode.parentNode;
-            const name = prompt('Nhập tên phòng mới:', row.cells[1].innerText);
-            const type = prompt('Nhập loại phòng mới:', row.cells[2].innerText);
-            const status = prompt('Nhập trạng thái mới:', row.cells[3].innerText);
-
-            const response = await fetch(`/edit/${id}`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams({ name, type, status })
-            });
-
-            if (response.ok) {
-                const booking = await response.json();
-                row.cells[1].innerText = booking.name;
-                row.cells[2].innerText = booking.type;
-                row.cells[3].innerText = booking.status;
-            }
-        }
-
-        async function deleteBooking(id, button) {
-            if (confirm('Bạn có chắc chắn muốn xóa booking này?')) {
-                const response = await fetch(`/delete/${id}`, { method: 'DELETE' });
-                if (response.ok) {
-                    button.parentNode.parentNode.remove();
-                }
+        function cancelBooking(index) {
+            if (confirm("Bạn có chắc chắn muốn hủy booking này?")) {
+                bookings.splice(index, 1);
+                renderBookings();
             }
         }
     </script>
