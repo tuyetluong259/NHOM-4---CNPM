@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chăm sóc thú cưng - Đăng nhập & Đăng ký</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Form đăng nhập -->
+      <div id="login-form" class="form active">
+        <h2>Đăng nhập</h2>
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="loginEmail">Email</label>
+            <input
+              type="email"
+              id="loginEmail"
+              name="loginEmail"
+              placeholder="Nhập email của bạn"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Mật khẩu</label>
+            <input
+              type="password"
+              id="loginPassword"
+              name="loginPassword"
+              placeholder="Nhập mật khẩu"
+              required
+            />
+          </div>
+          <button type="submit" class="btn">Đăng nhập</button>
+        </form>
+        <div class="toggle-link">
+          Chưa có tài khoản? <a id="showRegister">Đăng ký ngay</a>
+        </div>
+      </div>
+
+      <!-- Form đăng ký -->
+      <div id="register-form" class="form">
+        <h2>Đăng ký</h2>
+        <form id="registerForm">
+          <div class="form-group">
+            <label for="regName">Họ và tên</label>
+            <input
+              type="text"
+              id="regName"
+              name="regName"
+              placeholder="Nhập họ và tên"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="regEmail">Email</label>
+            <input
+              type="email"
+              id="regEmail"
+              name="regEmail"
+              placeholder="Nhập email của bạn"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="regPassword">Mật khẩu</label>
+            <input
+              type="password"
+              id="regPassword"
+              name="regPassword"
+              placeholder="Nhập mật khẩu"
+              required
+            />
+          </div>
+          <button type="submit" class="btn">Đăng ký</button>
+        </form>
+        <div class="toggle-link">
+          Đã có tài khoản? <a id="showLogin">Đăng nhập ngay</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phần đồ họa nhấp nháy: icon paw (dấu chân thú cưng) -->
+    <div class="animated-paw">🐾</div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

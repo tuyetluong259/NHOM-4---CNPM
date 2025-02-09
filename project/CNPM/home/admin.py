@@ -10,3 +10,4 @@ class VeterinarianAdmin(admin.ModelAdmin):
   
 admin.site.register(Customer, CustomerAdmin)
 admin.site.register(Veterinarian, VeterinarianAdmin)
+
