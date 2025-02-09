@@ -1,102 +1,83 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href=" app/css/style.css">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản Lý Lịch Bác Sĩ</title>
-
-    <style> 
-        /* Reset mặc định */
-body, h1, h2, form, div {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
-    padding: 5px;
-}
-
-header {
-    background-color: #007bff;
-    color: #fff;
-    text-align: center;
-    padding: 20px 0;
-    margin-bottom: 20px;
-}
-
-main {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-section {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-    margin-bottom: 15px;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-form label {
-    font-weight: bold;
-}
-
-form input, form select, form button {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-form button {
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-}
-
-form button:hover {
-    background-color: #0056b3;
-}
-
-#appointment-list, #shift-schedule {
-    margin-top: 15px;
-    border-top: 1px solid #ddd;
-    padding-top: 10px;
-}
-.nav-link:hover {
-    background-color: rgb(16, 207, 255); /* Màu nền chuyển sang đỏ khi hover */
-    color: white; /* Chữ chuyển sang màu trắng */
-}
-.nav-link.active {
-color: black; /* Màu chữ khi active */
-background-color:rgb(16, 207, 255); /* Màu nền khi active */
-border-radius: 5px;
-}
+    <title>Quản lý Thú cưng Nhập viện</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 5px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10 px;
+            text-align: center;
+        }
+        th {
+            background-color:rgb(143, 214, 243);
+        }
+        tr:nth-child(even) {
+            background-color:rgb(255, 255, 255);
+        }
+        button {
+            padding: 5px 10px;
+            font-size: 14px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .add-form {
+            margin: 20px 0;
+        }
+        .add-form input {
+            padding: 5px;
+            margin-right: 10px;
+        }
+        .nav-link:hover {
+            background-color: hsl(203, 89.90%, 64.90%); /* Màu nền chuyển sang đỏ khi hover */
+            color: white; /* Chữ chuyển sang màu trắng */
+      }
+      .nav-link.active {
+          color: black; /* Màu chữ khi active */
+          background-color:rgb(16, 207, 255); /* Màu nền khi active */
+          border-radius: 5px;
+      }
+        footer {
+          background-color: #f8f9fa;
+          text-align: center;
+          padding: 10px;
+          font-size: 14px;
+          color:rgb(233, 33, 33);
+        }
+        .search-box {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+        }
+        .search-box input {
+            padding: 5px;
+            width: 250px;
+            margin-right: 10px;
+        }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
+<!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'home'%}">
@@ -109,13 +90,13 @@ border-radius: 5px;
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link " href="/booking/">Quản lý Booking</a>
+                        <a class="nav-link" href="/booking/">Quản lý Booking</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'pet'%}">Quản lý Thú cưng</a>
+                        <a class="nav-link active" href="{% url 'pet'%}">Quản lý Thú cưng</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'schedule'%}">Sắp lịch bác sĩ</a>
+                        <a class="nav-link" href="{% url 'schedule'%}">Sắp lịch bác sĩ</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'room'%}">Quản lý Chuồng</a>
@@ -124,105 +105,125 @@ border-radius: 5px;
             </div>
         </div>
     </nav>
-    <header>
-        <h1>Quản Lý Lịch Bác Sĩ</h1>
-    </header>
-    <main>
-        <section class="doctor-schedule">
-            <h2>Bác Sĩ Làm Toàn Giờ</h2>
-            <div id="fulltime-doctors">
-                <!-- Danh sách bác sĩ toàn giờ -->
-            </div>
-            <h2>Bác Sĩ Làm Theo Khung Giờ</h2>
-            <div id="parttime-doctors">
-                <!-- Danh sách bác sĩ theo khung giờ -->
-            </div>
-        </section>
+    <div class="container mt-4">
+
+        <h2 class="text-center">Quản lý Thú cưng Nhập viện</h2>
+	<div class="search-box">
+        <input type="text" id="search" placeholder="Tìm kiếm theo tên, ID hoặc chủ sở hữu">
+        <button onclick="searchPet()">🔍 Tìm</button>
+    </div>
         
-        <section class="appointment-management">
-            <h2>Quản Lý Đặt Lịch</h2>
-            <form id="appointment-form">
-                <label for="customer-name">Tên khách hàng:</label>
-                <input type="text" id="customer-name" required>
-                
-                <label for="appointment-date">Ngày đặt:</label>
-                <input type="date" id="appointment-date" required>
-                
-                <label for="doctor">Bác sĩ phụ trách:</label>
-                <select id="doctor" required>
-                    <option value="">Chọn bác sĩ</option>
-                </select>
-                
-                <button type="submit">Thêm Lịch</button>
-            </form>
+        <!-- Form thêm hồ sơ nhập viện -->
+        <div class="card p-3 mb-3">
+            <h4>Thêm Hồ Sơ Nhập Viện</h4>
+            <div class="row">
+                <div class="col-md-3">
+                    <input type="text" id="recordId" class="form-control" placeholder="Mã hồ sơ">
+                </div>
+                <div class="col-md-3">
+                    <input type="date" id="admissionDate" class="form-control" placeholder="Ngày nhập viện">
+                </div>
+                <div class="col-md-3">
+                    <input type="text" id="admissionReason" class="form-control" placeholder="Lý do nhập viện">
+                </div>
+                <div class="col-md-3">
+                    <input type="text" id="cageNumber" class="form-control" placeholder="Số chuồng">
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-3">
+                    <input type="text" id="serviceType" class="form-control" placeholder="Dịch vụ đi kèm">
+                </div>
+                <div class="col-md-3">
+                    <input type="text" id="doctor" class="form-control" placeholder="Bác sĩ phụ trách">
+                </div>
+                <div class="col-md-3">
+                    <button class="btn btn-primary" onclick="addRecord()">Thêm</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bảng danh sách hồ sơ nhập viện -->
+        <table class="table table-bordered">
+            <thead class="table">
+                <tr>
+                    <th>Mã hồ sơ</th>
+                    <th>Ngày nhập viện</th>
+                    <th>Lý do nhập viện</th>
+                    <th>Số chuồng</th>
+                    <th>Dịch vụ đi kèm</th>
+                    <th>Bác sĩ phụ trách</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody id="admissionTable">
+                <!-- Danh sách sẽ được cập nhật từ JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function addRecord() {
+            let recordId = document.getElementById("recordId").value;
+            let admissionDate = document.getElementById("admissionDate").value;
+            let admissionReason = document.getElementById("admissionReason").value;
+            let cageNumber = document.getElementById("cageNumber").value;
+            let serviceType = document.getElementById("serviceType").value;
+            let doctor = document.getElementById("doctor").value;
             
-            <div id="appointment-list">
-                <h3>Danh sách lịch hẹn:</h3>
-                <!-- Danh sách lịch hẹn sẽ hiển thị tại đây -->
-            </div>
-        </section>
-        
-        <section class="shift-schedule">
-            <h2>Sắp Lịch Trực Theo Ca</h2>
-            <div id="shift-schedule">
-                <!-- Bảng phân ca -->
-            </div>
-        </section>
-    </main>
+            if (!recordId || !admissionDate || !admissionReason || !cageNumber || !serviceType || !doctor) {
+                alert("Vui lòng nhập đầy đủ thông tin!");
+                return;
+            }
+            
+            let table = document.getElementById("admissionTable");
+            let row = table.insertRow();
+            row.innerHTML = `
+                <td>${recordId}</td>
+                <td>${admissionDate}</td>
+                <td>${admissionReason}</td>
+                <td>${cageNumber}</td>
+                <td>${serviceType}</td>
+                <td>${doctor}</td>
+                <td>
+                    <button class="btn btn-warning btn-sm" onclick="editRecord(this)">Sửa</button>
+                    <button class="btn btn-danger btn-sm" onclick="deleteRecord(this)">Xóa</button>
+                </td>
+            `;
+            
+            // Reset form
+            document.getElementById("recordId").value = "";
+            document.getElementById("admissionDate").value = "";
+            document.getElementById("admissionReason").value = "";
+            document.getElementById("cageNumber").value = "";
+            document.getElementById("serviceType").value = "";
+            document.getElementById("doctor").value = "";
+        }
+
+        function editRecord(button) {
+            let row = button.closest("tr");
+            let newRecordId = prompt("Nhập mã hồ sơ mới:", row.cells[0].innerText);
+            let newDate = prompt("Nhập ngày nhập viện mới:", row.cells[1].innerText);
+            let newReason = prompt("Nhập lý do nhập viện mới:", row.cells[2].innerText);
+            let newCage = prompt("Nhập số chuồng mới:", row.cells[3].innerText);
+            let newService = prompt("Nhập dịch vụ đi kèm mới:", row.cells[4].innerText);
+            let newDoctor = prompt("Nhập bác sĩ phụ trách mới:", row.cells[5].innerText);
+            
+            if (newRecordId && newDate && newReason && newCage && newService && newDoctor) {
+                row.cells[0].innerText = newRecordId;
+                row.cells[1].innerText = newDate;
+                row.cells[2].innerText = newReason;
+                row.cells[3].innerText = newCage;
+                row.cells[4].innerText = newService;
+                row.cells[5].innerText = newDoctor;
+            }
+        }
+
+        function deleteRecord(button) {
+            if (confirm("Bạn có chắc chắn muốn xóa hồ sơ này?")) {
+                button.closest("tr").remove();
+            }
+        }
+    </script>
 </body>
-<script> 
-// Dữ liệu giả lập
-const fulltimeDoctors = ["Bác Sĩ A", "Bác Sĩ B"];
-const parttimeDoctors = ["Bác Sĩ C", "Bác Sĩ D"];
-const appointments = [];
-
-// Hiển thị danh sách bác sĩ
-function displayDoctors() {
-    const fulltimeContainer = document.getElementById("fulltime-doctors");
-    const parttimeContainer = document.getElementById("parttime-doctors");
-    const doctorSelect = document.getElementById("doctor");
-
-    fulltimeDoctors.forEach(doctor => {
-        fulltimeContainer.innerHTML += `<p>${doctor}</p>`;
-        doctorSelect.innerHTML += `<option value="${doctor}">${doctor}</option>`;
-    });
-
-    parttimeDoctors.forEach(doctor => {
-        parttimeContainer.innerHTML += `<p>${doctor}</p>`;
-        doctorSelect.innerHTML += `<option value="${doctor}">${doctor}</option>`;
-    });
-}
-
-// Xử lý form đặt lịch
-document.getElementById("appointment-form").addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    const customerName = document.getElementById("customer-name").value;
-    const appointmentDate = document.getElementById("appointment-date").value;
-    const doctor = document.getElementById("doctor").value;
-
-    if (customerName && appointmentDate && doctor) {
-        appointments.push({ customerName, appointmentDate, doctor });
-        updateAppointments();
-        this.reset();
-    }
-});
-
-// Cập nhật danh sách lịch hẹn
-function updateAppointments() {
-    const appointmentList = document.getElementById("appointment-list");
-    appointmentList.innerHTML = "<h3>Danh sách lịch hẹn:</h3>";
-    appointments.forEach((appt, index) => {
-        appointmentList.innerHTML += `
-            <p>
-                ${index + 1}. ${appt.customerName} - ${appt.appointmentDate} - ${appt.doctor}
-            </p>`;
-    });
-}
-
-// Chạy khi tải trang
-displayDoctors();
-
-</script>
-<script src="script.js"></script>
 </html>
