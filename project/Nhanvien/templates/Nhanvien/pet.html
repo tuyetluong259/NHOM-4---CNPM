@@ -160,38 +160,23 @@
 
         function updatePet(button) {
             let row = button.closest("tr");
-            let petName = row.cells[1].innerText;
-            let petBreed = row.cells[2].innerText;
-            let petOwner = row.cells[3].innerText;
-            let roomNumber = row.cells[4].innerText;
-            let admissionDate = row.cells[5].innerText;
-
-            // Open modal for update (can be implemented if needed)
-            let newPetName = prompt("Cập nhật tên thú cưng:", petName);
-            if (newPetName !== null) row.cells[1].innerText = newPetName;
-
-            let newPetBreed = prompt("Cập nhật giống:", petBreed);
-            if (newPetBreed !== null) row.cells[2].innerText = newPetBreed;
-
-            let newPetOwner = prompt("Cập nhật tên chủ:", petOwner);
-            if (newPetOwner !== null) row.cells[3].innerText = newPetOwner;
-
-            let newRoomNumber = prompt("Cập nhật số chuồng:", roomNumber);
-            if (newRoomNumber !== null) row.cells[4].innerText = newRoomNumber;
-
-            let newAdmissionDate = prompt("Cập nhật ngày nhập viện:", admissionDate);
-            if (newAdmissionDate !== null) row.cells[5].innerText = newAdmissionDate;
-
-            showSuccessModal("Cập nhật thông tin thú cưng thành công!");
+            // Lấy trạng thái hiện tại từ cột thứ 7 (index 6)
+            let currentStatus = row.cells[6].innerText;
+            // Yêu cầu người dùng nhập trạng thái mới
+            let newStatus = prompt("Cập nhật trạng thái (ví dụ: Đang điều trị, Đã ra viện):", currentStatus);
+            if (newStatus !== null) {
+                row.cells[6].innerText = newStatus;
+                showSuccessModal("Cập nhật trạng thái thú cưng thành công!");
+            }
         }
 
         function deletePet(button) {
-            if (confirm("Bạn có chắc chắn muốn xóa thú cưng này?")) {
-                let row = button.closest("tr");
-                row.remove();
-                showSuccessModal("Xóa thú cưng thành công!");
+                if (confirm("Bạn có chắc chắn muốn xóa thú cưng này?")) {
+                    let row = button.closest("tr");
+                    row.remove();
+                    showSuccessModal("Xóa thú cưng thành công!");
+                }
             }
-        }
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
