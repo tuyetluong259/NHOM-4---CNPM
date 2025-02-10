@@ -128,6 +128,15 @@
         <form id="loginForm" class="auth-form active" action="/login" method="POST">
             <h2>Đăng Nhập</h2>
             <div class="form-group">
+                <label for="loginRole">Chọn vai trò:</label>
+                <select id="loginRole" class="form-control" required>
+                    <option value="admin">Admin</option>
+                    <option value="nhanvien">Nhân viên</option>
+                    <option value="bacsi">Bác sĩ</option>
+                    <option value="khachhang">Khách hàng</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="loginEmail">Email:</label>
                 <input type="email" id="loginEmail" name="email" class="form-control" placeholder="Nhập email" required>
             </div>
@@ -184,7 +193,58 @@
                 showForm('loginForm');
             }
         };
-        
+        function handleLogin() {
+            const role = document.getElementById("loginRole").value;
+            let redirectURL = "";
+    
+            switch (role) {
+                case "admin":
+                    redirectURL = "/admin";
+                    break;
+                case "nhanvien":
+                    redirectURL = "/Nhanvien";
+                    break;
+                case "bacsi":
+                    redirectURL = "/doctor_dashboard";
+                    break;
+                case "khachhang":
+                    redirectURL = "/customer_dashboard";
+                    break;
+                default:
+                    alert("Vui lòng chọn vai trò hợp lệ!");
+                    return;
+            }
+    
+            window.location.href = redirectURL;
+        }
     </script>
+    <footer class="footer">
+        <div class="container-fluid col-10">
+          <div class="row pt-3 pb-3">
+            <div class="col-md-4 care">
+              <h4>Đánh Giá Của Khách Hàng</h4>
+              <ul>
+                <li><a href="#">Nhấn Vào Để Xem</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h4 class="care">Pet Care</h4>
+              <ul>
+                <li>Phone: 0889969020</li>
+                <li>Maps: 25 Tô Ký - Tân Chánh Hiệp - Quận 12</li>
+                <li>Social:</li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h4>Hỗ Trợ Khách Hàng</h4>
+              <ul>
+                <li><a href="#">Chính Sách Mua Hàng</a></li>
+                <li><a href="#">Điều Khoản Dịch Vụ</a></li>
+                <li><a href="#">Hình Thức Thanh Toán</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>  
 </body>
 </html>
