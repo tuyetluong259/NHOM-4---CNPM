@@ -53,14 +53,11 @@
             <div class="container col-10">
               <div class="row pt-2 pb-2">
                 <div class="col-md-2">
-                  <a href="#" target="home">
-                    <img
-                      src="{% static 'home/images/anh001.png' %}"
-                      alt=""
-                      class="w-50 m-0"
-                      loading="lazy"
-                    />
-                  </a>
+                  <span class="navbar-brand">
+                    <a href="{% url 'home' %}">
+                        <img src="{% static 'home/images/anh001.png' %}" width="50" height="50" alt="Logo">
+                    </a>
+                </span>
                 </div>
                 <div class="col-md-10 navbar-expand-lg text-center">
                   <div class="menu">

@@ -1,0 +1,532 @@
+/* Căn giữa tiêu đề */
+.title-center {
+    text-align: center;
+}
+
+/* Định dạng logo */
+.logo {
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Sticky navbar */
+.sticky {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: #fffdfd;
+    color: #333;
+    z-index: 9999;
+    border-bottom: 2px solid rgb(214, 237, 221);
+}
+
+.sticky .content {
+    padding-top: 102px;
+}
+
+/* Header trên cùng */
+.top1 {
+    min-height: 50px;
+    border-bottom: 2px solid #280000;
+    margin-bottom: 30px;
+}
+
+body {
+    font-family: Verdana, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+/* Thanh tiêu đề */
+.bgtop1 {
+    background-color: rgb(16, 165, 130);
+    color: #ffffffee;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Banner */
+.banner img, .banner1 img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.banner img {
+    height: 500px;
+}
+
+.banner1 img {
+    height: 900px;
+}
+
+/* Ẩn form mặc định */
+.auth-form {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Khi form được kích hoạt */
+.auth-form.active {
+    display: block;
+    opacity: 1;
+}
+
+/* Định dạng form */
+.auth-container {
+    width: 100%;
+    overflow-x: auto;
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: #444;
+    margin-bottom: 8px;
+    display: block;
+    font-size: 16px;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus, .form-group select:focus {
+    border-color: #218838;
+    outline: none;
+}
+
+/* Tabs chuyển đổi giữa Đăng nhập & Đăng ký */
+.tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+/* Căn giữa nút */
+.btn-primary {
+    width: 100%;
+    padding: 14px;
+    background-color: #218838;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #19672c;
+}
+
+.tab-button {
+    padding: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+    background: #f5f5f5;
+    border-radius: 8px;
+    width: 50%;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.tab-button.active {
+    background: #218838;
+    color: white;
+}
+
+/* Nút "Đăng nhập/Đăng ký" */
+.btn-primary {
+    width: 100%;
+    padding: 14px;
+    background-color: #218838;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #19672c;
+}
+
+/* Hiệu ứng khi hover vào form input */
+.form-group input:hover, .form-group select:hover {
+    border-color: #218838;
+}
+
+/* Footer cố định */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #218838;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+    font-size: 16px;
+    border-top: 2px solid #fff;
+}
+
+.footer a {
+    color: white;
+    text-decoration: none; /* Loại bỏ gạch chân mặc định */
+}
+
+.footer a:hover {
+    text-decoration: underline; /* Gạch chân khi di chuột */
+}
+
+
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 768px) {
+    .footer {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
+
+/* Bảng đẹp hơn */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #E0F7FA;
+}
+.table {
+    color: #E0F7FA !important;
+    background-color: #218838 !important;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+table th {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.add-form {
+    background-color: #ffffff; /* Nền trắng */
+    padding: 20px; /* Tăng padding */
+    border-radius: 12px; /* Đường viền mềm mại */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); /* Bóng mờ đẹp */
+    width: 100%;
+    max-width: 600px; /* Giới hạn chiều rộng form */
+    margin: 0 auto; /* Căn giữa form */
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.add-form:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2); /* Hiệu ứng khi hover */
+}
+
+.add-form input {
+    width: 100%; /* Chiếm toàn bộ chiều rộng */
+    padding: 15px; /* Tăng padding cho các ô nhập liệu */
+    font-size: 18px; /* Tăng kích thước font */
+    border: 1px solid #ccc; /* Đường viền mờ */
+    border-radius: 8px; /* Đường viền mềm mại */
+    margin-bottom: 20px; /* Khoảng cách giữa các ô nhập liệu */
+    background-color: #fafafa; /* Màu nền nhẹ cho ô nhập liệu */
+    transition: all 0.3s ease;
+    height: 50px; /* Chiều cao của ô nhập liệu */
+}
+
+.add-form input:focus {
+    border-color: #4CAF50; /* Màu viền khi focus */
+    background-color: #eaf8e4; /* Màu nền khi focus */
+    box-shadow: 0 0 8px rgba(72, 162, 43, 0.5); /* Ánh sáng nhẹ khi focus */
+}
+
+.add-form button {
+    background-color: #4CAF50; /* Màu nền nút */
+    color: white;
+    border: none;
+    padding: 15px 25px; /* Tăng padding của nút */
+    font-size: 18px; /* Tăng kích thước font của nút */
+    border-radius: 8px; /* Đường viền mềm mại */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin: 0 auto; /* Căn giữa nút */
+    display: block;
+    box-shadow: 0 4px 12px rgba(0, 128, 0, 0.2); /* Bóng mờ cho nút */
+}
+
+.add-form button:hover {
+    background-color: #45a049; /* Màu nền khi hover */
+    transform: translateY(-2px); /* Hiệu ứng nâng nút lên khi hover */
+}
+
+.add-form input::placeholder {
+    color: #888; /* Màu chữ trong ô nhập liệu */
+    font-style: italic; /* Chữ nghiêng cho placeholder */
+}
+
+.add-form button:active {
+    transform: translateY(2px); /* Hiệu ứng khi nhấn nút */
+}
+
+/* Style cho bảng */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+/* Style cho tiêu đề bảng */
+th {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    text-align: left;
+}
+
+/* Style cho các ô trong bảng */
+td {
+    padding: 8px 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+/* Thêm hiệu ứng hover cho các hàng */
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Style cho các ô trong bảng để nổi bật khi người dùng di chuột vào */
+td:hover {
+    background-color: #e9f7ef;
+}
+
+/* Style cho bảng khi không có dữ liệu */
+.empty-message {
+    text-align: center;
+    font-size: 16px;
+    color: #888;
+    margin-top: 20px;
+}
+
+/* Thêm border cho bảng */
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+/* Cải thiện cho các button trong bảng */
+button {
+    padding: 5px 10px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+@media (max-width: 1200px) {
+    /* For large screens like tablets and small desktops */
+    .add-form {
+        padding: 15px;
+    }
+
+    table th, table td {
+        padding: 10px 12px;
+    }
+
+    .navbar .navbar-nav .nav-item .nav-link {
+        font-size: 14px;
+    }
+
+    .navbar .navbar-brand img {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 992px) {
+    /* For medium-sized screens like tablets */
+    .add-form {
+        padding: 10px;
+    }
+
+    table th, table td {
+        padding: 8px 10px;
+    }
+
+    .navbar .navbar-nav .nav-item .nav-link {
+        font-size: 12px;
+    }
+
+    .navbar .navbar-brand img {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* For smaller screens like mobile phones */
+    body {
+        font-size: 14px;
+    }
+
+    header {
+        font-size: 16px;
+        padding: 15px 0;
+    }
+
+    .add-form input, .add-form select {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .add-form button {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    table th, table td {
+        padding: 6px 8px;
+    }
+
+    .navbar .navbar-nav .nav-item .nav-link {
+        font-size: 12px;
+    }
+
+    .navbar .navbar-brand img {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+@media (max-width: 576px) {
+    /* For extra small screens like very small mobile phones */
+    body {
+        font-size: 12px;
+    }
+
+    .add-form {
+        padding: 8px;
+    }
+
+    .add-form input, .add-form select {
+        padding: 8px;
+    }
+
+    .add-form button {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    table th, table td {
+        padding: 5px 7px;
+    }
+
+    .navbar .navbar-nav .nav-item .nav-link {
+        font-size: 10px;
+    }
+
+    .navbar .navbar-brand img {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+.add-form input, 
+.add-form select {
+    width: 100%; /* Đặt chiều rộng 100% để ô chọn (select) và input có cùng kích thước */
+    padding: 10px; /* Padding trong ô để tạo sự thoải mái khi nhập */
+    margin: 5px 0; /* Đặt margin giữa các ô */
+    font-size: 16px; /* Kích thước chữ đồng nhất */
+    border: 1px solid #ccc; /* Đường viền nhẹ cho các ô nhập liệu */
+    border-radius: 4px; /* Bo góc nhẹ */
+    background-color: #f8f9fa; /* Màu nền đồng bộ cho cả input và select */
+    color: #333; /* Màu chữ đồng nhất */
+    font-family: Arial, sans-serif;
+}
+
+/* Style cho nút */
+.add-form button {
+    background-color: #28a745;
+    color: white;
+    padding: 8px 12px;
+    font-size: 16px; /* Cùng kích thước font chữ như input và select */
+    font-family: Arial, sans-serif; /* Chọn font chữ giống nhau cho nút */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+.nav-link.active {
+    font-weight: bold;
+    color: #fff !important;
+    background-color: #4CAF50 !important;
+    border-radius: 5px;
+}
+
+/* Hiệu ứng hover cho nút */
+.add-form button:hover {
+    background-color: #218838;
+}
+
+/* Media query adjustments for smaller screens */
+@media (max-width: 1200px) {
+    .add-form button {
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 992px) {
+    .add-form button {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .add-form button {
+        padding: 6px 8px;
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 576px) {
+    .add-form button {
+        padding: 4px 8px;
+        font-size: 10px;
+    }
+}

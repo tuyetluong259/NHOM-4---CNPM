@@ -1,12 +1,11 @@
-from django.contrib import admin
-from django.urls import include, path
+from django.urls import path
 from . import views
+from django.contrib.auth.views import LoginView
 
 urlpatterns = [
-    path('', views.home, name="home"),
-    path('login/', views.login, name='login'),
+    path('', views.home, name='home'), 
     path('thucan/', views.thucan, name='thucan'),
-    path('home/', views.Customer, name='Customer'),
-    path('home/', views.Veterinarian, name='Veterinarian'),
+    path('customer/', views.Customer, name='customer'),
+    path('veterinarian/', views.Veterinarian, name='veterinarian'),
+    path('login/', LoginView.as_view(), name='login'),  # Đổi thành login_view
 ]
-

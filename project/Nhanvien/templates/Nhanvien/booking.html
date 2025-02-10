@@ -1,0 +1,202 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'Nhanvien/css/Nhanvien.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Booking</title>
+</head>
+
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container-fluid p-1 bgtop1 text-center">
+            <div class="container">
+                <marquee>Chăm Sóc Thú Cưng Số 1 Tại Thành Phố Hồ Chí Minh</marquee>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg bg-light">
+                <div class="container-fluid">
+                    <span class="navbar-brand">
+                        <a href="{% url 'home' %}">
+                            <img src="{% static 'home/images/anh001.png' %}" width="50" height="50" alt="Logo">
+                        </a>
+                    </span>
+                    
+                </div>
+            </nav>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'booking' %}active{% endif %}" href="{% url 'booking' %}">Quản lý Booking</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'pet' %}active{% endif %}" href="{% url 'pet' %}">Quản lý Thú cưng</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'schedule' %}active{% endif %}" href="{% url 'schedule' %}">Sắp lịch bác sĩ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'room' %}active{% endif %}" href="{% url 'room' %}">Quản lý Chuồng</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main content -->
+    <div class="container mt-4">
+        <h1 class="title-center">Quản lý Booking</h1>
+
+        <!-- Form thêm booking -->
+        <div class="add-form mb-3">
+            <input type="text" id="bookingName" class="form-control mb-2" placeholder="Tên khách hàng" />
+            <input type="text" id="roomBooked" class="form-control mb-2" placeholder="Phòng đặt" />
+            <input type="number" id="paymentStatus" class="form-control mb-2" placeholder="Số tiền thanh toán" />
+            <button class="btn btn-primary" onclick="addBooking()">Thêm Booking</button>
+        </div>
+
+        <!-- Danh sách Booking -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên khách hàng</th>
+                    <th>Phòng đặt</th>
+                    <th>Số tiền thanh toán</th>
+                    <th>Trạng thái</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody id="bookingList">
+                <!-- Danh sách booking sẽ được thêm vào đây -->
+            </tbody>
+        </table>
+
+    <!-- Modal thông báo -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="successModalLabel">Thành công!</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modalMessage">
+                    <!-- Nội dung sẽ được cập nhật bằng JavaScript -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        let bookingId = 1; // ID tạm thời
+
+        function showSuccessModal(message) {
+            document.getElementById("modalMessage").innerText = message;
+            let modal = new bootstrap.Modal(document.getElementById("successModal"));
+            modal.show();
+        }
+
+        function addBooking() {
+            let bookingName = document.getElementById("bookingName").value.trim();
+            let roomBooked = document.getElementById("roomBooked").value.trim();
+            let paymentStatus = document.getElementById("paymentStatus").value.trim();
+
+            if (!bookingName || !roomBooked || !paymentStatus) {
+                alert("Vui lòng nhập đầy đủ thông tin!");
+                return;
+            }
+
+            let bookingList = document.getElementById("bookingList");
+            let row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${bookingId}</td>
+                <td>${bookingName}</td>
+                <td>${roomBooked}</td>
+                <td>${paymentStatus} VND</td>
+                <td>Đã thanh toán</td>
+                <td>
+                    <button class="btn btn-danger" onclick="cancelBooking(this)">Hủy booking</button>
+                </td>
+            `;
+
+
+            bookingList.appendChild(row);
+            bookingId++;
+
+            showSuccessModal("Thêm booking thành công!");
+
+            // Reset form
+            document.getElementById("bookingName").value = "";
+            document.getElementById("roomBooked").value = "";
+            document.getElementById("paymentStatus").value = "";
+        }
+
+        function cancelBooking(button) {
+            let row = button.closest("tr");
+            let paymentStatus = parseFloat(row.cells[3].innerText);
+
+            if (confirm("Bạn có chắc chắn muốn hủy booking này?")) {
+                row.remove();
+                if (paymentStatus > 0) {
+                    showSuccessModal("Booking đã bị hủy và khách hàng được hoàn tiền.");
+                } else {
+                    showSuccessModal("Booking đã bị hủy.");
+                }
+            }
+        }
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Footer -->
+    <footer class="footer mt-5">
+        <div class="container-fluid col-10">
+            <div class="row pt-3 pb-3">
+                <div class="col-md-4 care">
+                    <h4>Đánh Giá Của Khách Hàng</h4>
+                    <ul>
+                        <li><a href="#">Nhấn Vào Để Xem</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4 class="care">Pet Care</h4>
+                    <ul>
+                        <li>Phone: 0889969020</li>
+                        <li>Maps: 25 Tô Ký - Tân Chánh Hiệp - Quận 12</li>
+                        <li>Social:</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4>Hỗ Trợ Khách Hàng</h4>
+                    <ul>
+                        <li><a href="#">Chính Sách Mua Hàng</a></li>
+                        <li><a href="#">Điều Khoản Dịch Vụ</a></li>
+                        <li><a href="#">Hình Thức Thanh Toán</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

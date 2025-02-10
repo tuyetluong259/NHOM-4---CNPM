@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+import pymysql
+pymysql.install_as_MySQLdb() 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home',
-    'Nhan_Vien',
+    'Nhanvien',
 ]
 
 MIDDLEWARE = [
@@ -57,7 +59,7 @@ ROOT_URLCONF = 'CNPM.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'Nhan_Vien', 'templates')], #Thêm os.path.join(BASE_DIR, 'Nhan_Vien', 'templates')
+        'DIRS': [os.path.join(BASE_DIR, 'Nhanvien', 'templates')],  # <-- Thêm dấu phẩy ở cuối
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,6 +71,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'CNPM.wsgi.application'
 
@@ -128,7 +131,8 @@ STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
     BASE_DIR / "home/static",
-    BASE_DIR / "Nhan_Vien/static",
+    BASE_DIR / "Nhanvien/static",
+    os.path.join(BASE_DIR, 'Nhanvien/static'),
 ]
  
 # Default primary key field type
