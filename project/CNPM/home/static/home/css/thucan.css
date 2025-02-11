@@ -85,11 +85,10 @@
     width: 20%;
     overflow-y: auto;
 } 
-.mgl{
+ .mgl{
   margin-top: 140px;
-  margin-left: 330px;
   margin-right: 30px;
-}
+} 
 .footer{
   clear: both;
   background-color: #11c082ee;
@@ -116,10 +115,12 @@
   width: 100%;
 }
 .content{
+  padding-top: 70px;
   padding-bottom: 30px;
   margin-bottom: 50px;
   min-height: 900px; 
-} 
+  flex: 1;
+}  
 .news{
   margin-top: 20px;
   min-height: 200px;
@@ -135,10 +136,23 @@
 }
 .gh{
   position: fixed;
+
   height: 100vh;
-  width: 400px;
+  width: 500px;
   right: 0;
-  top: 0;
-  background-color: #9be9d7;
+  top: 80px;
+  padding-bottom: 100px;
+  margin-bottom: 100px;
+  background-color: #f9f9f9;
   padding: 12px 20px;
+  overflow-y: scroll;
+}
+.cart button{
+  margin-top: 12px;
+  height: 30px;
+  padding: 0 20px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: tomato;
 }

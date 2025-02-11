@@ -59,4 +59,3 @@ function deleteCart() {
         });
     });
 }
-document.querySelector(".gh")
