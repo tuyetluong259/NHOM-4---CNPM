@@ -69,20 +69,49 @@
           background-color: #4CAF50; /* Màu nền khi active */
           border-radius: 5px;
       }
-        footer {
-          background-color: #f8f9fa;
-          text-align: center;
-          padding: 10px;
-          font-size: 14px;
-          color:rgb(233, 33, 33);
-        }
+      .footer {
+        background-color:rgb(41, 95, 41); /* Màu nền tối */
+        color: #ffffff; /* Màu chữ trắng */
+        padding: 40px 0;
+    }
+    
+    .footer h4 {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+    }
+    
+    .footer ul {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .footer ul li {
+        margin-bottom: 8px;
+    }
+    
+    .footer ul li a {
+        color: #d1d1d1;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+    .footer ul li a:hover {
+        color: #f8f9fa; /* Màu trắng khi hover */
+        text-decoration: underline;
+    }
+    
+    .footer .care {
+        color: #f8c291; /* Màu nhấn đặc biệt */
+    }
     </style>
+    
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home'%}">
+            <a class="navbar-brand" href="{% url 'home_NV'%}">
                 Staff
                 <img src="{% static 'app/images/logo.png'%}" width="30" height="30" alt="Logo">
             </a>
@@ -134,7 +163,7 @@
         <thead class="table-light">
             <tr>
                 <th>ID</th>
-                <th>Khách hàng</th>
+                <th>Tên khách hàng</th>
                 <th>Ngày khám</th>
                 <th>Phòng</th>
                 <th>Giá tiền</th>
@@ -187,9 +216,33 @@
 
     
     <!-- Footer -->
-    <footer class="mt-4">
-        <p>Hotline: 9999909999</p>
-        <p>&copy; 2025 Web chăm sóc thú cưng.</p>
+    <footer class="footer mt-5">
+        <div class="container-fluid col-10">
+            <div class="row pt-3 pb-3">
+                <div class="col-md-4 care">
+                    <h4>Đánh Giá Của Khách Hàng</h4>
+                    <ul>
+                        <li><a href="#">Nhấn Vào Để Xem</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4 class="care">Pet Care</h4>
+                    <ul>
+                        <li>Phone: 0889969020</li>
+                        <li>Maps: 25 Tô Ký - Tân Chánh Hiệp - Quận 12</li>
+                        <li>Social:</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4>Hỗ Trợ Khách Hàng</h4>
+                    <ul>
+                        <li><a href="#">Chính Sách Mua Hàng</a></li>
+                        <li><a href="#">Điều Khoản Dịch Vụ</a></li>
+                        <li><a href="#">Hình Thức Thanh Toán</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </footer>
 
     <script>
@@ -215,7 +268,7 @@
                 date: bookingDate, 
                 room: roomNumber,
                 price: parseFloat(price),
-                status: "Chờ xác nhận"
+                status: "Đã thanh toán"
             });
     
             renderBookings();

@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 # Create your views here.
-def home(request):
-    return render(request,'app/home.html')
+def home_NV(request):
+    return render(request,'app/home_NV.html')
 def booking(request):
     return render(request, 'app/booking.html')
 def schedule(request):
