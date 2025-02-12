@@ -76,12 +76,12 @@ WSGI_APPLICATION = 'CNPM.wsgi.application'
 
 DATABASES = {
 	'default': {
-		'ENGINE': 'django.db.backends.mysql',
-		'NAME': 'quanlithucung',
-		'USER': 'root',
-		'PASSWORD': '123456',
-		'HOST':'localhost',
-		'PORT':'3306',
+		'ENGINE': 'django.db.backends.postgresql',
+		'NAME': 'DjangoDB',
+		'USER': 'myuser',
+		'PASSWORD': 'Tt@123456',
+		'HOST':'db',
+		'PORT':'5432',
 	}
 }
 

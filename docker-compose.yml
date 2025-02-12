@@ -1,0 +1,27 @@
+version: '3.9'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python manage.py runserver 0.0.0.0:9000
+    volumes:
+      - .:/app
+    ports:
+      - "9000:9000"
+    depends_on:
+      - db  # Đảm bảo service db chạy trước
+
+  db:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: Tt@123456
+      POSTGRES_DB: DjangoDB
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  db_data:
