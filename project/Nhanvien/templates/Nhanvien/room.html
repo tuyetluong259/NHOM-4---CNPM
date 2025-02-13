@@ -11,12 +11,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản lý Booking</title>
 </head>
-<style>
-    .table-striped {
-        background-color: #218838; /* Màu trắng cho bảng */
-    }
-</style>
-
 <body>
     <!-- Header -->
     <header>
@@ -33,28 +27,33 @@
             <nav class="navbar navbar-expand-lg bg-light">
                 <div class="container-fluid">
                     <span class="navbar-brand">
-                        <a href="{% url 'home' %}">
-                            <img src="{% static 'home/images/anh001.png' %}" width="50" height="50" alt="Logo">
-                        </a>
+                        <a href="{% url 'home_NV' %}">
+                            <img src="{% static 'Nhanvien/images/logo.png'%}" width="50" height="50" alt="Logo">
                     </span>
                 </div>
             </nav>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+                    data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" 
+                    aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'booking' %}active{% endif %}" href="{% url 'booking' %}">Quản lý Booking</a>
+                        <a class="nav-link {% if request.resolver_match.url_name == 'booking' %}active{% endif %}" 
+                           href="{% url 'booking' %}">Quản lý Booking</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'pet' %}active{% endif %}" href="{% url 'pet' %}">Quản lý Thú cưng</a>
+                        <a class="nav-link {% if request.resolver_match.url_name == 'pet' %}active{% endif %}" 
+                           href="{% url 'pet' %}">Quản lý Thú cưng</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'schedule' %}active{% endif %}" href="{% url 'schedule' %}">Sắp lịch bác sĩ</a>
+                        <a class="nav-link {% if request.resolver_match.url_name == 'schedule' %}active{% endif %}" 
+                           href="{% url 'schedule' %}">Sắp lịch bác sĩ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'room' %}active{% endif %}" href="{% url 'room' %}">Quản lý Chuồng</a>
+                        <a class="nav-link {% if request.resolver_match.url_name == 'room' %}active{% endif %}" 
+                           href="{% url 'room' %}">Quản lý Chuồng</a>
                     </li>
                 </ul>
             </div>
@@ -63,116 +62,136 @@
 
     <!-- Main content -->
     <div class="container mt-4">
-        <h1 class="title-center">Quản lý thông tin chuồng</h1>
-
-    <div class="add-form">
-        <input type="text" id="roomName" placeholder="Tên phòng" />
-        <input type="text" id="roomType" placeholder="Loại phòng" />
-        <input type="text" id="status" placeholder="Trạng thái" />
-        <button onclick="addRoom()">Thêm phòng</button>
-    </div>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Tên phòng</th>
-                <th>Loại phòng</th>
-                <th>Trạng thái</th>
-                <th>Hành động</th>
-            </tr>
-        </thead>
-        <tbody id="roomList">
-            <!-- Danh sách chuồng sẽ được thêm vào đây -->
-        </tbody>
-    </table>
-    <!-- Modal thông báo -->
-<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="successModalLabel">Thành công!</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body" id="modalMessage">
-          <!-- Nội dung sẽ được cập nhật bằng JavaScript -->
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-        </div>
-      </div>
-    </div>
-  </div>
+        <h1 class="text-center">Quản lý thông tin chuồng</h1>
     
-  <script>
-    let roomId = 1; // ID tạm thời
-
-    function showSuccessModal(message) {
-        document.getElementById("modalMessage").innerText = message;
-        let modal = new bootstrap.Modal(document.getElementById("successModal"));
-        modal.show();
-    }
+        <!-- Form thêm phòng -->
+        <div class="add-form">
+            <input type="text" id="roomName" class="form-control mb-2" placeholder="Tên phòng" />
+            <input type="text" id="roomType" class="form-control mb-2" placeholder="Loại phòng" />
+            <button class="btn btn-success" onclick="addRoom()">Thêm phòng</button>
+        </div>
+    
+        <!-- Bảng danh sách phòng -->
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên phòng</th>
+                    <th>Loại phòng</th>
+                    <th>Trạng thái</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody id="roomList"></tbody>
+        </table>
+    </div>
+    
+    <!-- Modal chỉnh sửa -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Chỉnh sửa thông tin phòng</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="editRoomId">
+                    <label for="editRoomName">Tên phòng:</label>
+                    <input type="text" id="editRoomName" class="form-control mb-2">
+                    <label for="editRoomType">Loại phòng:</label>
+                    <input type="text" id="editRoomType" class="form-control mb-2">
+                    <label for="editRoomStatus">Trạng thái:</label>
+                    <input type="text" id="editRoomStatus" class="form-control mb-2">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-primary" onclick="saveEdit()">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+    let roomIdCounter = 1;
 
     function addRoom() {
         let roomName = document.getElementById("roomName").value.trim();
         let roomType = document.getElementById("roomType").value.trim();
-        let status = document.getElementById("status").value.trim();
+        let status = "Còn trống";
 
-        if (!roomName || !roomType || !status) {
+        if (!roomName || !roomType) {
             alert("Vui lòng nhập đầy đủ thông tin!");
             return;
         }
 
         let roomList = document.getElementById("roomList");
         let row = document.createElement("tr");
+        row.setAttribute("data-id", roomIdCounter);
         row.innerHTML = `
-            <td>${roomId}</td>
+            <td>${roomIdCounter}</td>
             <td>${roomName}</td>
             <td>${roomType}</td>
             <td>${status}</td>
             <td>
-                <button onclick="editRoom(this)">Sửa</button>
-                <button onclick="deleteRoom(this)">Xóa</button>
+                <button class="btn btn-warning btn-sm" onclick="editRoom(this)">Sửa</button>
+                <button class="btn btn-danger btn-sm" onclick="deleteRoom(this)">Xóa</button>
             </td>
         `;
         roomList.appendChild(row);
-        roomId++;
+        roomIdCounter++;
 
-        showSuccessModal("Thêm phòng thành công!");
-
-        // Reset form
         document.getElementById("roomName").value = "";
         document.getElementById("roomType").value = "";
-        document.getElementById("status").value = "";
     }
 
     function editRoom(button) {
         let row = button.closest("tr");
-        let name = row.cells[1].innerText;
-        let type = row.cells[2].innerText;
-        let status = row.cells[3].innerText;
+        document.getElementById("editRoomId").value = row.getAttribute("data-id");
+        document.getElementById("editRoomName").value = row.cells[1].innerText;
+        document.getElementById("editRoomType").value = row.cells[2].innerText;
+        document.getElementById("editRoomStatus").value = row.cells[3].innerText;
 
-        let newName = prompt("Nhập tên phòng mới:", name);
-        let newType = prompt("Nhập loại phòng mới:", type);
-        let newStatus = prompt("Nhập trạng thái mới:", status);
+        let editModal = new bootstrap.Modal(document.getElementById("editModal"));
+        editModal.show();
+    }
 
-        if (newName && newType && newStatus) {
+    function saveEdit() {
+    let roomId = document.getElementById("editRoomId").value;
+    let newName = document.getElementById("editRoomName").value.trim();
+    let newType = document.getElementById("editRoomType").value.trim();
+    let newStatus = document.getElementById("editRoomStatus").value.trim();
+
+    if (!newName || !newType || !newStatus) {
+        alert("Vui lòng nhập đầy đủ thông tin!");
+        return;
+    }
+
+    let rows = document.querySelectorAll("#roomList tr");
+    for (let row of rows) {
+        if (row.getAttribute("data-id") === roomId) {
             row.cells[1].innerText = newName;
             row.cells[2].innerText = newType;
             row.cells[3].innerText = newStatus;
-
-            showSuccessModal("Cập nhật thông tin phòng thành công!");
+            break;
         }
     }
+
+    let editModal = bootstrap.Modal.getInstance(document.getElementById("editModal"));
+    editModal.hide();
+    alert("Cập nhật thành công!");
+}
+
 
     function deleteRoom(button) {
         if (confirm("Bạn có chắc chắn muốn xóa phòng này?")) {
-            let row = button.closest("tr");
-            row.remove();
-            showSuccessModal("Xóa phòng thành công!");
+            button.closest("tr").remove();
         }
     }
 </script>
+
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
     <!-- Footer -->
     <footer class="footer mt-5">
         <div class="container-fluid col-10">
