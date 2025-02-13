@@ -1,3 +1,4 @@
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="vi">
@@ -35,9 +36,6 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
                     data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" 
                     aria-label="Toggle navigation">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
-                    data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" 
-                    aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -45,24 +43,16 @@
                     <li class="nav-item">
                         <a class="nav-link {% if request.resolver_match.url_name == 'booking' %}active{% endif %}" 
                            href="{% url 'booking' %}">Quản lý Booking</a>
-                        <a class="nav-link {% if request.resolver_match.url_name == 'booking' %}active{% endif %}" 
-                           href="{% url 'booking' %}">Quản lý Booking</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'pet' %}active{% endif %}" 
-                           href="{% url 'pet' %}">Quản lý Thú cưng</a>
                         <a class="nav-link {% if request.resolver_match.url_name == 'pet' %}active{% endif %}" 
                            href="{% url 'pet' %}">Quản lý Thú cưng</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if request.resolver_match.url_name == 'schedule' %}active{% endif %}" 
                            href="{% url 'schedule' %}">Sắp lịch bác sĩ</a>
-                        <a class="nav-link {% if request.resolver_match.url_name == 'schedule' %}active{% endif %}" 
-                           href="{% url 'schedule' %}">Sắp lịch bác sĩ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'room' %}active{% endif %}" 
-                           href="{% url 'room' %}">Quản lý Chuồng</a>
                         <a class="nav-link {% if request.resolver_match.url_name == 'room' %}active{% endif %}" 
                            href="{% url 'room' %}">Quản lý Chuồng</a>
                     </li>
@@ -72,11 +62,8 @@
     </nav>
 
     <!-- Main content -->
-
-    <!-- Main content -->
     <div class="container mt-4">
         <h1 class="title-center">Quản lý lịch bác sĩ</h1>
-        <h1 class="title-center">Quản lý lịch bác sĩ</h1>
 
         <!-- Form thêm lịch bác sĩ -->
         <div class="add-form mb-3">
@@ -86,31 +73,7 @@
                 <option value="direct">Khám trực tiếp</option>
                 <option value="hospitalization">Chăm sóc thú cưng nhập viện</option>
             </select>
-        <!-- Form thêm lịch bác sĩ -->
-        <div class="add-form mb-3">
-            <!-- Dropdown chọn loại lịch đặt đầu tiên -->
-            <label for="scheduleType" class="form-label">Chọn loại lịch:</label>
-            <select id="scheduleType" class="form-control mb-2">
-                <option value="direct">Khám trực tiếp</option>
-                <option value="hospitalization">Chăm sóc thú cưng nhập viện</option>
-            </select>
 
-            <!-- Khi lịch là "Khám trực tiếp", hiển thị dropdown danh sách bác sĩ rảnh -->
-            <div id="doctorDirectDiv" style="display: none;">
-                <label for="doctorNameSelect" class="form-label">Chọn bác sĩ (Khám trực tiếp):</label>
-                <select id="doctorNameSelect" class="form-control mb-2"></select>
-            </div>
-            <!-- Khi lịch là "Chăm sóc thú cưng nhập viện", hiển thị ô nhập tên bác sĩ -->
-            <div id="doctorHospitalDiv" style="display: none;">
-                <label for="doctorNameInput" class="form-label">Nhập tên bác sĩ (Chăm sóc nhập viện):</label>
-                <input type="text" id="doctorNameInput" class="form-control mb-2" placeholder="Tên bác sĩ" />
-            </div>
-
-            <input type="text" id="scheduleTime" class="form-control mb-2" placeholder="Thời gian" />
-            <input type="text" id="room" class="form-control mb-2" placeholder="Phòng" />
-            
-            <button class="btn btn-primary" onclick="addSchedule()">Thêm lịch</button>
-        </div>
             <!-- Khi lịch là "Khám trực tiếp", hiển thị dropdown danh sách bác sĩ rảnh -->
             <div id="doctorDirectDiv" style="display: none;">
                 <label for="doctorNameSelect" class="form-label">Chọn bác sĩ (Khám trực tiếp):</label>
@@ -145,27 +108,6 @@
             </tbody>
         </table>
 
-        <!-- Modal thông báo -->
-        <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="successModalLabel">Thành công!</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" 
-                                aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body" id="modalMessage">
-                        <!-- Nội dung sẽ được cập nhật bằng JavaScript -->
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- JavaScript -->
         <!-- Modal thông báo -->
         <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -222,39 +164,6 @@
             updateDoctorField();
             document.getElementById("scheduleType").addEventListener("change", updateDoctorField);
         });
-        // Danh sách bác sĩ rảnh dành cho lịch khám trực tiếp
-        let availableDoctors = ["Dr. Lan", "Dr. Hoang", "Dr. Minh", "Dr. Tu"];
-
-        // Hàm khởi tạo dropdown danh sách bác sĩ
-        function populateDoctorSelect() {
-            let select = document.getElementById("doctorNameSelect");
-            select.innerHTML = "";
-            availableDoctors.forEach(function(doctor) {
-                let option = document.createElement("option");
-                option.value = doctor;
-                option.innerText = doctor;
-                select.appendChild(option);
-            });
-        }
-
-        // Hàm hiển thị trường nhập tên bác sĩ phù hợp dựa trên loại lịch
-        function updateDoctorField() {
-            let scheduleType = document.getElementById("scheduleType").value;
-            if(scheduleType === "direct") {
-                document.getElementById("doctorDirectDiv").style.display = "block";
-                document.getElementById("doctorHospitalDiv").style.display = "none";
-            } else {
-                document.getElementById("doctorDirectDiv").style.display = "none";
-                document.getElementById("doctorHospitalDiv").style.display = "block";
-            }
-        }
-
-        // Khi trang được tải, khởi tạo danh sách bác sĩ và cập nhật giao diện
-        document.addEventListener("DOMContentLoaded", function() {
-            populateDoctorSelect();
-            updateDoctorField();
-            document.getElementById("scheduleType").addEventListener("change", updateDoctorField);
-        });
 
         function showSuccessModal(message) {
             document.getElementById("modalMessage").innerText = message;
@@ -263,13 +172,6 @@
         }
 
         function addSchedule() {
-            let scheduleType = document.getElementById("scheduleType").value;
-            let doctorName = "";
-            if(scheduleType === "direct") {
-                doctorName = document.getElementById("doctorNameSelect").value;
-            } else {
-                doctorName = document.getElementById("doctorNameInput").value.trim();
-            }
             let scheduleType = document.getElementById("scheduleType").value;
             let doctorName = "";
             if(scheduleType === "direct") {
@@ -304,12 +206,8 @@
             showSuccessModal("Thêm lịch thành công!");
 
             // Reset các ô nhập (nếu cần)
-            // Reset các ô nhập (nếu cần)
             document.getElementById("scheduleTime").value = "";
             document.getElementById("room").value = "";
-            if(scheduleType === "hospitalization") {
-                document.getElementById("doctorNameInput").value = "";
-            }
             if(scheduleType === "hospitalization") {
                 document.getElementById("doctorNameInput").value = "";
             }
@@ -346,9 +244,7 @@
     </script>
 
     <!-- Bootstrap JS -->
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
 
     <!-- Footer -->
     <footer class="footer mt-5">
@@ -380,6 +276,4 @@
         </div>
     </footer>
 </body>
-</html>
-
 </html>
