@@ -37,7 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'home'
+    'import_export',  # Thêm tính năng xuất/nhập dữ liệu
+    'django_extensions',
+    'admin_panel',
+    'home',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +58,7 @@ ROOT_URLCONF = 'CNPM.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "home/templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,17 +78,18 @@ WSGI_APPLICATION = 'CNPM.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-	'default': {
-		'ENGINE': 'django.db.backends.postgresql',
-		'NAME': 'DjangoDB',
-		'USER': 'myuser',
-		'PASSWORD': 'Tt@123456',
-		'HOST':'db',
-		'PORT':'5432',
-	}
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'DjangoDB',
+        'USER': 'myuser',
+        'PASSWORD': 'Tt@123456',
+        'HOST': 'localhost',  # Tên container của database
+        'PORT': '5432',
+    }
 }
 
 
+ 
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

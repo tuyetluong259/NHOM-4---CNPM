@@ -1,16 +1,18 @@
-version: '3.9'
 services:
   web:
     build:
-      context: .
+      context: .  
       dockerfile: Dockerfile
-    command: python manage.py runserver 0.0.0.0:9000
+    command: >
+      sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:9000"
     volumes:
-      - .:/app
+      - .:/CNPM  
+    working_dir: /CNPM/project/CNPM  
     ports:
       - "9000:9000"
     depends_on:
-      - db  # Đảm bảo service db chạy trước
+      db:
+        condition: service_healthy  
 
   db:
     image: postgres:14
@@ -22,6 +24,11 @@ services:
       - db_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U myuser -d DjangoDB"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
   db_data:

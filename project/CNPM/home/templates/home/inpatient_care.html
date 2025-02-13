@@ -1,0 +1,37 @@
+{% extends 'app/base.html' %} {% block content %}
+<div class="container mt-5">
+  <h2>Danh sách thú cưng nhập viện</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Tên</th>
+        <th>Loài</th>
+        <th>Tiến trình</th>
+        <th>Hành động</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for pet in pets %}
+      <tr>
+        <td>{{ pet.name }}</td>
+        <td>{{ pet.species }}</td>
+        <td>{{ pet.progress }}</td>
+        <td>
+          <a
+            href="{% url 'edit_medical' pet.pk %}"
+            class="btn btn-warning btn-sm"
+            >Sửa</a
+          >
+          <a
+            href="{% url 'delete_medical' pet.pk %}"
+            class="btn btn-danger btn-sm"
+            onclick="return confirm('Bạn chắc chắn muốn xóa?')"
+            >Xóa</a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
