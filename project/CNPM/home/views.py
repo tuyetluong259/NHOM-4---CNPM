@@ -12,8 +12,7 @@ def login(request):
     return render(request, 'home/login.html', context)
 def thucan(request):
     context = {}
-    return render(request, 'home/thucan.html', context)
-def 
+    return render(request, 'home/thucan.html', context) 
 # Create your views here.
 def Customer(request):
     return HttpResponse("Hello world!") 
