@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # app/urls.py
 from django.urls import path
 from . import views
@@ -8,4 +9,12 @@ urlpatterns = [
     path('inpatient_care/', views.inpatient_care, name='inpatient_care'),  # Trang chăm sóc thú cưng
     path('edit_medical/<int:pk>/', views.edit_medical, name='edit_medical'),  # Trang sửa hồ sơ
     path('delete_medical/<int:pk>/', views.delete_medical, name='delete_medical'),  # Xóa hồ sơ
+=======
+from django.contrib import admin
+from django.urls import path
+from . import views
+urlpatterns = [
+    path('', views.booking),
+    
+>>>>>>> 07cc7e1b053dcbab635a9039452707a07dce2826
 ]

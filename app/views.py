@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # views.py
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
@@ -57,3 +58,10 @@ def delete_medical(request, pk):
     pet = get_object_or_404(MedicalRecord, pk=pk)
     pet.delete()
     return redirect('inpatient_care')
+=======
+from django.shortcuts import render
+from django.http import HttpResponse
+# Create your views here.
+def home(request):
+    return render(request, 'app/booking.html')
+>>>>>>> 07cc7e1b053dcbab635a9039452707a07dce2826
