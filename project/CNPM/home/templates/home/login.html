@@ -2,88 +2,173 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Chăm sóc thú cưng - Đăng nhập & Đăng ký</title>
-    <link rel="stylesheet" href="styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng Nhập / Đăng Ký</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home/css/login.css' %}" />
   </head>
   <body>
-    <div class="container">
-      <!-- Form đăng nhập -->
-      <div id="login-form" class="form active">
-        <h2>Đăng nhập</h2>
-        <form id="loginForm">
+    <header>
+      <div class="container-fluid p-1 bgtop1 text-center">
+        <div class="container">
+          <marquee>Chăm Sóc Thú Cưng Số 1 Tại Thành Phố Hồ Chí Minh</marquee>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-light">
+      <div class="container-fluid">
+        <span class="navbar-brand">
+          <a href="{% url 'home' %}">
+            <img
+              src="{% static 'home/images/anh001.png' %}"
+              width="50"
+              height="50"
+              alt="Logo"
+            />
+          </a>
+        </span>
+      </div>
+    </nav>
+
+    <main class="container mt-4">
+      <h1 class="text-center">Chào mừng đến với Web chăm sóc thú cưng</h1>
+      <p class="text-center">Vui lòng chọn vai trò và đăng nhập:</p>
+
+      <div class="auth-container">
+        <!-- Tab chuyển đổi -->
+        <div class="tabs">
+          <button class="tab-button active" onclick="showForm('loginForm')">
+            Đăng Nhập
+          </button>
+          <button class="tab-button" onclick="showForm('registerForm')">
+            Đăng Ký
+          </button>
+        </div>
+
+        <!-- Form Đăng Nhập -->
+        <form
+          id="loginForm"
+          class="auth-form active"
+          method="post"
+          action="{% url 'login' %}"
+        >
+          {% csrf_token %}
+          <h2>Đăng Nhập</h2>
           <div class="form-group">
-            <label for="loginEmail">Email</label>
+            <label for="loginRole">Chọn vai trò:</label>
+            <select id="loginRole" name="role" class="form-control" required>
+              <option value="admin">Admin</option>
+              <option value="nhanvien">Nhân viên</option>
+              <option value="bacsi">Bác sĩ</option>
+              <option value="khachhang">Khách hàng</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="loginEmail">Email:</label>
             <input
               type="email"
               id="loginEmail"
-              name="loginEmail"
-              placeholder="Nhập email của bạn"
+              name="email"
+              class="form-control"
+              placeholder="Nhập email"
               required
             />
           </div>
           <div class="form-group">
-            <label for="loginPassword">Mật khẩu</label>
+            <label for="loginPassword">Mật khẩu:</label>
             <input
               type="password"
               id="loginPassword"
-              name="loginPassword"
+              name="password"
+              class="form-control"
               placeholder="Nhập mật khẩu"
               required
             />
           </div>
-          <button type="submit" class="btn">Đăng nhập</button>
-        </form>
-        <div class="toggle-link">
-          Chưa có tài khoản? <a id="showRegister">Đăng ký ngay</a>
-        </div>
-      </div>
-
-      <!-- Form đăng ký -->
-      <div id="register-form" class="form">
-        <h2>Đăng ký</h2>
-        <form id="registerForm">
-          <div class="form-group">
-            <label for="regName">Họ và tên</label>
+          <div class="form-group form-check">
             <input
-              type="text"
-              id="regName"
-              name="regName"
-              placeholder="Nhập họ và tên"
-              required
+              type="checkbox"
+              id="rememberMe"
+              name="remember_me"
+              class="form-check-input"
             />
+            <label for="rememberMe" class="form-check-label"
+              >Ghi nhớ đăng nhập</label
+            >
           </div>
+          <button type="submit" class="btn btn-primary">Đăng Nhập</button>
+        </form>
+
+        <!-- Form Đăng Ký -->
+        <form
+          id="registerForm"
+          class="auth-form"
+          method="post"
+          action="{% url 'register' %}"
+        >
+          {% csrf_token %}
+          <h2>Đăng Ký</h2>
           <div class="form-group">
-            <label for="regEmail">Email</label>
+            <label for="registerEmail">Email:</label>
             <input
               type="email"
-              id="regEmail"
-              name="regEmail"
-              placeholder="Nhập email của bạn"
+              id="registerEmail"
+              name="email"
+              class="form-control"
+              placeholder="Nhập email"
               required
             />
           </div>
           <div class="form-group">
-            <label for="regPassword">Mật khẩu</label>
+            <label for="registerPassword">Mật khẩu:</label>
             <input
               type="password"
-              id="regPassword"
-              name="regPassword"
+              id="registerPassword"
+              name="password"
+              class="form-control"
               placeholder="Nhập mật khẩu"
               required
             />
           </div>
-          <button type="submit" class="btn">Đăng ký</button>
+          <div class="form-group">
+            <label for="registerConfirmPassword">Nhập lại mật khẩu:</label>
+            <input
+              type="password"
+              id="registerConfirmPassword"
+              name="confirm_password"
+              class="form-control"
+              placeholder="Nhập lại mật khẩu"
+              required
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">Đăng Ký</button>
         </form>
-        <div class="toggle-link">
-          Đã có tài khoản? <a id="showLogin">Đăng nhập ngay</a>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container-fluid col-10">
+        <div class="row pt-3 pb-3">
+          <div class="col-md-4 care">
+            <h4>Đánh Giá Của Khách Hàng</h4>
+            <ul>
+              <li><a href="#">Nhấn Vào Để Xem</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h4 class="care">Pet Care</h4>
+            <ul>
+              <li>Phone: 0</li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-
-    <!-- Phần đồ họa nhấp nháy: icon paw (dấu chân thú cưng) -->
-    <div class="animated-paw">🐾</div>
-
-    <script src="script.js"></script>
+    </footer>
   </body>
 </html>

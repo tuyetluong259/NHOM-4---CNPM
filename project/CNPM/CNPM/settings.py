@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-*set7h0-%)(2evueg#47i+dr9)km1k-8@hs*w)39oc_$xp641^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.1.7', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -77,14 +77,16 @@ WSGI_APPLICATION = 'CNPM.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+import os
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'DjangoDB',
-        'USER': 'myuser',
-        'PASSWORD': 'Tt@123456',
-        'HOST': 'localhost',  # Tên container của database
-        'PORT': '5432',
+        'NAME': os.getenv('DATABASE_NAME', 'DjangoDB'),
+        'USER': os.getenv('DATABASE_USER', 'myuser'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD', 'Tt@123456'),
+        'HOST': os.getenv('DATABASE_HOST', 'db'),  # Sử dụng giá trị môi trường 'db' nếu không có giá trị môi trường
+        'PORT': os.getenv('DATABASE_PORT', '5432'),
     }
 }
 
@@ -132,3 +134,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+AUTHENTICATION_BACKENDS = [
+    'home.authentication.EmailBackend',  # Thêm backend này
+    'django.contrib.auth.backends.ModelBackend',  # Sử dụng backend mặc định của Django
+]

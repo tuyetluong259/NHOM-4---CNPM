@@ -1,86 +1,124 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.utils.timezone import now
+class SystemConfig(models.Model):
+    key = models.CharField(max_length=255, unique=True)
+    value = models.TextField()
 
-#class
-class Customer(models.Model):
-    full_name = models.CharField(max_length=255)
-    email = models.EmailField(unique=True)
-    phone_number = models.CharField(max_length=15, unique=True)
-    address = models.TextField()
     def __str__(self):
-        return self.full_name
-    
-class Pet(models.Model):
-    customer = models.ForeignKey(Customer, related_name="pets", on_delete=models.CASCADE)
-    name = models.CharField(max_length=255)
-    species = models.CharField(max_length=255)
-    breed = models.CharField(max_length=255)
-    date_of_birth = models.DateField()
-    medical_history = models.TextField()
-    vaccine_history = models.TextField()
-    def __str__(self):
-        return self.name
-    
-class Staff(models.Model):
-    full_name = models.CharField(max_length=255)
-    email = models.EmailField(unique=True)
-    phone_number = models.CharField(max_length=15)
-    role = models.CharField(max_length=50) 
-    def __str__(self):
-        return self.full_name
-    
-class Veterinarian(models.Model):
-    staff = models.OneToOneField(Staff, on_delete=models.CASCADE)
-    specialty = models.CharField(max_length=255)
-    available_times = models.TextField()  # Thời gian bác sĩ có thể làm việc
-    def __str__(self):
-        return f"Dr. {self.staff.full_name}"
-    
-class Booking(models.Model):
-    pet = models.ForeignKey(Pet, on_delete=models.CASCADE)
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    veterinarian = models.ForeignKey(Veterinarian, null=True, blank=True, on_delete=models.SET_NULL)
-    date = models.DateTimeField()
-    status = models.CharField(max_length=50, choices=[('Pending', 'Pending'), ('Confirmed', 'Confirmed'), ('Cancelled', 'Cancelled')])
-    payment_status = models.CharField(max_length=50, choices=[('Paid', 'Paid'), ('Unpaid', 'Unpaid')])
-    amount = models.DecimalField(max_digits=10, decimal_places=2)
-    def __str__(self):
-        return f"Booking for {self.pet.name} on {self.date}"
-    
-class Admission(models.Model):
-    pet = models.ForeignKey(Pet, on_delete=models.CASCADE)
-    check_in_date = models.DateTimeField()
-    check_out_date = models.DateTimeField(null=True, blank=True)
-    status = models.CharField(max_length=50, choices=[('In Hospital', 'In Hospital'), ('Recovered', 'Recovered')])
-    notes = models.TextField()
-    veterinarian = models.ForeignKey(Veterinarian, on_delete=models.CASCADE)
-    def __str__(self):
-        return f"Admission for {self.pet.name} on {self.check_in_date}"
-    
-class Review(models.Model):
-    booking = models.ForeignKey(Booking, on_delete=models.CASCADE)
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    rating = models.IntegerField(choices=[(1, '1 Star'), (2, '2 Stars'), (3, '3 Stars'), (4, '4 Stars'), (5, '5 Stars')])
-    comment = models.TextField()
-    def __str__(self):
-        return f"Review for {self.booking.pet.name} by {self.customer.full_name}"
-    
+        return self.key
+
 class Revenue(models.Model):
-    date = models.DateField()
-    amount = models.DecimalField(max_digits=10, decimal_places=2)
-    revenue_type = models.CharField(max_length=50, choices=[('Booking', 'Booking'), ('Service', 'Service'), ('Refund', 'Refund')])
+    date = models.DateField(default=now)
+    amount = models.DecimalField(max_digits=12, decimal_places=2)
+
     def __str__(self):
-        return f"Revenue on {self.date}: {self.amount}"
+        return f"{self.date}: {self.amount}"
+
+# Model Thú cưng
+class ThuCung(models.Model):
+    ten = models.CharField(max_length=100)
+    loai = models.CharField(max_length=100)
+    tuoi = models.IntegerField()
+    chu = models.ForeignKey(User, on_delete=models.CASCADE)
+    ngay_tao = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.ten
+
+# Model Hồ sơ khám bệnh của Thú cưng
+class HoSoKhamBenh(models.Model):
+    thu_cung = models.ForeignKey(ThuCung, on_delete=models.CASCADE)
+    ngay_kham = models.DateTimeField()
+    chuan_doan = models.TextField()
+    dieu_tri = models.TextField()
+    danh_gia = models.IntegerField(choices=[(1, 'Rất Tệ'), (2, 'Tệ'), (3, 'Bình Thường'), (4, 'Tốt'), (5, 'Rất Tốt')], null=True, blank=True)
+
+    def __str__(self):
+        return f"Hồ sơ khám bệnh của {self.thu_cung.ten} vào ngày {self.ngay_kham}"
+
+# Model Chuồng (phòng) cho thú cưng nhập viện
+class ChungCu(models.Model):
+    ma_chuong = models.CharField(max_length=100, unique=True)
+    loai_chuong = models.CharField(max_length=100)
+    trang_thai = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f"Chuồng {self.ma_chuong} - {'Trống' if self.trang_thai else 'Đầy'}"
+
+# Model Đặt khám bệnh (booking)
+
+def some_default_user():
+    try:
+        user = User.objects.get(username='default_user')  # Lấy người dùng có tên 'default_user'
+        return user.id  # Trả về id của user
+    except User.DoesNotExist:
+        # Nếu không tồn tại, tạo người dùng mặc định
+        user = User.objects.create_user(username='default_user', password='password123')
+        return user.id
+
+def some_default_thu_cung():
+    # Đảm bảo rằng có một user mặc định để gán cho trường 'chu'
+    default_owner = User.objects.get(username='default_user')
+    # Lấy thú cưng đầu tiên nếu có
+    thu_cung = ThuCung.objects.first()
+    if not thu_cung:
+        thu_cung = ThuCung.objects.create(
+            ten='Thú cưng mặc định', 
+            loai='Loại mặc định',
+            tuoi=0,  # Cung cấp giá trị mặc định cho 'tuoi'
+            chu=default_owner  # Gán chủ nhân mặc định
+        )
+    return thu_cung.id
+class Booking(models.Model):
+    thu_cung = models.ForeignKey(ThuCung, on_delete=models.CASCADE, default=some_default_thu_cung)
+    khach_hang = models.ForeignKey(User, on_delete=models.CASCADE, default=some_default_user)
+    ngay_dang_ky = models.DateTimeField(auto_now_add=True, null=True)
+    bac_si = models.ForeignKey('BacSi', null=True, blank=True, on_delete=models.SET_NULL)
+    trang_thai = models.CharField(
+        max_length=50, 
+        choices=[('Đang Chờ', 'Đang Chờ'), ('Đã Xác Nhận', 'Đã Xác Nhận'), ('Đã Hủy', 'Đã Hủy')],
+        default='Đang Chờ'
+    )
+    thanh_toan_truoc = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     
-# class SystemConfig(models.Model):
-#     key = models.CharField(max_length=255, unique=True)
-#     value = models.TextField()
+    def __str__(self):
+        return f"Booking cho {self.thu_cung.ten} vào ngày {self.ngay_dang_ky}"
 
-#     def __str__(self):
-#         return self.key
+# Model Bác sĩ thú y
+class BacSi(models.Model):
+    ten = models.CharField(max_length=100)
+    chuyen_mon = models.CharField(max_length=100)
+    gioi_thieu = models.TextField()
+    trang_thai = models.BooleanField(default=True)
 
-# class Revenue(models.Model):
-#     date = models.DateField(default=now)
-#     amount = models.DecimalField(max_digits=12, decimal_places=2)
+    def __str__(self):
+        return self.ten
 
-#     def __str__(self):
-#         return f"{self.date}: {self.amount}"
+# Model Thông tin tài khoản người dùng
+class TaiKhoan(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    loai_tai_khoan = models.CharField(max_length=50, choices=[('Khách Hàng', 'Khách Hàng'), ('Nhân Viên', 'Nhân Viên'), ('Admin', 'Admin'), ('Bác Sĩ', 'Bác Sĩ')])
+    so_dien_thoai = models.CharField(max_length=15, null=True, blank=True)
+
+    def __str__(self):
+        return self.user.username
+
+# Model Cấu hình hệ thống
+class CauHinh(models.Model):
+    ten = models.CharField(max_length=100)
+    gia_tri = models.CharField(max_length=100)
+    mo_ta = models.TextField()
+
+    def __str__(self):
+        return self.ten
+
+# Model Doanh thu hệ thống
+class DoanhThu(models.Model):
+    thoi_gian = models.DateField()
+    doanh_thu_ngay = models.DecimalField(max_digits=10, decimal_places=2)
+    doanh_thu_tuan = models.DecimalField(max_digits=10, decimal_places=2)
+    doanh_thu_thang = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return f"Doanh thu ngày {self.thoi_gian}"

@@ -63,3 +63,21 @@ body {
 .btn-primary:hover {
   background-color: #218838;
 }
+.footer{
+  text-decoration: none;
+  background-color: rgb(40, 126, 98);
+  color:#ffffffee
+}
+.footer ul li{
+  text-decoration: none;
+  list-style-type: none;
+  }
+  .footer a{
+    text-decoration: none;
+  color: #ffffffee;
+  }
+  .footer ul li a:hover {
+    text-decoration: none;
+  color: rgb(246, 160, 171);
+  }
+
