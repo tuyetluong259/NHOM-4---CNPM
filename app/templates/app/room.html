@@ -4,203 +4,293 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <!-- Bootstrap CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Custom CSS -->
-        <link rel="stylesheet" href=" app/css/style.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'Nhanvien/css/NV.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản lý thông tin chuồng</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-            color: #333;
-            padding: 5px;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #ccc;
-            padding: 10px;
-            text-align: center;
-        }
-        th {
-            background-color:rgb(143, 214, 243);
-        }
-        tr:nth-child(even) {
-            background-color:rgb(255, 255, 255);
-        }
-        button {
-            padding: 5px 10px;
-            font-size: 14px;
-            cursor: pointer;
-            margin: 5px;
-        }
-        .btn-primary {
-            background-color: #4CAF50; !important; /* Màu nền tùy ý */
-            border-color:rgb(55, 108, 242)     /* Màu viền */
-            color: white !important;            /* Màu chữ */
-        }
-        .btn-primary:hover {
-            background-color:rgb(53, 142, 57); !important; /* Màu khi hover */
-            border-color:rgb(255, 0, 0);
-            border-width: 1.5px !important;
-        }
-        .add-form {
-            margin: 20px 0;
-        }
-        .add-form input {
-            padding: 5px;
-            margin-right: 10px;
-        }
-        .nav-link:hover {
-            background-color:  #4CAF50; /* Màu nền chuyển sang đỏ khi hover */
-            color: white; /* Chữ chuyển sang màu trắng */
-      }
-      .nav-link.active {
-          color: black; /* Màu chữ khi active */
-          background-color: #4CAF50; /* Màu nền khi active */
-          border-radius: 5px;
-      }
-      .footer {
-        background-color:rgb(41, 95, 41); /* Màu nền tối */
-        color: #ffffff; /* Màu chữ trắng */
-        padding: 40px 0;
-    }
+    <title>Quản lý Room</title>
     
-        .footer h4 {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-        }
-        
-        .footer ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .footer ul li {
-            margin-bottom: 8px;
-        }
-        
-        .footer ul li a {
-            color: #d1d1d1;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        .footer ul li a:hover {
-            color: #f8f9fa; /* Màu trắng khi hover */
-            text-decoration: underline;
-        }
-        
-        .footer .care {
-            color: #f8c291; /* Màu nhấn đặc biệt */
-        }
-    </style>
 </head>
 <body>
-      <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- Header -->
+    <header>
+        <div class="container-fluid p-1 bgtop1 text-center">
+            <div class="container">
+                <marquee>Chăm Sóc Thú Cưng Số 1 Tại Thành Phố Hồ Chí Minh</marquee>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home_NV'%}">
-                Staff
-                <img src="{% static 'app/images/logo.png'%}" width="30" height="30" alt="Logo">
-              </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <nav class="navbar navbar-expand-lg bg-light">
+                <div class="container-fluid">
+                    <span class="navbar-brand">
+                        <a href="{% url 'home_NV' %}">
+                            <img src="{% static 'Nhanvien/images/logo.png'%}" width="50" height="50" alt="Logo">
+                    </span>
+                </div>
+            </nav>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+                    data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" 
+                    aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link " href="/booking/">Quản lý Booking</a>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'pet'%}">Quản lý Thú cưng</a>
-                          </li>
-                          <li class="nav-item">
-                            <a class="nav-link" href="{% url 'schedule'%}">Sắp lịch bác sĩ</a>
-                          </li>
-                          <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{% url 'room'%}">Quản lý Chuồng</a>
-                          </li>
+                        <a class="nav-link {% if request.resolver_match.url_name == 'booking' %}active{% endif %}" 
+                           href="{% url 'booking' %}">Quản lý Booking</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'pet' %}active{% endif %}" 
+                           href="{% url 'pet' %}">Quản lý Thú cưng</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'schedule' %}active{% endif %}" 
+                           href="{% url 'schedule' %}">Sắp lịch bác sĩ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'room' %}active{% endif %}" 
+                           href="{% url 'room' %}">Quản lý Chuồng</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <h1>Quản lý thông tin chuồng</h1>
-            <!-- Form thêm hồ sơ nhập viện -->
-            <div class="card p-3 mb-3">
-                <h4>Thêm Hồ Sơ Nhập Viện</h4>
-                <div class="row">
-                    <div class="col-md-3">
-                        <input type="text" id="recordId" class="form-control" placeholder="Mã hồ sơ">
-                    </div>
-                    <div class="col-md-3">
-                        <input type="date" id="admissionDate" class="form-control" placeholder="Ngày nhập viện">
-                    </div>
-                    <div class="col-md-3">
-                        <input type="text" id="admissionReason" class="form-control" placeholder="Lý do nhập viện">
-                    </div>
-                    <div class="col-md-3">
-                        <input type="text" id="cageNumber" class="form-control" placeholder="Số chuồng">
-                    </div>
+
+   <!-- Main content -->
+   <div class="container mt-4">
+    <h1 class="text-center">Quản lý thông tin chuồng & Hồ sơ nhập viện</h1>
+  
+    <!-- Form thêm hồ sơ nhập viện -->
+    <div class="card p-3 mb-3">
+        <h4>Thêm Hồ Sơ Nhập Viện</h4>
+       <div class="row">
+    <div class="col-md-3">
+        <input type="date" id="admissionDate" class="form-control" placeholder="Ngày nhập viện">
+    </div>
+    <div class="col-md-3">
+        <input type="text" id="admissionReason" class="form-control" placeholder="Lý do nhập viện">
+    </div>
+    <div class="col-md-3">
+        <input type="text" id="cageNumber" class="form-control" placeholder="Số chuồng">
+    </div>
+    <div class="col-md-3">
+        <input type="text" id="serviceType" class="form-control" placeholder="Dịch vụ đi kèm">
+    </div>
+    <div class="col-md-3 mt-2">
+        <input type="text" id="doctor" class="form-control" placeholder="Bác sĩ phụ trách">
+    </div>
+    <div class="col-md-3 mt-2">
+        <button class="btn btn-primary" onclick="addRecord()">Thêm</button>
+    </div>
+</div>
+
+    </div>
+    
+    <!-- Bảng danh sách hồ sơ nhập viện -->
+    <table>
+        <thead>
+            <tr>
+                <th>Mã hồ sơ</th>
+                <th>Ngày nhập viện</th>
+                <th>Lý do nhập viện</th>
+                <th>Số chuồng</th>
+                <th>Dịch vụ đi kèm</th>
+                <th>Bác sĩ phụ trách</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody id="admissionTable"></tbody>
+    </table>
+</div>
+
+<!-- Modal chỉnh sửa -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Chỉnh sửa hồ sơ</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="editRoomId">
+                
+                <div class="mb-3">
+                    <label for="editAdmissionDate" class="form-label">Ngày nhập viện:</label>
+                    <input type="date" id="editAdmissionDate" class="form-control">
                 </div>
-                <div class="row mt-2">
-                    <div class="col-md-3">
-                        <input type="text" id="serviceType" class="form-control" placeholder="Dịch vụ đi kèm">
-                    </div>
-                    <div class="col-md-3">
-                        <input type="text" id="doctor" class="form-control" placeholder="Bác sĩ phụ trách">
-                    </div>
-                    <div class="col-md-3">
-                        <button class="btn btn-primary" onclick="addRecord()">Thêm</button>
-                    </div>
+                <div class="mb-3">
+                    <label for="editAdmissionReason" class="form-label">Lý do nhập viện:</label>
+                    <input type="text" id="editAdmissionReason" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="editCageNumber" class="form-label">Số chuồng:</label>
+                    <input type="text" id="editCageNumber" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="editServiceType" class="form-label">Dịch vụ phụ đi kèm:</label>
+                    <input type="text" id="editServiceType" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="editDoctor" class="form-label">Bác sĩ phụ trách:</label>
+                    <input type="text" id="editDoctor" class="form-control">
                 </div>
             </div>
-            
-            <!-- Bảng danh sách hồ sơ nhập viện -->
-            <table class="table table-bordered">
-                <thead class="table">
-                    <tr>
-                        <th>Mã hồ sơ</th>
-                        <th>Ngày nhập viện</th>
-                        <th>Lý do nhập viện</th>
-                        <th>Số chuồng</th>
-                        <th>Dịch vụ đi kèm</th>
-                        <th>Bác sĩ phụ trách</th>
-                        <th>Hành động</th>
-                    </tr>
-                </thead>
-                <tbody id="admissionTable">
-                    <!-- Danh sách sẽ được cập nhật từ JavaScript -->
-                </tbody>
-            </table>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-primary" onclick="saveEdit()">Lưu</button>
+            </div>
         </div>
-    <!-- Modal thông báo -->
+    </div>
+</div>
+
+<!-- Modal thông báo -->
 <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="successModalLabel">Thành công!</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="successModalLabel">Thành công!</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="modalMessage"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+            </div>
         </div>
-        <div class="modal-body" id="modalMessage">
-          <!-- Nội dung sẽ được cập nhật bằng JavaScript -->
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-        </div>
-      </div>
     </div>
-  </div>
-    <!--Footer-->
+</div>
+    
+<script>
+    let recordIdCounter = Date.now(); // Tạo ID duy nhất
+    
+    function addRecord() {
+        let admissionDate = document.getElementById("admissionDate").value;
+        let admissionReason = document.getElementById("admissionReason").value.trim();
+        let cageNumber = document.getElementById("cageNumber").value.trim();
+        let serviceType = document.getElementById("serviceType").value.trim();
+        let doctor = document.getElementById("doctor").value.trim();
+    
+        if (!admissionDate || !admissionReason || !cageNumber || !serviceType || !doctor) {
+            alert("Vui lòng nhập đầy đủ thông tin!");
+            return;
+        }
+    
+        if (isNaN(cageNumber) || cageNumber <= 0) {
+            alert("Số chuồng phải là số nguyên dương!");
+            return;
+        }
+    
+        let recordId = recordIdCounter++; // Sử dụng ID duy nhất
+        let table = document.getElementById("admissionTable");
+        let row = document.createElement("tr");
+        row.setAttribute("data-id", recordId);
+        row.innerHTML = `
+            <td>${recordId}</td>
+            <td>${admissionDate}</td>
+            <td>${admissionReason}</td>
+            <td>${cageNumber}</td>
+            <td>${serviceType}</td>
+            <td>${doctor}</td>
+            <td>
+                <button class="btn btn-warning btn-sm" onclick="editRecord(this)">Sửa</button>
+                <button class="btn btn-danger btn-sm" onclick="deleteRecord(this)">Xóa</button>
+            </td>
+        `;
+        table.appendChild(row);
+        showSuccessModal("Thêm hồ sơ thành công!");
+    
+        // Xóa dữ liệu trong input sau khi thêm
+        document.getElementById("admissionDate").value = "";
+        document.getElementById("admissionReason").value = "";
+        document.getElementById("cageNumber").value = "";
+        document.getElementById("serviceType").value = "";
+        document.getElementById("doctor").value = "";
+    }
+    
+    function editRecord(button) {
+        let row = button.closest("tr");
+        let recordId = row.getAttribute("data-id");
+        let admissionDate = row.cells[1].innerText;
+        let admissionReason = row.cells[2].innerText;
+        let cageNumber = row.cells[3].innerText;
+        let serviceType = row.cells[4].innerText;
+        let doctor = row.cells[5].innerText;
+    
+        document.getElementById("editRoomId").value = recordId;
+        document.getElementById("editAdmissionDate").value = admissionDate;
+        document.getElementById("editAdmissionReason").value = admissionReason;
+        document.getElementById("editCageNumber").value = cageNumber;
+        document.getElementById("editServiceType").value = serviceType;
+        document.getElementById("editDoctor").value = doctor;
+    
+        let editModal = new bootstrap.Modal(document.getElementById("editModal"));
+        editModal.show();
+    }
+    
+    function saveEdit() {
+        let recordId = document.getElementById("editRoomId").value;
+        let newAdmissionDate = document.getElementById("editAdmissionDate").value;
+        let newAdmissionReason = document.getElementById("editAdmissionReason").value;
+        let newCageNumber = document.getElementById("editCageNumber").value;
+        let newServiceType = document.getElementById("editServiceType").value;
+        let newDoctor = document.getElementById("editDoctor").value;
+    
+        if (!newAdmissionDate || !newAdmissionReason || !newCageNumber || !newServiceType || !newDoctor) {
+            alert("Vui lòng nhập đầy đủ thông tin!");
+            return;
+        }
+    
+        if (isNaN(newCageNumber) || newCageNumber <= 0) {
+            alert("Số chuồng phải là số nguyên dương!");
+            return;
+        }
+    
+        let table = document.getElementById("admissionTable");
+        let rows = table.getElementsByTagName("tr");
+    
+        for (let row of rows) {
+            if (row.getAttribute("data-id") == recordId) {
+                row.cells[1].innerText = newAdmissionDate;
+                row.cells[2].innerText = newAdmissionReason;
+                row.cells[3].innerText = newCageNumber;
+                row.cells[4].innerText = newServiceType;
+                row.cells[5].innerText = newDoctor;
+                break;
+            }
+        }
+    
+        showSuccessModal("Chỉnh sửa thành công!");
+    
+        let modalElement = document.getElementById("editModal");
+        let editModal = bootstrap.Modal.getInstance(modalElement);
+        if (editModal) {
+            editModal.hide();
+        }
+    }
+    
+    function deleteRecord(button) {
+        if (confirm("Bạn có chắc muốn xóa hồ sơ này?")) {
+            button.closest("tr").remove();
+            showSuccessModal("Xóa hồ sơ thành công!");
+        }
+    }
+    
+    function showSuccessModal(message) {
+        document.getElementById("modalMessage").innerText = message;
+        let successModal = new bootstrap.Modal(document.getElementById("successModal"));
+        successModal.show();
+    }
+    </script>
+    
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Footer -->
     <footer class="footer mt-5">
         <div class="container-fluid col-10">
             <div class="row pt-3 pb-3">
@@ -229,45 +319,5 @@
             </div>
         </div>
     </footer>
-  <script>
-    function showSuccessModal(message) {
-        document.getElementById("modalMessage").innerText = message;
-        new bootstrap.Modal(document.getElementById("successModal")).show();
-    }
-    function addRecord() {
-        let table = document.getElementById("admissionTable");
-        let row = table.insertRow();
-        let recordId = document.getElementById("recordId").value.trim();
-        let admissionDate = document.getElementById("admissionDate").value;
-        let admissionReason = document.getElementById("admissionReason").value.trim();
-        let cageNumber = document.getElementById("cageNumber").value.trim();
-        let serviceType = document.getElementById("serviceType").value.trim();
-        let doctor = document.getElementById("doctor").value.trim();
-        if (!recordId || !admissionDate || !admissionReason || !cageNumber || !serviceType || !doctor) {
-            alert("Vui lòng nhập đầy đủ thông tin!"); return;
-        }
-        row.innerHTML = `<td>${recordId}</td><td>${admissionDate}</td><td>${admissionReason}</td><td>${cageNumber}</td><td>${serviceType}</td><td>${doctor}</td>
-            <td><button onclick="editRecord(this)" class="btn btn-warning">Sửa</button>
-                <button onclick="deleteRecord(this)" class="btn btn-danger">Xóa</button></td>`;
-        showSuccessModal("Thêm hồ sơ thành công!");
-    }
-    function editRecord(button) {
-        let row = button.closest("tr");
-        let newData = prompt("Nhập thông tin mới (cách nhau bởi dấu ,)", row.innerText);
-        if (newData) {
-            let values = newData.split(",");
-            for (let i = 0; i < values.length; i++) row.cells[i].innerText = values[i].trim();
-            showSuccessModal("Cập nhật thành công!");
-        }
-    }
-    function deleteRecord(button) {
-        if (confirm("Bạn có chắc muốn xóa hồ sơ này?")) {
-            button.closest("tr").remove();
-            showSuccessModal("Xóa hồ sơ thành công!");
-        }
-    }
-</script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
