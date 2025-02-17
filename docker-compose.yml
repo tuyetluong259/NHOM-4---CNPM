@@ -1,10 +1,14 @@
+version: '3.8'
+
 services:
   web:
     build:
       context: .  
       dockerfile: Dockerfile
     command: >
-      sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:9000"
+      sh -c "python manage.py wait_for_db &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:9000"
     volumes:
       - .:/CNPM  
     working_dir: /CNPM/project/CNPM  
@@ -13,6 +17,15 @@ services:
     depends_on:
       db:
         condition: service_healthy  
+    environment:
+      - DATABASE_NAME=DjangoDB
+      - DATABASE_USER=myuser
+      - DATABASE_PASSWORD=Tt@123456
+      - DATABASE_HOST=db
+      - DATABASE_PORT=5432
+      - DJANGO_SETTINGS_MODULE=CNPM.settings  # Thêm dòng này vào để chỉ định tệp settings
+    networks:
+      - cnpm_network
 
   db:
     image: postgres:14
@@ -29,6 +42,11 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - cnpm_network
 
 volumes:
   db_data:
+
+networks:
+  cnpm_network:
