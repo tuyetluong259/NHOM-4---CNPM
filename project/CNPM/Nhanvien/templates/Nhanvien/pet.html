@@ -7,46 +7,58 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-
     <link rel="stylesheet" href="{% static 'Nhanvien/css/NV.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản lý thông tin pet</title>
-    
+    <title>Quản lý Booking</title>
 </head>
 <body>
+    <!-- Header -->
+    <header>
+        <div class="container-fluid p-1 bgtop1 text-center">
+            <div class="container">
+                <marquee>Chăm Sóc Thú Cưng Số 1 Tại Thành Phố Hồ Chí Minh</marquee>
+            </div>
+        </div>
+    </header>
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home_NV'%}">
-                
-                <img src="{% static 'Nhanvien\images\logo.png'%}" width="50" height="50" alt="Logo">
-            </a>
+            <nav class="navbar navbar-expand-lg bg-light">
+                <div class="container-fluid">
+                    <span class="navbar-brand">
+                        <a href="{% url 'home_NV' %}">
+                            <img src="{% static 'Nhanvien/images/logo.png'%}" width="50" height="50" alt="Logo">
+                        </a>
+                    </span>
+                </div>
+            </nav>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="/booking/">Quản lý Booking</a>
+                        <a class="nav-link {% if request.resolver_match.url_name == 'booking' %}active{% endif %}" href="{% url 'booking' %}">Quản lý Booking</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'pet'%}">Quản lý Thú cưng</a>
+                        <a class="nav-link {% if request.resolver_match.url_name == 'pet' %}active{% endif %}" href="{% url 'pet' %}">Quản lý Thú cưng</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'schedule'%}">Sắp lịch bác sĩ</a>
+                        <a class="nav-link {% if request.resolver_match.url_name == 'schedule' %}active{% endif %}" href="{% url 'schedule' %}">Sắp lịch bác sĩ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'room'%}">Quản lý Chuồng</a>
+                        <a class="nav-link {% if request.resolver_match.url_name == 'room' %}active{% endif %}" href="{% url 'room' %}">Quản lý Chuồng</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    
+
         <!-- Main content -->
         <div class="container mt-4">
             <h1 class="title-center">Quản lý Thú Cưng Nhập Viện</h1>
+
 
     <!-- Form thêm thú cưng -->
     <div class="add-form">
@@ -94,38 +106,9 @@
             </div>
         </div>
     </div>
-    
-    <!-- Footer -->
-    <footer class="footer mt-5">
-        <div class="container-fluid col-10">
-            <div class="row pt-3 pb-3">
-                <div class="col-md-4 care">
-                    <h4>Đánh Giá Của Khách Hàng</h4>
-                    <ul>
-                        <li><a href="#">Nhấn Vào Để Xem</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h4 class="care">Pet Care</h4>
-                    <ul>
-                        <li>Phone: 0889969020</li>
-                        <li>Maps: 25 Tô Ký - Tân Chánh Hiệp - Quận 12</li>
-                        <li>Social:</li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h4>Hỗ Trợ Khách Hàng</h4>
-                    <ul>
-                        <li><a href="#">Chính Sách Mua Hàng</a></li>
-                        <li><a href="#">Điều Khoản Dịch Vụ</a></li>
-                        <li><a href="#">Hình Thức Thanh Toán</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
-<script>
-    let petId = 1; // ID tạm thời
+
+    <script>
+        let petId = 1; // ID tạm thời
 
         function showSuccessModal(message) {
             document.getElementById("modalMessage").innerText = message;
@@ -192,6 +175,37 @@
                     showSuccessModal("Xóa thú cưng thành công!");
                 }
             }
-        </script>
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Footer -->
+    <footer class="footer mt-5">
+        <div class="container-fluid col-10">
+            <div class="row pt-3 pb-3">
+                <div class="col-md-4 care">
+                    <h4>Đánh Giá Của Khách Hàng</h4>
+                    <ul>
+                        <li><a href="#">Nhấn Vào Để Xem</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4 class="care">Pet Care</h4>
+                    <ul>
+                        <li>Phone: 0889969020</li>
+                        <li>Maps: 25 Tô Ký - Tân Chánh Hiệp - Quận 12</li>
+                        <li>Social:</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4>Hỗ Trợ Khách Hàng</h4>
+                    <ul>
+                        <li><a href="#">Chính Sách Mua Hàng</a></li>
+                        <li><a href="#">Điều Khoản Dịch Vụ</a></li>
+                        <li><a href="#">Hình Thức Thanh Toán</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
