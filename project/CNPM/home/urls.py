@@ -1,15 +1,22 @@
 from django.contrib import admin
 from django.urls import path
 from . import views
+from home.views import revenue_dashboard, revenue_api, myadmin_view
 
 urlpatterns = [
     # 🌐 Trang chủ
     path('', views.home, name="home"),
-    
+
+    # 📊 Trang admin tùy chỉnh
+    path("myadmin/", myadmin_view, name="custom-admin-home"),
+
+    # 📊 API
+    path('api/revenue/', revenue_api, name='revenue_api'),
+    path('admin/revenue-dashboard/', revenue_dashboard, name='revenue-dashboard'),
+
     # 🔐 Authentication
     path('login/', views.login_view, name='login'),
-    path('register/', views.register, name='register'),
-
+    path('register/', views.register_view, name='register'),
 
     # 🏠 Home theo vai trò
     path('homeBS/', views.homeBS, name='homeBS'),
@@ -39,7 +46,4 @@ urlpatterns = [
     # 🏠 Giao diện chính
     path('index/', views.index, name='index'),
     path('rooms/', views.rooms, name='rooms'),
-
-    # 📊 API
-    path('api/revenue/', views.revenue_api, name='revenue_api'),
 ]

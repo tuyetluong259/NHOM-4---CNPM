@@ -1,4 +1,4 @@
-{% load static %}
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -7,6 +7,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
+     {% load static %}
     <link rel="stylesheet" href="{% static 'home/css/nhanvien.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản lý Booking</title>
@@ -34,7 +35,7 @@
                 <div class="container-fluid">
                     <span class="navbar-brand">
                         <a href="{% url 'home' %}">
-                            <img src="{% static 'Nhanvien/images/logo.png'%}" width="50" height="50" alt="Logo">
+                            <img src="{% static 'home/images/anh001.png'%}" width="50" height="50" alt="Logo">
                     </span>
                 </div>
             </nav>
@@ -44,16 +45,16 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'booking' %}active{% endif %}" href="{% url 'booking' %}">Quản lý Booking</a>
+                        <a class="nav-link {% if request.resolver_match.url_name == 'bookings' %}active{% endif %}" href="{% url 'bookings' %}">Quản lý Booking</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'pet' %}active{% endif %}" href="{% url 'pet' %}">Quản lý Thú cưng</a>
+                        <a class="nav-link {% if request.resolver_match.url_name == 'pets' %}active{% endif %}" href="{% url 'pets' %}">Quản lý Thú cưng</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if request.resolver_match.url_name == 'schedule' %}active{% endif %}" href="{% url 'schedule' %}">Sắp lịch bác sĩ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'room' %}active{% endif %}" href="{% url 'room' %}">Quản lý Chuồng</a>
+                        <a class="nav-link {% if request.resolver_match.url_name == 'rooms' %}active{% endif %}" href="{% url 'rooms' %}">Quản lý Chuồng</a>
                     </li>
                 </ul>
             </div>
@@ -65,18 +66,18 @@
     <h1 class="text-center">Chào mừng đến với Web chăm sóc thú cưng</h1>
     <p class="text-center">Trang nhân viên (xin quý khách vui lòng chọn trang phù hợp):</p>
     <div class="d-flex justify-content-center">
-      <img src="{% static 'Nhanvien/images/base1.png'%}" width="200" height="300" alt="img">
-      <img src="{% static 'Nhanvien/images/base2.jpg'%}" width="200" height="300" alt="img">
-      <img src="{% static 'Nhanvien/images/base3.jpg'%}" width="200" height="300" alt="img">
-      <img src="{% static 'Nhanvien/images/base4.jpg'%}" width="200" height="300" alt="img">
-    </div>
+      <img src="{% static 'home/images/base1.png'%}" width="200" height="300" alt="img">
+      <img src="{% static 'home/images/base2.jpg'%}" width="200" height="300" alt="img">
+      <img src="{% static 'home/images/base3.jpg'%}" width="200" height="300" alt="img">
+      <img src="{% static 'home/images/base4.jpg'%}" width="200" height="300" alt="img">
+    </div> 
     <div class="row text-center mt-5">
         <div class="col-md-3">
-            <a href="{% url 'booking'%}" class="btn btn-primary btn-lg w-100">Quản lý Booking</a>
+            <a href="{% url 'bookings'%}" class="btn btn-primary btn-lg w-100">Quản lý Booking</a>
             <p>Hệ thống đặt chỗ, hủy chỗ, hoàn tiền.</p>
         </div>
         <div class="col-md-3">
-            <a href="{% url 'pet'%}" class="btn btn-primary btn-lg w-100">Quản lý Thú cưng nhập viện</a>
+            <a href="{% url 'pets'%}" class="btn btn-primary btn-lg w-100">Quản lý Thú cưng nhập viện</a>
             <p>Theo dõi thông tin thú cưng lưu chuồng.</p>
         </div>
         <div class="col-md-3">
@@ -84,7 +85,7 @@
             <p>Lịch khám bệnh, lịch chăm sóc.</p>
         </div>
         <div class="col-md-3">
-            <a href="{% url 'room'%}" class="btn btn-primary btn-lg w-100">Quản lý Chuồng</a>
+            <a href="{% url 'rooms'%}" class="btn btn-primary btn-lg w-100">Quản lý Chuồng</a>
             <p>Thông tin chuồng hệ thống tìm kiếm.</p>
         </div>
     </div>

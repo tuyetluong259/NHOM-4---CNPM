@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quản lý Booking</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'home/css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'home/css/nhanvien.css' %}" />
   </head>
   <body>
     <div class="container">
@@ -15,7 +15,7 @@
 
       <!-- Phần Quản lý Booking -->
       <section>
-        <form method="POST" action="{{ url_for('bookings') }}">
+        <form method="POST" action="{% url 'bookings' %}">
           <label for="pet_name">Tên thú cưng:</label>
           <input type="text" id="pet_name" name="pet_name" required />
 

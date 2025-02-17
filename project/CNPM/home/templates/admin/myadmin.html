@@ -1,0 +1,11 @@
+{% extends "admin/base_site.html" %} {% block content %}
+<h2>Thống kê doanh thu</h2>
+<ul>
+  <li>Hôm nay: <b>{{ revenue_today }}</b></li>
+  <li>Tuần này: <b>{{ revenue_week }}</b></li>
+  <li>Tháng này: <b>{{ revenue_month }}</b></li>
+</ul>
+<script>
+  console.log("Trang dashboard đã load");
+</script>
+{% endblock %}

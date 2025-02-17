@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'import_export',  # Thêm tính năng xuất/nhập dữ liệu
     'django_extensions',
-    'admin_panel',
     'home',
+    'admin_panel',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +58,7 @@ ROOT_URLCONF = 'CNPM.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "home/templates"],
+        'DIRS': [   BASE_DIR / "templates", "home/templates", "admin/templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -85,7 +85,7 @@ DATABASES = {
         'NAME': os.getenv('DATABASE_NAME', 'DjangoDB'),
         'USER': os.getenv('DATABASE_USER', 'myuser'),
         'PASSWORD': os.getenv('DATABASE_PASSWORD', 'Tt@123456'),
-        'HOST': os.getenv('DATABASE_HOST', 'db'),  # Sử dụng giá trị môi trường 'db' nếu không có giá trị môi trường
+        'HOST': os.getenv('DATABASE_HOST', 'cnpm-db-1'),  # Sử dụng giá trị môi trường 'db' nếu không có giá trị môi trường
         'PORT': os.getenv('DATABASE_PORT', '5432'),
     }
 }
@@ -138,3 +138,8 @@ AUTHENTICATION_BACKENDS = [
     'home.authentication.EmailBackend',  # Thêm backend này
     'django.contrib.auth.backends.ModelBackend',  # Sử dụng backend mặc định của Django
 ]
+SESSION_ENGINE = "django.contrib.sessions.backends.db"  # Lưu session trong database
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"  # Lưu session trong cache
+SESSION_CACHE_ALIAS = "default"  # Sử dụng cache mặc định
+
+LOGIN_REDIRECT_URL = '/myadmin/'  # Hoặc '/myadmin/' nếu dùng trang admin tùy chỉnh

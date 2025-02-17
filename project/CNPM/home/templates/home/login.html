@@ -43,10 +43,18 @@
       <div class="auth-container">
         <!-- Tab chuyển đổi -->
         <div class="tabs">
-          <button class="tab-button active" onclick="showForm('loginForm')">
+          <button
+            id="loginTab"
+            class="tab-button active"
+            onclick="showForm('loginForm')"
+          >
             Đăng Nhập
           </button>
-          <button class="tab-button" onclick="showForm('registerForm')">
+          <button
+            id="registerTab"
+            class="tab-button"
+            onclick="showForm('registerForm')"
+          >
             Đăng Ký
           </button>
         </div>
@@ -170,5 +178,6 @@
         </div>
       </div>
     </footer>
+    <script src="{% static 'home/js/login.js' %}"></script>
   </body>
 </html>
