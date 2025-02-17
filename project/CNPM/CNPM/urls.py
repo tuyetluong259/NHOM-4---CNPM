@@ -21,5 +21,6 @@ urlpatterns = [
     path('', include('home.urls')),
     path('admin/', admin.site.urls),
     path('Nhanvien/', include('Nhanvien.urls')),
+    path('app/', include('app.urls')),
     path('', include('admin_panel.urls')),  # Đưa API vào hệ thống
 ]
