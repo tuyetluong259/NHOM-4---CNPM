@@ -1,0 +1,23 @@
+
+{% extends 'Nhanvien/base.html' %}
+{% block title %}Thêm Mới Lịch Khám Bác Sĩ{% endblock %}
+
+{% block content %}
+    <h1 class="my-5 text-center">Thêm Mới Lịch Khám Bác Sĩ</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="doctor_name" class="form-label">Tên Bác Sĩ:</label>
+            <input type="text" id="doctor_name" name="doctor_name" class="form-control" required><br>
+        </div>
+        <div class="mb-3">
+            <label for="date" class="form-label">Ngày:</label>
+            <input type="date" id="date" name="date" class="form-control" required><br>
+        </div>
+        <div class="mb-3">
+            <label for="time" class="form-label">Giờ:</label>
+            <input type="time" id="time" name="time" class="form-control" required><br>
+        </div>
+        <button type="submit" class="btn btn-primary">Thêm Lịch Khám</button>
+    </form>
+{% endblock %}

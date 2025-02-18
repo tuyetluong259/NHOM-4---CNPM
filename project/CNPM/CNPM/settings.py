@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'home',
     'Nhanvien',
     'KhachHang',
-    'Bacsi'
+    'Bacsi',
 ]
 
 MIDDLEWARE = [
@@ -61,7 +61,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [BASE_DIR / "home/templates",
-                 BASE_DIR / "KhachHang/templates",],
+                BASE_DIR / "KhachHang/templates",],
 
         'APP_DIRS': True,
         'OPTIONS': {
@@ -141,3 +141,4 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+

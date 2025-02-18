@@ -1,7 +1,6 @@
+# KhachHang/admin.py
 from django.contrib import admin
-from .models import * 
+from .models import Category, Customer  # Đảm bảo bạn đã import đúng
 
-# Register your models here.
-admin.site.register(Customer)
-admin.site.register(Category)
-
+admin.site.register(Category)  # Đăng ký model Category
+admin.site.register(Customer)  # Đăng ký model Customer
