@@ -1,179 +1,308 @@
-/* Cài đặt font chữ và các thuộc tính cơ bản */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f9f4; /* Màu nền nhẹ nhàng, dễ chịu */
-    color: #333; /* Màu chữ tối để dễ đọc */
-    margin: 0;
-    padding: 0;
+/* Căn giữa tiêu đề */ 
+.title-center {
+    text-align: center;
 }
 
+/* Định dạng logo */
 .logo {
-    display: block;
+    width: 100%;
     margin: 0 auto;
-    width: 150px; /* Thay đổi kích thước theo ý muốn */
-    height: auto;
 }
 
-/* Cấu trúc container cho toàn bộ trang */
-.container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
+/* Sticky navbar */
+.sticky {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: #fffdfd;
+    color: #333;
+    z-index: 9999;
+    border-bottom: 2px solid rgb(214, 237, 221);
 }
 
-/* Phần đầu trang */
-header h1 {
-    text-align: center;
-    font-size: 36px; /* Kích cỡ chữ lớn cho tiêu đề */
-    color: #4CAF50; /* Màu xanh lá nhạt */
-    margin-bottom: 20px; /* Khoảng cách dưới tiêu đề */
+.sticky .content {
+    padding-top: 102px;
 }
 
-/* Các liên kết trong menu */
-nav {
-    text-align: center;
-    margin-bottom: 40px; /* Khoảng cách dưới menu */
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-nav ul li {
-    display: inline-block;
-    margin: 0 15px; /* Giãn các mục trong menu */
-    border: 2px solid #ddd; /* Khung bao quanh các mục menu */
-    border-radius: 8px;
-    padding: 12px 25px; /* Tăng padding cho menu */
-    background-color: #fff;
-    transition: background-color 0.3s ease;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: #4CAF50;
-    font-size: 18px; /* Kích cỡ chữ vừa phải trong menu */
-    display: block;
-    text-align: center;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-nav ul li:hover {
-    background-color: #f1f1f1; /* Màu nền khi hover trên mỗi mục */
-}
-
-nav ul li a:hover {
-    background-color: #4CAF50;
-    color: white;
-}
-
-/* Phần giới thiệu */
-.info {
-    font-size: 18px;
-    color: #555;
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-/* Footer */
-footer {
-    text-align: center;
-    font-size: 14px;
-    color: #888;
-    margin-top: 40px;
-}
-
-/* Khoảng cách giữa các phần tử và các bảng */
-h2 {
-    text-align: center;
-    margin-top: 40px;
-    font-size: 24px;
-    color: #4CAF50;
-    margin-bottom: 30px; /* Khoảng cách dưới tiêu đề h2 */
-}
-
-/* Khoảng cách giữa các phần tử như form, bảng và tiêu đề */
-section {
-    margin-bottom: 40px; /* Khoảng cách giữa các phần */
-}
-
-/* Phần giới thiệu của trang chủ */
-.info p {
-    font-size: 18px;
-    color: #666;
-    line-height: 1.6;
-    margin: 20px 0;
-}
-
-/* Các phần tử khác (form, bảng, v.v.) */
-form {
-    background-color: #ffffff; /* Màu nền trắng */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+/* Header trên cùng */
+.top1 {
+    min-height: 50px;
+    border-bottom: 2px solid #280000;
     margin-bottom: 30px;
 }
 
-form label {
-    font-size: 16px;
+body {
+    font-family: Verdana, sans-serif;
+    background-color: #f4f4f9;
     color: #333;
-    display: block;
-    margin-bottom: 8px;
 }
 
-form input {
-    width: 95%;
-    padding: 12px;
+/* Thanh tiêu đề */
+.bgtop1 {
+    background-color: rgb(16, 165, 130);
+    color: #ffffffee;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Banner */
+.banner img, .banner1 img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.banner img {
+    height: 500px;
+}
+
+.banner1 img {
+    height: 900px;
+}
+
+/* Ẩn form mặc định */
+.auth-form {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Khi form được kích hoạt */
+.auth-form.active {
+    display: block;
+    opacity: 1;
+}
+
+/* Định dạng form */
+.auth-container {
+    width: 100%;
+    overflow-x: auto;
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: #444;
+    margin-bottom: 8px;
+    display: block;
     font-size: 16px;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 14px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
     transition: border-color 0.3s ease;
 }
 
-form input:focus {
-    border-color: #4CAF50;
-    background-color: #eaf8e4;
+.form-group input:focus, .form-group select:focus, 
+.form-group input:hover, .form-group select:hover {
+    border-color: #218838;
+    outline: none;
 }
 
-form button {
-    background-color: #4CAF50;
-    color: white;
+/* Tabs chuyển đổi giữa Đăng nhập & Đăng ký */
+.tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.tab-button {
+    padding: 12px;
+    cursor: pointer;
+    font-weight: bold;
     border: none;
-    padding: 12px 20px;
+    background: #f5f5f5;
+    border-radius: 8px;
+    width: 50%;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.tab-button.active {
+    background: #218838;
+    color: white;
+}
+
+/* Căn giữa nút */
+.btn-primary {
+    width: 100%;
+    padding: 14px;
+    background-color: #218838;
+    border: none;
+    border-radius: 10px;
     font-size: 16px;
-    border-radius: 5px;
+    font-weight: bold;
+    color: white;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin: 0 auto; /* Căn giữa nút */
-    display: block; /* Đảm bảo nút có thể căn giữa */
 }
 
-form button:hover {
-    background-color: #45a049;
+.btn-primary:hover {
+    background-color: #19672c;
 }
 
+/* Footer cố định */
+.footer {
+        position: relative;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgb(40, 126, 98);
+        color: white;
+        padding: 15px 0;
+        text-align: center;
+        font-size: 16px;
+border-top: 2px solid #fff;
+    } 
+        .footer h4 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        
+        .footer ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer ul li{
+            text-decoration: none;
+            list-style-type: none;
+            }
+        
+        .footer ul li a {
+            color: #d1d1d1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer ul li a:hover {
+            text-decoration: none;
+          color: rgb(246, 160, 171);
+          }
+        
+        .footer .care {
+            color:rgb(218, 119, 27); /* Màu nhấn đặc biệt */
+        }
+
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 768px) {
+    .footer {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
+
+/* Bảng đẹp hơn */
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    background-color: #E0F7FA;
+}
+
+.table {
+    color: #000000 !important;
+    background-color: #218838 !important;
 }
 
 table th, table td {
     padding: 10px;
-    text-align: left;
+    text-align: center;
     border-bottom: 1px solid #ddd;
+    border: 1px solid #ccc;
 }
 
 table th {
-    background-color: #4CAF50;
-    color: white;
+    background-color: rgb(143, 243, 175);
+    color: rgb(0, 0, 0);
     font-size: 16px;
     text-transform: uppercase;
 }
 
 table tr:hover {
     background-color: #f1f1f1;
+}
+
+/* Form thêm dữ liệu */
+.add-form {
+    display: flex;
+    flex-wrap: wrap; /* Tự xuống dòng khi thiếu không gian */
+    gap: 15px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px; /* Giới hạn tối đa */
+    margin: auto;
+}
+
+
+.add-form:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.add-form input {
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    background-color: #fafafa;
+    transition: all 0.3s ease;
+    height: 50px;
+}
+
+.add-form input:focus {
+    border-color: #4CAF50;
+    background-color: #eaf8e4;
+    box-shadow: 0 0 8px rgba(72, 162, 43, 0.5);
+}
+
+.add-form button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: block;
+    margin: 20px auto 0;
+}
+
+.add-form button:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+}
+
+/* Định dạng mặc định cho các liên kết trong menu */
+.nav-link {
+    padding: 10px 15px;
+    border-radius: 8px; /* Bo góc giống nút */
+    transition: all 0.3s ease-in-out; /* Hiệu ứng mượt */
+}
+
+/* Khi nhấn vào, nút đổi màu */
+.nav-link.active {
+    background-color: #45a049; /* Màu xanh lá */
+    color: white !important;
 }
