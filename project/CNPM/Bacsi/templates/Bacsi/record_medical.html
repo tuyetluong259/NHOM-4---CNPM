@@ -16,17 +16,17 @@
         {% csrf_token %}
         <div class="mb-3">
             <label for="name" class="form-label">Tên thú cưng</label>
-            <input type="text" class="form-control" id="name" name="name" required>
+            <input type="text" class="form-control" id="name" name="name" value="{{ name }}" required>
         </div>
         <div class="mb-3">
             <label for="species" class="form-label">Loài</label>
-            <input type="text" class="form-control" id="species" name="species" required>
+            <input type="text" class="form-control" id="species" name="species" value="{{ species }}" required>
         </div>
         <div class="mb-3">
             <label for="progress" class="form-label">Tiến trình điều trị</label>
-            <input type="text" class="form-control" id="progress" name="progress" required>
+            <input type="text" class="form-control" id="progress" name="progress" value="{{ progress }}" required>
         </div>
         <button type="submit" class="btn btn-primary">Lưu</button>
     </form>
 </div>
-{% endblock content %}
+{% endblock %}

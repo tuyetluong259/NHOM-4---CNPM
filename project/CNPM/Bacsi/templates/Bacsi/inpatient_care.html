@@ -15,8 +15,8 @@
         <tbody>
             {% for pet in pets %}
                 <tr>
-                    <td>{{ pet.name }}</td>
-                    <td>{{ pet.species }}</td>
+                    <td>{{ pet.patient_name }}</td>
+                    <td>{{ pet.diagnosis }}</td>
                     <td>{{ pet.progress }}</td>
                     <td>
                         <a href="{% url 'edit_medical' pet.pk %}" class="btn btn-warning btn-sm">Sửa</a>
