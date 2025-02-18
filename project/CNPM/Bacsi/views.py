@@ -11,33 +11,30 @@ def home(request):
 # Ghi nhận hồ sơ khám bệnh
 def record_medical(request):
     if request.method == 'POST':
-        # Lấy dữ liệu từ form
-        name = request.POST.get('name')
-        species = request.POST.get('species')
-        progress = request.POST.get('progress')
+        # Lấy thông tin từ form
+        name = request.POST.get('name', 'Chưa có tên')  # Tên thú cưng
+        species = request.POST.get('species', 'Chưa có loài')  # Loài
+        progress = request.POST.get('progress', 'Chưa có tiến trình')  # Tiến trình điều trị
 
-        # Lưu thông tin vào cơ sở dữ liệu
-        medical_record = MedicalRecord(name=name, species=species, progress=progress)
-        medical_record.save()
+        # Tạo một hồ sơ mới
+        medical_record = MedicalRecord(
+            patient_name=name,
+            diagnosis=species,
+            progress=progress
+        )
+        medical_record.save()  # Lưu vào cơ sở dữ liệu
 
-        # Gửi thông báo thành công
-        context = {
-            'success_message': 'Hồ sơ khám bệnh đã được ghi nhận!',
-            'name': name,
-            'species': species,
-            'progress': progress
-        }
-    else:
-        context = {}
-    
-    return render(request, 'Bacsi/record_medical.html', context)
+        # Thông báo thành công
+        success_message = "Hồ sơ đã được ghi nhận thành công."
+        return render(request, 'Bacsi/record_medical.html', {'success_message': success_message, 'name': name, 'species': species, 'progress': progress})
+
+    return render(request, 'Bacsi/record_medical.html')
 
 # Chăm sóc thú cưng (hiển thị danh sách thú cưng nhập viện)
 def inpatient_care(request):
     # Lấy danh sách hồ sơ từ cơ sở dữ liệu
-    pets_in_hospital = MedicalRecord.objects.all()
-    context = {'pets': pets_in_hospital}
-    return render(request, 'Bacsi/inpatient_care.html', context)
+    pets = MedicalRecord.objects.all()
+    return render(request, 'Bacsi/inpatient_care.html', {'pets': pets})
 
 # Sửa hồ sơ khám bệnh
 def edit_medical(request, pk):
