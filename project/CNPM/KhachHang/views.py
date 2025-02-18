@@ -1,5 +1,18 @@
-from django.shortcuts import render
-from django.http import HttpResponse 
+from django.shortcuts import render, redirect
+from .models import Registration
+from .forms import RegistrationForm
+
+def register_pet(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            # Save the form data to the database
+            form.save()
+            return redirect('thank_you')  # Redirect to a thank-you page or confirmation page
+    else:
+        form = RegistrationForm()
+    
+    return render(request, 'dang_ky_kham_benh.html', {'form': form})
 
 def home(request):
     return render(request,'KhachHang/home_KH.html')

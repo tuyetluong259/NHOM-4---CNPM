@@ -1,0 +1,279 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'Nhanvien/css/NV.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Booking</title>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container-fluid p-1 bgtop1 text-center">
+            <div class="container">
+                <marquee>Chăm Sóc Thú Cưng Số 1 Tại Thành Phố Hồ Chí Minh</marquee>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg bg-light">
+                <div class="container-fluid">
+                    <span class="navbar-brand">
+                        <a href="{% url 'home_NV' %}">
+                            <img src="{% static 'Nhanvien/images/logo.png'%}" width="50" height="50" alt="Logo">
+                    </span>
+                </div>
+            </nav>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+                    data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" 
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'booking' %}active{% endif %}" 
+                           href="{% url 'booking' %}">Quản lý Booking</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'pet' %}active{% endif %}" 
+                           href="{% url 'pet' %}">Quản lý Thú cưng</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'schedule' %}active{% endif %}" 
+                           href="{% url 'schedule' %}">Sắp lịch bác sĩ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'room' %}active{% endif %}" 
+                           href="{% url 'room' %}">Quản lý Chuồng</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main content -->
+    <div class="container mt-4">
+        <h1 class="title-center">Quản lý lịch bác sĩ</h1>
+
+        <!-- Form thêm lịch bác sĩ -->
+        <div class="add-form mb-3">
+            <!-- Dropdown chọn loại lịch đặt đầu tiên -->
+            <label for="scheduleType" class="form-label">Chọn loại lịch:</label>
+            <select id="scheduleType" class="form-control mb-2">
+                <option value="direct">Khám trực tiếp</option>
+                <option value="hospitalization">Chăm sóc thú cưng nhập viện</option>
+            </select>
+
+            <!-- Khi lịch là "Khám trực tiếp", hiển thị dropdown danh sách bác sĩ rảnh -->
+            <div id="doctorDirectDiv" style="display: none;">
+                <label for="doctorNameSelect" class="form-label">Chọn bác sĩ (Khám trực tiếp):</label>
+                <select id="doctorNameSelect" class="form-control mb-2"></select>
+            </div>
+            <!-- Khi lịch là "Chăm sóc thú cưng nhập viện", hiển thị ô nhập tên bác sĩ -->
+            <div id="doctorHospitalDiv" style="display: none;">
+                <label for="doctorNameInput" class="form-label">Nhập tên bác sĩ (Chăm sóc nhập viện):</label>
+                <input type="text" id="doctorNameInput" class="form-control mb-2" placeholder="Tên bác sĩ" />
+            </div>
+
+            <input type="text" id="scheduleTime" class="form-control mb-2" placeholder="Thời gian" />
+            <input type="text" id="room" class="form-control mb-2" placeholder="Phòng" />
+            
+            <button class="btn btn-primary" onclick="addSchedule()">Thêm lịch</button>
+        </div>
+
+        <!-- Danh sách lịch bác sĩ -->
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên bác sĩ</th>
+                    <th>Thời gian</th>
+                    <th>Phòng</th>
+                    <th>Loại lịch</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody id="scheduleList">
+                <!-- Danh sách lịch sẽ được thêm vào đây -->
+            </tbody>
+        </table>
+
+        <!-- Modal thông báo -->
+        <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="successModalLabel">Thành công!</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" 
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="modalMessage">
+                        <!-- Nội dung sẽ được cập nhật bằng JavaScript -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        let scheduleId = 1;
+        // Danh sách bác sĩ rảnh dành cho lịch khám trực tiếp
+        let availableDoctors = ["Dr. Lan", "Dr. Hoang", "Dr. Minh", "Dr. Tu"];
+
+        // Hàm khởi tạo dropdown danh sách bác sĩ
+        function populateDoctorSelect() {
+            let select = document.getElementById("doctorNameSelect");
+            select.innerHTML = "";
+            availableDoctors.forEach(function(doctor) {
+                let option = document.createElement("option");
+                option.value = doctor;
+                option.innerText = doctor;
+                select.appendChild(option);
+            });
+        }
+
+        // Hàm hiển thị trường nhập tên bác sĩ phù hợp dựa trên loại lịch
+        function updateDoctorField() {
+            let scheduleType = document.getElementById("scheduleType").value;
+            if(scheduleType === "direct") {
+                document.getElementById("doctorDirectDiv").style.display = "block";
+                document.getElementById("doctorHospitalDiv").style.display = "none";
+            } else {
+                document.getElementById("doctorDirectDiv").style.display = "none";
+                document.getElementById("doctorHospitalDiv").style.display = "block";
+            }
+        }
+
+        // Khi trang được tải, khởi tạo danh sách bác sĩ và cập nhật giao diện
+        document.addEventListener("DOMContentLoaded", function() {
+            populateDoctorSelect();
+            updateDoctorField();
+            document.getElementById("scheduleType").addEventListener("change", updateDoctorField);
+        });
+
+        function showSuccessModal(message) {
+            document.getElementById("modalMessage").innerText = message;
+            let modal = new bootstrap.Modal(document.getElementById("successModal"));
+            modal.show();
+        }
+
+        function addSchedule() {
+            let scheduleType = document.getElementById("scheduleType").value;
+            let doctorName = "";
+            if(scheduleType === "direct") {
+                doctorName = document.getElementById("doctorNameSelect").value;
+            } else {
+                doctorName = document.getElementById("doctorNameInput").value.trim();
+            }
+            let scheduleTime = document.getElementById("scheduleTime").value.trim();
+            let room = document.getElementById("room").value.trim();
+
+            if (!doctorName || !scheduleTime || !room) {
+                alert("Vui lòng nhập đầy đủ thông tin!");
+                return;
+            }
+
+            let scheduleList = document.getElementById("scheduleList");
+            let row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${scheduleId}</td>
+                <td>${doctorName}</td>
+                <td>${scheduleTime}</td>
+                <td>${room}</td>
+                <td>${scheduleType === "direct" ? "Khám trực tiếp" : "Chăm sóc thú cưng nhập viện"}</td>
+                <td>
+                    <button class="btn btn-warning btn-sm" onclick="editSchedule(this)">Sửa</button>
+                    <button class="btn btn-danger btn-sm" onclick="deleteSchedule(this)">Xóa</button>
+                </td>
+            `;
+            scheduleList.appendChild(row);
+            scheduleId++;
+
+            showSuccessModal("Thêm lịch thành công!");
+
+            // Reset các ô nhập (nếu cần)
+            document.getElementById("scheduleTime").value = "";
+            document.getElementById("room").value = "";
+            if(scheduleType === "hospitalization") {
+                document.getElementById("doctorNameInput").value = "";
+            }
+        }
+
+        function editSchedule(button) {
+            let row = button.closest("tr");
+            let doctor = row.cells[1].innerText;
+            let time = row.cells[2].innerText;
+            let room = row.cells[3].innerText;
+            let type = row.cells[4].innerText;
+
+            let newDoctor = prompt("Nhập tên bác sĩ mới:", doctor);
+            let newTime = prompt("Nhập thời gian mới:", time);
+            let newRoom = prompt("Nhập phòng mới:", room);
+            let newType = prompt("Nhập loại lịch mới (Khám trực tiếp / Chăm sóc thú cưng nhập viện):", type);
+
+            if (newDoctor && newTime && newRoom && newType) {
+                row.cells[1].innerText = newDoctor;
+                row.cells[2].innerText = newTime;
+                row.cells[3].innerText = newRoom;
+                row.cells[4].innerText = newType;
+                showSuccessModal("Cập nhật lịch thành công!");
+            }
+        }
+
+        function deleteSchedule(button) {
+            if (confirm("Bạn có chắc chắn muốn xóa lịch này?")) {
+                let row = button.closest("tr");
+                row.remove();
+                showSuccessModal("Xóa lịch thành công!");
+            }
+        }
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Footer -->
+    <footer class="footer mt-5">
+        <div class="container-fluid col-10">
+            <div class="row pt-3 pb-3">
+                <div class="col-md-4 care">
+                    <h4>Đánh Giá Của Khách Hàng</h4>
+                    <ul>
+                        <li><a href="#">Nhấn Vào Để Xem</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4 class="care">Pet Care</h4>
+                    <ul>
+                        <li>Phone: 0889969020</li>
+                        <li>Maps: 25 Tô Ký - Tân Chánh Hiệp - Quận 12</li>
+                        <li>Social:</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4>Hỗ Trợ Khách Hàng</h4>
+                    <ul>
+                        <li><a href="#">Chính Sách Mua Hàng</a></li>
+                        <li><a href="#">Điều Khoản Dịch Vụ</a></li>
+                        <li><a href="#">Hình Thức Thanh Toán</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'Nhanvien/css/NV.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Booking</title>
+</head>
+<style>
+    .table-striped {
+        background-color: #218838; /* Màu trắng cho bảng */
+    }
+</style>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container-fluid p-1 bgtop1 text-center">
+            <div class="container">
+                <marquee>Chăm Sóc Thú Cưng Số 1 Tại Thành Phố Hồ Chí Minh</marquee>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg bg-light">
+                <div class="container-fluid">
+                    <span class="navbar-brand">
+                        <a class="navbar-brand" href="/">
+                            <img src="{% static 'Nhanvien/images/logo.png'%}" width="50" height="50" alt="Logo">
+                    </span>
+                </div>
+            </nav>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'booking' %}active{% endif %}" href="{% url 'booking' %}">Quản lý Booking</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'pet' %}active{% endif %}" href="{% url 'pet' %}">Quản lý Thú cưng</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'schedule' %}active{% endif %}" href="{% url 'schedule' %}">Sắp lịch bác sĩ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'room' %}active{% endif %}" href="{% url 'room' %}">Quản lý Chuồng</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+  <!--Main-->
+  <main class="container mt-4">
+    <h1 class="text-center">Chào mừng đến với Web chăm sóc thú cưng</h1>
+    <p class="text-center">Trang nhân viên (xin quý khách vui lòng chọn trang phù hợp):</p>
+    <div class="d-flex justify-content-center">
+      <img src="{% static 'Nhanvien/images/base1.png'%}" width="200" height="300" alt="img">
+      <img src="{% static 'Nhanvien/images/base2.jpg'%}" width="200" height="300" alt="img">
+      <img src="{% static 'Nhanvien/images/base3.jpg'%}" width="200" height="300" alt="img">
+      <img src="{% static 'Nhanvien/images/base4.jpg'%}" width="200" height="300" alt="img">
+    </div>
+    <div class="row text-center mt-5">
+        <div class="col-md-3">
+            <a href="{% url 'booking'%}" class="btn btn-primary btn-lg w-100">Quản lý Booking</a>
+            <p>Hệ thống đặt chỗ, hủy chỗ, hoàn tiền.</p>
+        </div>
+        <div class="col-md-3">
+            <a href="{% url 'pet'%}" class="btn btn-primary btn-lg w-100">Quản lý Thú cưng nhập viện</a>
+            <p>Theo dõi thông tin thú cưng lưu chuồng.</p>
+        </div>
+        <div class="col-md-3">
+            <a href="{% url 'schedule'%}" class="btn btn-primary btn-lg w-100">Sắp lịch bác sĩ</a>
+            <p>Lịch khám bệnh, lịch chăm sóc.</p>
+        </div>
+        <div class="col-md-3">
+            <a href="{% url 'room'%}" class="btn btn-primary btn-lg w-100">Quản lý Chuồng</a>
+            <p>Thông tin chuồng hệ thống tìm kiếm.</p>
+        </div>
+    </div>
+  </main>
+  
+<footer class="footer mt-5">
+  <div class="container-fluid col-10">
+      <div class="row pt-3 pb-3">
+          <div class="col-md-4 care">
+              <h4>Đánh Giá Của Khách Hàng</h4>
+              <ul>
+                  <li><a href="#">Nhấn Vào Để Xem</a></li>
+              </ul>
+          </div>
+          <div class="col-md-4">
+              <h4 class="care">Pet Care</h4>
+              <ul>
+                  <li>Phone: 0889969020</li>
+                  <li>Maps: 25 Tô Ký - Tân Chánh Hiệp - Quận 12</li>
+                  <li>Social:</li>
+              </ul>
+          </div>
+          <div class="col-md-4">
+              <h4>Hỗ Trợ Khách Hàng</h4>
+              <ul>
+                  <li><a href="#">Chính Sách Mua Hàng</a></li>
+                  <li><a href="#">Điều Khoản Dịch Vụ</a></li>
+                  <li><a href="#">Hình Thức Thanh Toán</a></li>
+              </ul>
+          </div>
+      </div>
+  </div>
+</footer>
+</body>
+</html>
