@@ -1,8 +1,11 @@
 from django import forms
-from .models import Registration
+from .models import LichHen
 
-class RegistrationForm(forms.ModelForm):
+class LichHenForm(forms.ModelForm):
     class Meta:
-        model = Registration
-        fields = ['full_name', 'phone_number', 'email', 'address', 'pet_name', 
-                  'pet_gender', 'pet_condition', 'appointment_date', 'appointment_time', 'doctor_choice']
+        model = LichHen
+        fields = ['khach_hang', 'thu_cung', 'appointment_date', 'appointment_time', 'doctor_name', 'staff_notes']
+        widgets = {
+            'appointment_date': forms.DateInput(attrs={'type': 'date'}),
+            'appointment_time': forms.TimeInput(attrs={'type': 'time'}),
+        }
