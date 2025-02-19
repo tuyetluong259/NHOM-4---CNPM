@@ -1,11 +1,8 @@
 from django import forms
-from .models import LichHen
+from .models import Appointment  # Đảm bảo model mới đã được import đúng
 
-class LichHenForm(forms.ModelForm):
+class AppointmentForm(forms.ModelForm):
     class Meta:
-        model = LichHen
-        fields = ['khach_hang', 'thu_cung', 'appointment_date', 'appointment_time', 'doctor_name', 'staff_notes']
-        widgets = {
-            'appointment_date': forms.DateInput(attrs={'type': 'date'}),
-            'appointment_time': forms.TimeInput(attrs={'type': 'time'}),
-        }
+        model = Appointment  # Sử dụng model mới
+        fields = '__all__'  # Hoặc liệt kê các trường cụ thể nếu cần 
+        

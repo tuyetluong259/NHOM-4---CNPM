@@ -1,8 +1,7 @@
-from django.shortcuts import render, redirect
-from .forms import LichHenForm
+from django.shortcuts import render, redirect, get_object_or_404
+from .forms import AppointmentForm
 from django.contrib import messages
-from .models import KhachHang, LichHen, ThuCung
-
+from .models import Appointment
 
 def home(request):
     return render(request,'KhachHang/home_KH.html')
@@ -25,59 +24,62 @@ def dang_ky_kham_benh(request):
 
         appointment_date = request.POST.get("appointment_date")
         appointment_time = request.POST.get("appointment_time")
+
         doctor_name = request.POST.get("doctor_name")
+        if doctor_name == "other":  # Nếu chọn "Bác sĩ khác"
+            doctor_name = request.POST.get("doctor")  # Lấy tên bác sĩ nhập vào
+
         staff_notes = request.POST.get("staff_notes")
 
-        # Kiểm tra xem khách hàng đã tồn tại chưa
-        khach_hang, created = KhachHang.objects.get_or_create(
+        # Lưu vào database
+        appointment = Appointment(
+            owner_name=owner_name,
+            phone_number=phone_number,
             email=email,
-            defaults={
-                "owner_name": owner_name,
-                "phone_number": phone_number,
-                "address": address
-            }
-        )
-
-        # Nếu khách hàng đã tồn tại, cập nhật thông tin (nếu cần)
-        if not created:
-            khach_hang.owner_name = owner_name
-            khach_hang.phone_number = phone_number
-            khach_hang.address = address
-            khach_hang.save()
-
-        # Thêm thú cưng vào hệ thống
-        thu_cung = ThuCung.objects.create(
+            address=address,
             pet_name=pet_name,
             pet_gender=pet_gender,
             pet_condition=pet_condition,
-            owner=khach_hang
-        )
-
-        # Tạo lịch hẹn
-        LichHen.objects.create(
-            khach_hang=khach_hang,
-            thu_cung=thu_cung,
             appointment_date=appointment_date,
             appointment_time=appointment_time,
             doctor_name=doctor_name,
-            staff_notes=staff_notes
+            staff_notes=staff_notes,
         )
+        appointment.save()
 
-        messages.success(request, "Đăng ký thành công! Vui lòng chờ xác nhận từ nhân viên.")
-        return redirect("dang_ky_kham_benh")  # Quay lại trang sau khi đăng ký
-
+        # Hiển thị thông báo thành công
+        messages.success(request, "Đăng ký khám bệnh thành công!")
+        return redirect("dang_ky_kham_benh")  # Reload lại trang
     return render(request, "dang_ky_kham_benh.html")
 
 # Trang đánh giá người dùng
 def danh_gia_nguoi_dung(request):
     return render(request, 'danh_gia_nguoi_dung.html')
 
-# Trang thông tin khác
-def thong_tin_khac(request):
-    return render(request, 'thong_tin_khac.html')
-
 # Tài khoản
 def giao_dien_khach_hang(request):
     return render(request, 'giao_dien_khach_hang.html')
     
+# Trang thông tin khác - hiển thị danh sách lịch hẹn
+def quan_ly_lich_hen(request):
+    appointments = Appointment.objects.all()  # Lấy danh sách lịch hẹn
+    
+    if request.method == "POST":
+        if "update_appointment" in request.POST:
+            appointment_id = request.POST.get("appointment_id")
+            appointment = get_object_or_404(Appointment, id=appointment_id)
+            form = AppointmentForm(request.POST, instance=appointment)
+            if form.is_valid():
+                form.save()
+                messages.success(request, "Cập nhật lịch hẹn thành công!")
+            return redirect("quan_ly_lich_hen")
 
+        elif "delete_appointment" in request.POST:
+            print(request.POST)  # Kiểm tra dữ liệu gửi lên
+            appointment_id = request.POST.get("appointment_id")
+            appointment = get_object_or_404(Appointment, id=appointment_id)
+            appointment.delete()
+            messages.success(request, "Xóa lịch hẹn thành công!")
+            return redirect("quan_ly_lich_hen")
+
+    return render(request, 'quan_ly_lich_hen.html', {'appointments': appointments, 'form': AppointmentForm()})
