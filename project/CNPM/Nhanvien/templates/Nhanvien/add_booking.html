@@ -7,12 +7,16 @@
     <form method="POST">
         {% csrf_token %}
         <div class="mb-3">
-            <label for="room_number" class="form-label">Số Phòng:</label>
-            <input type="text" id="room_number" name="room_number" class="form-control" required><br>
+            <label for="pet_name" class="form-label">Tên thú cưng:</label>
+            <input type="text" id="pet_name" name="pet_name" class="form-control" required><br>
         </div>
         <div class="mb-3">
-            <label for="capacity" class="form-label">Sức Chứa:</label>
-            <input type="number" id="capacity" name="capacity" class="form-control" required><br>
+            <label for="owner_name" class="form-label">Tên khách hàng:</label>
+            <input type="text" id="owner_name" name="owner_name" class="form-control" required><br>
+        </div>
+        <div class="mb-3">
+            <label for="appointment_date" class="form-label">Ngày khám:</label>
+            <input type="datetime-local" id="appointment_date" name="appointment_date" class="form-control" required><br>
         </div>
         <button type="submit" class="btn btn-primary">Thêm Phòng Khám</button>
     </form>

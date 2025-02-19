@@ -86,7 +86,7 @@ DATABASES = {
 		'ENGINE': 'django.db.backends.mysql',
 		'NAME': 'Pet_Health_Care_System',
 		'USER': 'root',
-		'PASSWORD': 'uyen893605',
+		'PASSWORD': '123456789',
 		'HOST':'localhost',
 		'PORT':'3306',
 	}
