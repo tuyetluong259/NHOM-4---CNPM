@@ -1,8 +1,22 @@
 from django.shortcuts import render, redirect
-from .forms import LichHenForm
+from .forms import KhachHangForm, ThuCungForm, LichHenForm
 from django.contrib import messages
-from .models import KhachHang, LichHen, ThuCung
+from .models import KhachHang, LichHen, ThuCung, BacSi
 
+def dat_lich_hen(request):
+    if request.method == 'POST':
+        form = LichHenForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('danh_sach_lich_hen')  # Chuyển hướng sau khi lưu
+    else:
+        form = LichHenForm()
+    
+    return render(request, 'dat_lich_hen.html', {'form': form})
+
+def danh_sach_lich_hen(request):
+    lich_hen_list = LichHen.objects.all()
+    return render(request, 'danh_sach_lich_hen.html', {'lich_hen_list': lich_hen_list})
 
 def home(request):
     return render(request,'KhachHang/home_KH.html')
@@ -14,60 +28,42 @@ def login(request):
 # Trang đăng ký khám bệnh
 def dang_ky_kham_benh(request):
     if request.method == "POST":
-        owner_name = request.POST.get("owner_name")
-        phone_number = request.POST.get("phone_number")
-        email = request.POST.get("email")
-        address = request.POST.get("address")
+        # Khởi tạo form với dữ liệu POST
+        khach_hang_form = KhachHangForm(request.POST)
+        thu_cung_form = ThuCungForm(request.POST)
+        lich_hen_form = LichHenForm(request.POST)
 
-        pet_name = request.POST.get("pet_name")
-        pet_gender = request.POST.get("pet_gender")
-        pet_condition = request.POST.get("pet_condition")
+        if khach_hang_form.is_valid() and thu_cung_form.is_valid() and lich_hen_form.is_valid():
+            # Lưu thông tin khách hàng
+            khach_hang = khach_hang_form.save()
 
-        appointment_date = request.POST.get("appointment_date")
-        appointment_time = request.POST.get("appointment_time")
-        doctor_name = request.POST.get("doctor_name")
-        staff_notes = request.POST.get("staff_notes")
+            # Lưu thông tin thú cưng
+            thu_cung = thu_cung_form.save(commit=False)
+            thu_cung.owner = khach_hang
+            thu_cung.save()
 
-        # Kiểm tra xem khách hàng đã tồn tại chưa
-        khach_hang, created = KhachHang.objects.get_or_create(
-            email=email,
-            defaults={
-                "owner_name": owner_name,
-                "phone_number": phone_number,
-                "address": address
-            }
-        )
+            # Lưu lịch hẹn
+            lich_hen = lich_hen_form.save(commit=False)
+            lich_hen.khach_hang = khach_hang
+            lich_hen.thu_cung = thu_cung
+            lich_hen.save()
 
-        # Nếu khách hàng đã tồn tại, cập nhật thông tin (nếu cần)
-        if not created:
-            khach_hang.owner_name = owner_name
-            khach_hang.phone_number = phone_number
-            khach_hang.address = address
-            khach_hang.save()
+            messages.success(request, "Đăng ký thành công! Vui lòng chờ xác nhận từ nhân viên.")
+            return redirect("dang_ky_kham_benh")  # Quay lại trang sau khi đăng ký
+        else:
+            messages.error(request, "Đã xảy ra lỗi. Vui lòng kiểm tra lại thông tin.")
+    else:
+        # Khởi tạo form trống
+        khach_hang_form = KhachHangForm()
+        thu_cung_form = ThuCungForm()
+        lich_hen_form = LichHenForm()
 
-        # Thêm thú cưng vào hệ thống
-        thu_cung = ThuCung.objects.create(
-            pet_name=pet_name,
-            pet_gender=pet_gender,
-            pet_condition=pet_condition,
-            owner=khach_hang
-        )
-
-        # Tạo lịch hẹn
-        LichHen.objects.create(
-            khach_hang=khach_hang,
-            thu_cung=thu_cung,
-            appointment_date=appointment_date,
-            appointment_time=appointment_time,
-            doctor_name=doctor_name,
-            staff_notes=staff_notes
-        )
-
-        messages.success(request, "Đăng ký thành công! Vui lòng chờ xác nhận từ nhân viên.")
-        return redirect("dang_ky_kham_benh")  # Quay lại trang sau khi đăng ký
-
-    return render(request, "dang_ky_kham_benh.html")
-
+    return render(request, "dang_ky_kham_benh.html", {
+        'khach_hang_form': khach_hang_form,
+        'thu_cung_form': thu_cung_form,
+        'lich_hen_form': lich_hen_form,
+        'bac_si_list': BacSi.objects.all(),
+    })
 # Trang đánh giá người dùng
 def danh_gia_nguoi_dung(request):
     return render(request, 'danh_gia_nguoi_dung.html')
@@ -80,4 +76,3 @@ def thong_tin_khac(request):
 def giao_dien_khach_hang(request):
     return render(request, 'giao_dien_khach_hang.html')
     
-

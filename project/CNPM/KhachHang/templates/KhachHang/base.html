@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Pet Health Care System{% endblock %}</title>
+    
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'KhachHang/css/style.css' %}" rel="stylesheet" />
+    <link href="{% static 'KhachHang/css/owl.carousel.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'KhachHang/css/all.min.css' %}" rel="stylesheet" />
+
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+    <script src="{% static 'KhachHang/js/j3.js' %}"></script>
+    <script src="{% static 'KhachHang/js/all.min.js' %}"></script>
+    <script src="{% static 'KhachHang/js/myscript.js' %}"></script>
+</head>
+<body>
+
+    <!-- Hiển thị thông báo -->
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img src="{% static 'KhachHang/images/anh001.png' %}" height="60" alt="Logo" loading="lazy">
+
+            </a>
+            <a class="navbar-brand" href="#">Pet Health Care System</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            Khách Hàng
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'quan_ly_thu_cung' %}">Quản lý thú cưng</a></li>
+                            <li><a class="dropdown-item" href="{% url 'dang_ky_kham_benh' %}">Đăng ký khám bệnh</a></li>
+                            <li><a class="dropdown-item" href="{% url 'danh_gia_nguoi_dung' %}">Đánh giá</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{% url 'thong_tin_khac' %}">Thông tin khác</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Nội dung chính -->
+    <div class="container mt-5 pt-5">
+        {% block content %}{% endblock %}
+    </div>
+<!-- Footer -->
+<footer class="footer mt-5">
+    <div class="container-fluid col-10">
+        <div class="row pt-3 pb-3">
+            <div class="col-md-4 care">
+                <h4>Đánh Giá Của Khách Hàng</h4>
+                <ul>
+                    <li><a href="#">Nhấn Vào Để Xem</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h4 class="care">Pet Care</h4>
+                <ul>
+                    <li>Phone: 0889969020</li>
+                    <li>Maps: 25 Tô Ký - Tân Chánh Hiệp - Quận 12</li>
+                    <li>Social:</li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h4>Hỗ Trợ Khách Hàng</h4>
+                <ul>
+                    <li><a href="#">Chính Sách Mua Hàng</a></li>
+                    <li><a href="#">Điều Khoản Dịch Vụ</a></li>
+                    <li><a href="#">Hình Thức Thanh Toán</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -4,9 +4,9 @@ from django.http import HttpResponse
 from .models import MedicalRecord
 
 # Trang chủ
-def home(request):
+def home_BS(request):
     context = {}
-    return render(request, 'Bacsi/home.html', context)
+    return render(request, 'Bacsi/home_BS.html', context)
 
 # Ghi nhận hồ sơ khám bệnh
 def record_medical(request):

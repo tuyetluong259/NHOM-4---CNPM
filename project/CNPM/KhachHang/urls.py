@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views  # Corrected the import statement
+from .views import dat_lich_hen
+from .views import danh_sach_lich_hen
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -9,4 +11,6 @@ urlpatterns = [
     path('thong-tin-khac/', views.thong_tin_khac, name='thong_tin_khac'),
     path('giao_dien_khach_hang/', views.giao_dien_khach_hang, name='giao_dien_khach_hang'),
     path('login/', views.login, name='login'),
+    path('dat-lich-hen/', dat_lich_hen, name='dat_lich_hen'),
+    path('lich-hen/', danh_sach_lich_hen, name='danh_sach_lich_hen'),
 ]

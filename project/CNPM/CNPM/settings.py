@@ -84,9 +84,9 @@ WSGI_APPLICATION = 'CNPM.wsgi.application'
 DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.mysql',
-		'NAME': 'Pet_Health_Care_System',
+		'NAME': 'Pet_Health_Care',
 		'USER': 'root',
-		'PASSWORD': '123456789',
+		'PASSWORD': 'uyen893605',
 		'HOST':'localhost',
 		'PORT':'3306',
 	}
@@ -141,4 +141,3 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-

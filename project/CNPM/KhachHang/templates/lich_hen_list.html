@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Danh sách lịch hẹn của bạn</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Thú cưng</th>
+        <th>Ngày hẹn</th>
+        <th>Giờ hẹn</th>
+        <th>Bác sĩ</th>
+        <th>Ghi chú</th>
+        <th>Hành động</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for lich_hen in lich_hen_list %}
+        <tr>
+          <td>{{ lich_hen.thu_cung.pet_name }}</td>
+          <td>{{ lich_hen.appointment_date }}</td>
+          <td>{{ lich_hen.appointment_time }}</td>
+          <td>{{ lich_hen.bac_si.doctor_name }}</td>
+          <td>{{ lich_hen.staff_notes }}</td>
+          <td>
+            <form method="post" action="{% url 'huy_lich_hen' lich_hen.id %}">
+              {% csrf_token %}
+              <button type="submit">Hủy</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
