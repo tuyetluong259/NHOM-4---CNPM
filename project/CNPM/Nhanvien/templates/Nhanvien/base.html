@@ -23,60 +23,30 @@
         </div>
     </header>
         <style>
-            /* Footer cố định */
-            html, body {
-            height: 100%;
-            margin: 0;
-        }
+            /* Định dạng toàn bộ trang */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Đảm bảo nội dung đủ chiều cao */
+}
 
-        /* Make main content fill space between header and footer */
-        .main-content {
-            flex-grow: 1;
-        }
-        
-        .footer {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgb(40, 126, 98);
-            color: white;
-            padding: 15px 0;
-            text-align: center;
-            font-size: 16px;
-            border-top: 2px solid #fff;
-            margin-top: auto;
-        } 
-        .footer h4 {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-        }
-        
-        .footer ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .footer ul li{
-            text-decoration: none;
-            list-style-type: none;
-            }
-        
-        .footer ul li a {
-            color: #d1d1d1;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        .footer ul li a:hover {
-            text-decoration: none;
-          color: rgb(246, 160, 171);
-          }
-        
-        .footer .care {
-            color:rgb(218, 119, 27); /* Màu nhấn đặc biệt */
-        }
+/* Nội dung chính sẽ mở rộng để đẩy footer xuống */
+main {
+    flex: 1;
+    padding-bottom: 100px; /* Tránh bị footer che */
+}
+
+/* Định dạng footer */
+.footer {
+    background-color: rgb(40, 126, 98);
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+    position: relative; /* Để footer không che nội dung */
+}
+
 
         </style>
     <!-- Navbar -->

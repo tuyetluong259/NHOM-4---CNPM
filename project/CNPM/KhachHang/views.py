@@ -5,8 +5,19 @@ from .models import Appointment
 
 def home(request):
     return render(request,'KhachHang/home_KH.html')
-def quan_ly_thu_cung(request):
+"""def quan_ly_thu_cung(request):
     return render(request, 'quan_ly_thu_cung.html')
+"""
+
+def pet_list(request):
+    """Hiển thị danh sách thú cưng"""
+    pets = Appointment.objects.all()
+    return render(request, 'KhachHang/pet_list.html', {'pets': pets})
+
+def pet_detail(request, pet_id):
+    """Hiển thị thông tin chi tiết thú cưng"""
+    pet = get_object_or_404(Appointment, id=pet_id)
+    return render(request, 'KhachHang/pet_detail.html', {'pet': pet})
 
 def login(request):
     return render(request, 'home/login.html')

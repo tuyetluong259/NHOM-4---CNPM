@@ -81,6 +81,41 @@
         .delete-btn:hover {
             background: #c82333;
         }
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .content {
+            flex: 1;
+        }
+
+        .header {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .footer {
+            background-color: #f8f9fa;
+            text-align: center;
+            padding: 10px;
+        }
+        .footer {
+            background-color: rgb(40, 126, 98);
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -115,7 +150,7 @@
                 </a>
 
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="{% url 'quan_ly_thu_cung' %}">Quản lý danh sách thú cưng</a></li>
+                  <li><a class="dropdown-item" href="{% url 'pet_list' %}">Quản lý danh sách thú cưng</a></li>
                   <li><a class="dropdown-item" href="{% url 'dang_ky_kham_benh' %}">Đăng ký khám bệnh</a></li>
                   <li><a class="dropdown-item" href="{% url 'danh_gia_nguoi_dung' %}">Đánh giá người dùng</a></li>
                   <li><hr class="dropdown-divider"></li>
@@ -124,15 +159,13 @@
               </li>
             </ul>
         </li>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+            
           </div>
         </div>   
-      </nav>
-<div class="container">
-    <h2>Danh sách lịch hẹn</h2>
+        </nav>
+    
+        <main class="container mt-5">
+        <h2 style="text-align: center; font-weight: bold; color: #45a049;">Danh sách lịch hẹn</h2>
 
     <!-- Nút bấm để hiển thị bảng -->
     <button onclick="toggleTable()">Xem danh sách lịch hẹn</button>
@@ -180,7 +213,7 @@
         </tbody>
     </table>
 </div>
-
+    </main>
 <script>
     function toggleTable() {
         var table = document.getElementById("appointmentTable");
@@ -188,6 +221,33 @@
     }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
+<footer class="footer mt-5">
+    <div class="container-fluid col-10">
+        <div class="row pt-3 pb-3">
+            <div class="col-md-4 care">
+                <h4>Đánh Giá Của Khách Hàng</h4>
+                <ul>
+                    <li><a href="#">Nhấn Vào Để Xem</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h4 class="care">Pet Care</h4>
+                <ul>
+                    <li>Phone: 0889969020</li>
+                    <li>Maps: 25 Tô Ký - Tân Chánh Hiệp - Quận 12</li>
+                    <li>Social:</li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h4>Hỗ Trợ Khách Hàng</h4>
+                <ul>
+                    <li><a href="#">Chính Sách Mua Hàng</a></li>
+                    <li><a href="#">Điều Khoản Dịch Vụ</a></li>
+                    <li><a href="#">Hình Thức Thanh Toán</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+  </footer> 
 </body>
 </html>
