@@ -61,7 +61,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [BASE_DIR / "home/templates",
-                BASE_DIR / "KhachHang/templates",],
+                BASE_DIR / "KhachHang/templates",
+                BASE_DIR / "Nhanvien/templates",],
 
         'APP_DIRS': True,
         'OPTIONS': {
@@ -86,7 +87,7 @@ DATABASES = {
 		'ENGINE': 'django.db.backends.mysql',
 		'NAME': 'Pet_Health_Care_System',
 		'USER': 'root',
-		'PASSWORD': '123456789',
+		'PASSWORD': 'uyen893605',
 		'HOST':'localhost',
 		'PORT':'3306',
 	}

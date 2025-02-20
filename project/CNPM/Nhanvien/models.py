@@ -1,42 +1,46 @@
 from django.db import models
+from django.utils.timezone import now
 
-# Mô hình cho Booking (Đặt lịch khám)
 class Booking(models.Model):
-    pet_name = models.CharField(max_length=100, default='Unknown')  # Thêm giá trị mặc định
-    owner_name = models.CharField(max_length=255, default='Unknown')
-    appointment_date = models.DateTimeField(null=True)  # Thêm giá trị mặc định
-    # Các trường khác nếu có
+    owner_name = models.CharField(max_length=255, null=True, blank=True)
+    phone_number = models.CharField(max_length=15, null=True, blank=True)
+    email = models.EmailField(null=True, blank=True)
+    address = models.TextField(null=True, blank=True)
+
+    pet_name = models.CharField(max_length=255, null=True, blank=True)
+    pet_gender = models.CharField(max_length=10, null=True, blank=True)
+    pet_condition = models.TextField(null=True, blank=True)
+
+    appointment_date = models.DateField(null=True, blank=True)
+    appointment_time = models.TimeField(null=True, blank=True)
+
+    doctor_name = models.CharField(max_length=255, blank=True, null=True)
+    staff_notes = models.TextField(blank=True, null=True)
+
+    created_at = models.DateTimeField(default=now)  # Thêm giá trị mặc định
 
     def __str__(self):
-        return f"{self.pet_name} - {self.owner_name} - {self.appointment_date}"
+        return f"{self.pet_name or 'Unknown'} - {self.owner_name or 'Unknown'}"
 
 class PetHospitalization(models.Model):
-    pet_name = models.CharField(max_length=100)
-    diagnosis = models.TextField(default='Unknown diagnosis')  # Cung cấp giá trị mặc định
-    admission_date = models.DateTimeField()
+    pet_name = models.CharField(max_length=100, null=True, blank=True)
+    diagnosis = models.TextField(default='Unknown diagnosis', null=True, blank=True)
+    admission_date = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
-        return f"{self.pet_name} - {self.diagnosis}"
-
-
-    def __str__(self):
-        return f"{self.pet_name} - {self.diagnosis}"
-
-# Mô hình cho DoctorSchedule (Lịch khám bác sĩ
+        return f"{self.pet_name or 'Unknown Pet'} - {self.diagnosis}"
 
 class DoctorSchedule(models.Model):
-    doctor_name = models.CharField(max_length=100)
-    date = models.DateField(null=True)  # Cho phép trường 'date' có giá trị null
-    time = models.TimeField(null=True)  # Cho phép trường 'time' có giá trị null
+    doctor_name = models.CharField(max_length=100, null=True, blank=True)
+    date = models.DateField(null=True, blank=True)
+    time = models.TimeField(null=True, blank=True)
 
     def __str__(self):
-        return f"{self.doctor_name} - {self.date} - {self.time}"
+        return f"{self.doctor_name or 'Unknown Doctor'} - {self.date or 'No Date'} - {self.time or 'No Time'}"
     
-
-# Mô hình cho Room (Phòng khám)
 class Room(models.Model):
-    room_number = models.CharField(max_length=10)
-    capacity = models.IntegerField()
+    room_number = models.CharField(max_length=10, null=True, blank=True)
+    capacity = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
-        return f"Room {self.room_number} - Capacity: {self.capacity}"
+        return f"Room {self.room_number or 'Unknown'} - Capacity: {self.capacity or 'Unknown'}"
