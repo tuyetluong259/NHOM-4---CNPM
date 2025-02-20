@@ -1,0 +1,42 @@
+{% extends "Bacsi/base.html" %}
+
+{% block content %}
+<h2>Danh sách hồ sơ bệnh án</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Bệnh nhân</th>
+            <th>Bác sĩ</th>
+            <th>Trạng thái</th>  {# Thêm cột trạng thái #}
+            <th>Ngày tạo</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for record in records %}
+        <tr>
+            <td>{{ record.id }}</td>
+            <td>{{ record.booking.pet_name }}</td>
+            <td>{{ record.doctor_name }}</td>
+            <td>
+                {% if record.status == "NHAP_VIEN" %}
+                    <span class="badge bg-danger">Nhập viện</span>
+                {% elif record.status == "XUAT_VIEN" %}
+                    <span class="badge bg-success">Xuất viện</span>
+                {% else %}
+                    <span class="badge bg-warning">Đang điều trị</span>
+                {% endif %}
+            </td>
+            <td>{{ record.created_at }}</td>
+            <td>
+                <a href="{% url 'Bacsi_detail' record.id %}" class="btn btn-info">Xem</a>
+                <a href="{% url 'update_Bacsi' record.id %}" class="btn btn-warning">Cập nhật</a>
+                <a href="{% url 'delete_Bacsi' record.id %}" class="btn btn-danger">Xóa</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
