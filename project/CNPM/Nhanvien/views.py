@@ -1,11 +1,12 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Booking, PetHospitalization, DoctorSchedule, Room
+
 
 # Trang chủ Nhân viên
 def home_NV(request):
     return render(request, 'Nhanvien/home_NV.html')
 
-# Quản lý đặt lịch khám (Booking)
+"""# Quản lý đặt lịch khám (Booking)
 def booking(request):
     bookings = Booking.objects.all()  # Lấy tất cả các bản ghi đặt lịch
     return render(request, 'Nhanvien/booking.html', {'bookings': bookings})
@@ -24,8 +25,19 @@ def add_booking(request):
 
         return redirect('booking')  # Quay lại trang danh sách đặt lịch
 
-    return render(request, 'Nhanvien/add_booking.html')
+    return render(request, 'Nhanvien/add_booking.html')"""
 
+def list_bookings(request):
+    bookings = Booking.objects.all().order_by("-created_at")  # Sắp xếp mới nhất lên đầu
+    return render(request, "Nhanvien/booking.html", {"bookings": bookings})
+
+def cancel_booking(request, booking_id):
+    booking = get_object_or_404(Booking, id=booking_id)
+    
+    # Xử lý hủy booking
+    booking.delete()
+
+    return redirect("booking")
 # Quản lý lịch khám của bác sĩ (Doctor Schedule)
 def schedule(request):
     schedules = DoctorSchedule.objects.all()
