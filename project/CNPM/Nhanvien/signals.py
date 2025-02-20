@@ -1,10 +1,32 @@
-from django.db.models.signals import post_save, post_delete
+from django.db.models.signals import post_save, post_delete, pre_delete
+
 from django.dispatch import receiver
 from KhachHang.models import Appointment
 from Nhanvien.models import Booking
+from Bacsi.models import MedicalRecord
 
 # Cờ bảo vệ để tránh vòng lặp vô hạn
 prevent_recursion = False
+@receiver(post_save, sender=Booking)
+def create_medical_record(sender, instance, created, **kwargs):
+    if created:
+        MedicalRecord.objects.create(
+            booking=instance,
+            doctor_name=instance.doctor_name  # Lấy thông tin bác sĩ từ Booking
+        )
+
+@receiver(post_save, sender=Booking)
+def update_medical_record_from_booking(sender, instance, **kwargs):
+    if hasattr(instance, 'medical_record'):
+        medical_record = instance.medical_record
+        medical_record.doctor_name = instance.doctor_name  # Cập nhật tên bác sĩ
+        medical_record.save()
+
+@receiver(pre_delete, sender=Booking)
+def delete_medical_record_with_booking(sender, instance, **kwargs):
+    if hasattr(instance, 'medical_record'):
+        instance.medical_record.delete()
+
 
 @receiver(post_save, sender=Appointment)
 def sync_appointment_to_booking(sender, instance, **kwargs):

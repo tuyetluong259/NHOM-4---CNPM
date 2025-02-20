@@ -1,58 +1,91 @@
-# views.py
-from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import MedicalRecord
+from Nhanvien.models import Booking
 
-# Trang chủ
-def home(request):
-    context = {}
-    return render(request, 'Bacsi/home.html', context)
+# Danh sách MedicalRecord
+def list_Bacsi(request):
+    records = MedicalRecord.objects.distinct()  # Tránh lấy dữ liệu trùng
+    return render(request, "Bacsi/list.html", {"records": records})
 
-# Ghi nhận hồ sơ khám bệnh
-def record_medical(request):
-    if request.method == 'POST':
-        # Lấy thông tin từ form
-        name = request.POST.get('name', 'Chưa có tên')  # Tên thú cưng
-        species = request.POST.get('species', 'Chưa có loài')  # Loài
-        progress = request.POST.get('progress', 'Chưa có tiến trình')  # Tiến trình điều trị
+def medical_records(request):
+    records = MedicalRecord.objects.all()  # Lấy danh sách hồ sơ bệnh án
+    return render(request, 'Bacsi/medical_records.html', {'records': records})
+# Xem chi tiết MedicalRecord
+def Bacsi_detail(request, record_id):
+    record = get_object_or_404(MedicalRecord, id=record_id)
+    return render(request, "Bacsi/detail.html", {"record": record})
 
-        # Tạo một hồ sơ mới
-        medical_record = MedicalRecord(
-            patient_name=name,
-            diagnosis=species,
-            progress=progress
-        )
-        medical_record.save()  # Lưu vào cơ sở dữ liệu
-
-        # Thông báo thành công
-        success_message = "Hồ sơ đã được ghi nhận thành công."
-        return render(request, 'Bacsi/record_medical.html', {'success_message': success_message, 'name': name, 'species': species, 'progress': progress})
-
-    return render(request, 'Bacsi/record_medical.html')
-
-# Chăm sóc thú cưng (hiển thị danh sách thú cưng nhập viện)
+# Tạo mới MedicalRecord
+def create_Bacsi(request):
+    if request.method == "POST":
+        booking_id = request.POST.get("booking_id")
+        doctor_name = request.POST.get("doctor_name")
+        booking = get_object_or_404(Booking, id=booking_id)
+        MedicalRecord.objects.create(booking=booking, doctor_name=doctor_name)
+        return redirect("list_Bacsi")
+    return render(request, "Bacsi/create.html")
 def inpatient_care(request):
-    # Lấy danh sách hồ sơ từ cơ sở dữ liệu
-    pets = MedicalRecord.objects.all()
-    return render(request, 'Bacsi/inpatient_care.html', {'pets': pets})
+    records = MedicalRecord.objects.all()  # Lấy danh sách hồ sơ bệnh nhân
+    return render(request, 'Bacsi/inpatient_care.html', {'records': records})
+
+# Cập nhật MedicalRecord
+
+def update_Bacsi(request, record_id):
+    record = get_object_or_404(MedicalRecord, id=record_id)
+
+    if request.method == "POST":
+        doctor_name = request.POST.get("doctor_name")
+        diagnosis = request.POST.get("diagnosis")
+        prescription = request.POST.get("prescription")
+        notes = request.POST.get("notes")
+        status = request.POST.get("status")  # ✅ Lấy giá trị trạng thái từ form
+
+        # Debug: Kiểm tra dữ liệu nhận được
+        print(f"Received data - Doctor: {doctor_name}, Status: {status}, Diagnosis: {diagnosis}")
+
+        # Cập nhật thông tin vào database
+        record.doctor_name = doctor_name
+        record.diagnosis = diagnosis
+        record.prescription = prescription
+        record.notes = notes
+        record.status = status  # ✅ Cập nhật trạng thái
+        record.save()
+
+        # Debug: Kiểm tra lại trong database
+        print(f"Updated MedicalRecord {record.id} - Status: {record.status}")
+
+        return redirect("Bacsi_detail", record_id=record.id)  
+
+    return render(request, "Bacsi/update.html", {"record": record})
+
+# Xóa MedicalRecord
+def delete_Bacsi(request, record_id):
+    record = get_object_or_404(MedicalRecord, id=record_id)
+    record.delete()
+    return redirect("list_Bacsi")
 
 # Sửa hồ sơ khám bệnh
-def edit_medical(request, pk):
-    pet = get_object_or_404(MedicalRecord, pk=pk)
+def edit_medical(request, record_id):
+    pet = get_object_or_404(MedicalRecord, id=record_id)
     if request.method == 'POST':
         pet.name = request.POST.get('name')
         pet.species = request.POST.get('species')
         pet.progress = request.POST.get('progress')
         pet.save()
-        return redirect('inpatient_care')  # Redirect to inpatient care page
+        return redirect('inpatient_care')
 
-    context = {'pet': pet}
-    return render(request, 'Bacsi/edit_medical.html', context)
+    return render(request, 'Bacsi/edit_medical.html', {'pet': pet})
 
 # Xóa hồ sơ khám bệnh
-def delete_medical(request, pk):
-    pet = get_object_or_404(MedicalRecord, pk=pk)
+def delete_medical(request, record_id):
+    pet = get_object_or_404(MedicalRecord, id=record_id)
     pet.delete()
     return redirect('inpatient_care')
-def login(request):
+
+# Đăng nhập
+def login_view(request):
     return render(request, 'home/login.html')
+# Trang chủ
+def home(request):
+    context = {}
+    return render(request, 'Bacsi/home.html', context)
