@@ -1,31 +1,49 @@
 from django.db.models.signals import post_save, pre_delete
 from django.dispatch import receiver
 from .models import MedicalRecord
-from Nhanvien.models import Booking  # Import Booking
+from Nhanvien.models import Booking
 
-# Tự động tạo MedicalRecord khi có Booking mới
+# Cờ bảo vệ vòng lặp
+prevent_recursion = False
+
 @receiver(post_save, sender=Booking)
-def create_Bacsi(sender, instance, created, **kwargs):
-    if created and not MedicalRecord.objects.filter(booking=instance).exists():
-        print(f"🔹 Creating MedicalRecord for Booking {instance.id}")
-        MedicalRecord.objects.create(
-            booking=instance,
-            doctor_name=instance.doctor_name
-        )
+def sync_booking_to_medical_record(sender, instance, **kwargs):
+    """Đồng bộ Booking -> MedicalRecord"""
+    global prevent_recursion
+    if prevent_recursion:
+        return
+    
+    prevent_recursion = True
+    MedicalRecord.objects.update_or_create(
+        booking=instance,
+        defaults={
+            'doctor_name': instance.doctor_name,
+            'status': instance.status,
+            'diagnosis': instance.diagnosis,
+            'prescription': instance.prescription,
+            'notes': instance.notes
+        }
+    )
+    prevent_recursion = False
 
-# Cập nhật MedicalRecord khi Booking thay đổi
-@receiver(post_save, sender=Booking)
-def update_Bacsi(sender, instance, **kwargs):
-    print(f"🔹 Updating MedicalRecord for Booking {instance.id}")
-    try:
-        Bacsi = MedicalRecord.objects.get(booking=instance)
-        Bacsi.doctor_name = instance.doctor_name
-        Bacsi.save()
-    except MedicalRecord.DoesNotExist:
-        pass  # Không làm gì nếu MedicalRecord không tồn tại
+@receiver(post_save, sender=MedicalRecord)
+def sync_medical_record_to_booking(sender, instance, **kwargs):
+    """Đồng bộ MedicalRecord -> Booking"""
+    global prevent_recursion
+    if prevent_recursion:
+        return
+    
+    prevent_recursion = True
+    booking = instance.booking
+    booking.doctor_name = instance.doctor_name
+    booking.status = instance.status
+    booking.diagnosis = instance.diagnosis
+    booking.prescription = instance.prescription
+    booking.notes = instance.notes
+    booking.save()
+    prevent_recursion = False
 
-# Xóa MedicalRecord khi Booking bị xóa
 @receiver(pre_delete, sender=Booking)
-def delete_Bacsi(sender, instance, **kwargs):
-    print(f"🔹 Deleting MedicalRecord for Booking {instance.id}")
+def delete_medical_record_with_booking(sender, instance, **kwargs):
+    """Xóa MedicalRecord khi Booking bị xóa"""
     MedicalRecord.objects.filter(booking=instance).delete()

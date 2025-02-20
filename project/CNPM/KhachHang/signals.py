@@ -49,7 +49,11 @@ def sync_booking_to_appointment(sender, instance, **kwargs):
             'appointment_date': instance.appointment_date,
             'appointment_time': instance.appointment_time,
             'doctor_name': instance.doctor_name,
-            'staff_notes': instance.staff_notes
+            'staff_notes': instance.staff_notes,
+            'status': instance.status,
+            'diagnosis': instance.diagnosis,
+            'prescription': instance.prescription,
+            'notes': instance.notes
         }
     )
     prevent_recursion = False

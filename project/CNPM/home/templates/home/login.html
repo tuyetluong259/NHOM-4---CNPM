@@ -36,6 +36,30 @@
             background-color: #218838;
             color: white;
         }
+    /* Định dạng toàn bộ trang */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Đảm bảo nội dung đủ chiều cao */
+}
+
+/* Nội dung chính sẽ mở rộng để đẩy footer xuống */
+main {
+    flex: 1;
+    padding-bottom: 100px; /* Tránh bị footer che */
+}
+
+/* Định dạng footer */
+.footer {
+    background-color: rgb(40, 126, 98);
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+    position: relative; /* Để footer không che nội dung */
+}
+
     </style>
 </head>
 <body>
@@ -61,7 +85,8 @@
     </nav>
 
     <main class="container mt-4">
-        <h1 class="text-center">Chào mừng đến với Web chăm sóc thú cưng</h1>
+        <h1 style="text-align: center; font-weight: bold; color: #45a049;"
+        class="text-center">Chào mừng đến với Web chăm sóc thú cưng</h1>
         <p class="text-center">Vui lòng chọn vai trò và đăng nhập:</p>
         
         <div class="auth-container">
@@ -73,11 +98,11 @@
 
             <!-- Form Đăng Nhập -->
             <form id="loginForm" class="auth-form active">
-                <h2>Đăng Nhập</h2>
+            
+                    <h2 style="text-align: center; font-weight: bold; color: #45a049;">Đăng Nhập</h2>
                 <div class="form-group">
                     <label for="loginRole">Chọn vai trò:</label>
                     <select id="loginRole" class="form-control" required>
-                        <option value="admin">Admin</option>
                         <option value="nhanvien">Nhân viên</option>
                         <option value="bacsi">Bác sĩ</option>
                         <option value="khachhang">Khách hàng</option>
@@ -96,7 +121,7 @@
 
             <!-- Form Đăng Ký -->
             <form id="registerForm" class="auth-form">
-                <h2>Đăng Ký</h2>
+                <h2 style="text-align: center; font-weight: bold; color: #45a049;">Đăng Ký</h2>
                 <div class="form-group">
                     <label for="registerEmail">Email:</label>
                     <input type="email" id="registerEmail" class="form-control" placeholder="Nhập email" required>
@@ -127,9 +152,7 @@
             let redirectURL = "";
         
             switch (role) {
-                case "admin":
-                    redirectURL = "/admin";
-                    break;
+            
                 case "nhanvien":
                     redirectURL = "/Nhanvien";
                     break;

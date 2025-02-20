@@ -69,101 +69,104 @@ h1 {
 .form-container {
   margin-top: 40px;
 }
+.btn-xem {
+    display: inline-block;
+    background-color: #008547; /* Màu xanh đậm */
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px; /* Bo góc */
+    text-decoration: none; /* Xóa gạch chân */
+    font-weight: bold;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.btn-xem:hover {
+    background-color: #002752; /* Màu đậm hơn khi hover */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Đảm bảo chiều cao tối thiểu bằng viewport */
+}
+
+main {
+    flex: 1;
+    padding: 120px 20px 80px; /* Đẩy nội dung xuống tránh header & footer che */
+}
+.footer {
+    background-color: rgb(40, 126, 98);
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    position: relative;
+}
+
 </style>
 <body>
 
-
-
-<!-- Nội dung trang -->
-<main class="container mt-4">
-<h1>Đánh Giá Các Lần Khám</h1>
-
-<!-- Các đánh giá trước đó -->
-<div class="review-container">
-    <h3>Các Đánh Giá Trước Đó</h3>
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">Tên Thú Cưng: Mèo Tom</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Ngày Khám: 12/12/2024</h6>
-            <p class="card-text">Dịch vụ: Khám sức khỏe định kỳ</p>
-            <p class="card-text">Đánh giá: Rất hài lòng</p>
-            <p class="card-text">Nhận xét: Thú cưng đã được chăm sóc rất tốt, bác sĩ rất tận tâm.</p>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">Tên Thú Cưng: Chó Max</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Ngày Khám: 15/12/2024</h6>
-            <p class="card-text">Dịch vụ: Tiêm phòng</p>
-            <p class="card-text">Đánh giá: Hài lòng</p>
-            <p class="card-text">Nhận xét: Tiêm phòng nhanh chóng và hiệu quả, tuy nhiên cần cải thiện thời gian chờ đợi.</p>
-        </div>
-    </div>
-    <!-- Thêm nhiều đánh giá khác tại đây -->
-</div>
-
-<!-- Thêm Đánh Giá Mới -->
-<div class="form-container">
-  <h3>Đánh Giá Mới</h3>
-  <form>
-      <div class="mb-3">
-          <label for="petName" class="form-label">Tên Thú Cưng</label>
-          <input type="text" class="form-control" id="petName" placeholder="Tên thú cưng">
-      </div>
-      <div class="mb-3">
-          <label for="visitDate" class="form-label">Ngày Khám</label>
-          <input type="date" class="form-control" id="visitDate">
-      </div>
-      <div class="mb-3">
-          <label for="service" class="form-label">Dịch Vụ</label>
-          <input type="text" class="form-control" id="service" placeholder="Dịch vụ đã thực hiện">
-      </div>
-      <div class="mb-3">
-          <label for="rating" class="form-label">Đánh Giá</label>
-          <select class="form-select" id="rating">
-              <option value="very_satisfied">Rất hài lòng</option>
-              <option value="satisfied">Hài lòng</option>
-              <option value="dissatisfied">Không hài lòng</option>
-          </select>
-      </div>
-      <div class="mb-3">
-          <label for="reviewText" class="form-label">Nhận Xét</label>
-          <textarea class="form-control" id="reviewText" rows="3" placeholder="Nhận xét của bạn"></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary">Gửi Đánh Giá</button>
-  </form>
-</div>
-</main>
-
-<!-- Footer -->
+    <main class="container mt-4">
+        <h2 style="text-align: center; font-weight: bold; color: #45a049;">Danh Sách Thú Cưng</h2>
+    <table>
+        <tr>
+            <th>Tên thú cưng</th>
+            <th>Giới tính</th>
+            <th>Tình trạng</th>
+            <th>Chủ sở hữu</th>
+            <th>Ngày hẹn</th>
+            <th>Chi tiết</th>
+        </tr>
+        {% for pet in pets %}
+        <tr>
+            <td>{{ pet.pet_name }}</td>
+            <td>{{ pet.pet_gender }}</td>
+            <td>{{ pet.pet_condition }}</td>
+            <td>{{ pet.owner_name }}</td>
+            <td>{{ pet.appointment_date }}</td>
+            <td>
+                <a href="{% url 'pet_detail' pet.id %}" class="btn-xem">Xem</a>
+            </td>
+            
+        </tr>
+        {% endfor %}
+    </table>
+    </main>
+    <!-- Footer -->
 <footer class="footer mt-5">
-  <div class="container-fluid col-10">
-      <div class="row pt-3 pb-3">
-          <div class="col-md-4 care">
-              <h4>Đánh Giá Của Khách Hàng</h4>
-              <ul>
-                  <li><a href="#">Nhấn Vào Để Xem</a></li>
-              </ul>
-          </div>
-          <div class="col-md-4">
-              <h4 class="care">Pet Care</h4>
-              <ul>
-                  <li>Phone: 0889969020</li>
-                  <li>Maps: 25 Tô Ký - Tân Chánh Hiệp - Quận 12</li>
-                  <li>Social:</li>
-              </ul>
-          </div>
-          <div class="col-md-4">
-              <h4>Hỗ Trợ Khách Hàng</h4>
-              <ul>
-                  <li><a href="#">Chính Sách Mua Hàng</a></li>
-                  <li><a href="#">Điều Khoản Dịch Vụ</a></li>
-                  <li><a href="#">Hình Thức Thanh Toán</a></li>
-              </ul>
-          </div>
-      </div>
-  </div>
-</footer>  
+    <div class="container-fluid col-10">
+        <div class="row pt-3 pb-3">
+            <div class="col-md-4 care">
+                <h4>Đánh Giá Của Khách Hàng</h4>
+                <ul>
+                    <li><a href="#">Nhấn Vào Để Xem</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h4 class="care">Pet Care</h4>
+                <ul>
+                    <li>Phone: 0889969020</li>
+                    <li>Maps: 25 Tô Ký - Tân Chánh Hiệp - Quận 12</li>
+                    <li>Social:</li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h4>Hỗ Trợ Khách Hàng</h4>
+                <ul>
+                    <li><a href="#">Chính Sách Mua Hàng</a></li>
+                    <li><a href="#">Điều Khoản Dịch Vụ</a></li>
+                    <li><a href="#">Hình Thức Thanh Toán</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+  </footer>  
+  
+  </body>
+  </html>
 
-</body>
-</html>
