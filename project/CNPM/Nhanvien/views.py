@@ -53,7 +53,8 @@ def cancel_booking(request, booking_id):
     # Xử lý hủy booking
     booking.delete()
 
-    return redirect("booking")
+    return redirect("list_bookings")  # Đúng với name trong urls.py
+
 # Quản lý lịch khám của bác sĩ (Doctor Schedule)
 def schedule(request):
     schedules = DoctorSchedule.objects.all()

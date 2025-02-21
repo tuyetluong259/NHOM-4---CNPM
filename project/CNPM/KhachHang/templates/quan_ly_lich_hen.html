@@ -103,19 +103,28 @@
             text-align: center;
         }
 
-        .footer {
-            background-color: #f8f9fa;
-            text-align: center;
-            padding: 10px;
-        }
-        .footer {
-            background-color: rgb(40, 126, 98);
-            text-align: center;
-            padding: 10px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
+        body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Đảm bảo nội dung đủ chiều cao */
+}
+
+/* Nội dung chính sẽ mở rộng để đẩy footer xuống */
+main {
+    flex: 1;
+    padding-bottom: 100px; /* Tránh bị footer che */
+}
+
+/* Định dạng footer */
+.footer {
+    background-color: rgb(40, 126, 98);
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+    position: relative; /* Để footer không che nội dung */
+}
     </style>
 </head>
 <body>
