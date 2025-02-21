@@ -84,7 +84,7 @@ def sync_booking_to_appointment(sender, instance, **kwargs):
             'pet_gender': instance.pet_gender,
             'pet_condition': instance.pet_condition,
             'appointment_date': instance.appointment_date,
-            'pet_species': instance.pet_species,
+            
             'appointment_time': instance.appointment_time,
             'doctor_name': instance.doctor_name,
             'staff_notes': instance.staff_notes,
