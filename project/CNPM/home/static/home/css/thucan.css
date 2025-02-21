@@ -1,0 +1,158 @@
+.chung{
+  font-size: 17px;
+  font-family: verdana, sans-serif;
+}
+
+.sticky {
+  position: fixed;
+  left:0;
+  top: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.755);
+  color: #f1f1f1;
+  z-index: 99999999;
+  border-bottom: 2px rgb(214, 237, 221)solid;
+}
+
+.logo{
+    width: 80%;
+    margin:0 auto;
+  }
+  .top1{
+  min-height: 50px;
+  border-bottom: 2px #9be9d7 solid;
+  margin-bottom: 30px;
+  }
+  .bgtop1{
+  background-color: rgb(16, 165, 130);
+  color: #ffffffee;
+  }
+  
+  .menu ul{
+  margin: 0;
+  padding: 2px;
+  }
+  .menu ul li{  
+  list-style-type: none;
+  float: left;
+  padding: 20px 20px;
+  position: relative;
+  }
+  .menu ul li a{
+  font-size: 1.4em;
+  color: rgb(2, 49, 11);
+  text-decoration: none;
+  font-weight: bold;
+  }
+  .menu ul li a:hover {
+  color: rgb(40, 126, 9);
+  
+  } 
+  .menu ul li a:hover::before{
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-bottom: 2px rgb(40, 126, 98) solid;
+  }
+  .menu ul li:hover  ul{
+    /*display: block;*/
+    opacity: 1;
+  }
+  .menu ul li ul{
+    background-color: rgba(187, 246, 204, 0.907);
+    position: absolute;
+    top: 54px;
+    left: 20px;
+    width: 100;
+    z-index: 9999999;
+    /*display: none;*/
+    opacity: 0;
+    transition: 0.33s;
+  }
+  .menu ul li ul li{
+    display: block;
+  }
+  .menu ul li ul li a{
+    color: #4ea940;
+    font-weight: normal;
+    font-size: 1.2em;
+  }
+  .msb {
+
+    position: sticky;
+    width: 20%;
+    overflow-y: auto;
+} 
+ .mgl{
+  margin-top: 140px;
+  margin-right: 30px;
+} 
+.footer{
+  clear: both;
+  background-color: #11c082ee;
+  min-height: 80px;
+  position: relative;
+  z-index: 1;
+}
+.footer ul li{
+  text-decoration: none;
+  list-style-type: none;
+  }
+  .footer a{
+    text-decoration: none;
+  color: #ffffffee;
+  }
+  .footer ul li a:hover {
+    text-decoration: none;
+  color: rgb(246, 160, 171);
+  }
+/**/ 
+.full{
+  font-family: verdana, sans-serif;
+  float:left;
+  width: 100%;
+}
+.content{
+  padding-top: 70px;
+  padding-bottom: 30px;
+  margin-bottom: 50px;
+  min-height: 900px; 
+  flex: 1;
+}  
+.news{
+  margin-top: 20px;
+  min-height: 200px;
+  position: relative;
+}
+.flex-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.flex-row img{
+  width: 70px;
+}
+.gh{
+  position: fixed;
+
+  height: 100vh;
+  width: 500px;
+  right: 0;
+  top: 80px;
+  padding-bottom: 100px;
+  margin-bottom: 100px;
+  background-color: #f9f9f9;
+  padding: 12px 20px;
+  overflow-y: scroll;
+}
+.cart button{
+  margin-top: 12px;
+  height: 30px;
+  padding: 0 20px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: tomato;
+}
