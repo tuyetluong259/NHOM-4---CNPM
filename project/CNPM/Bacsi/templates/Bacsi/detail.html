@@ -2,49 +2,43 @@
 
 {% block content %}
 <div class="container mt-5">
-    <h2>Chi tiết hồ sơ bệnh án</h2>
-    <table class="table table-bordered">
-        <tr>
-            <th>ID</th>
-            <td>{{ record.id }}</td>
-        </tr>
-        <tr>
-            <th>Tên bác sĩ</th>
-            <td>{{ record.doctor_name }}</td>
-        </tr>
-        <tr>
-            <th>Tên thú cưng</th>
-            <td>{{ record.booking.pet_name }}</td>
-        </tr>
-        <tr>
-            <th>Chẩn đoán</th>
-            <td>{{ record.diagnosis }}</td>
-        </tr>
-        <tr>
-            <th>Đơn thuốc</th>
-            <td>{{ record.prescription }}</td>
-        </tr>
-        <tr>
-            <th>Ghi chú</th>
-            <td>{{ record.notes }}</td>
-        </tr>
-        <tr>
-            <th>Trạng thái</th>
-            <td>
-                {% if record.status == "NHAP_VIEN" %}
-                    <span class="badge bg-danger">Nhập viện</span>
-                {% elif record.status == "XUAT_VIEN" %}
-                    <span class="badge bg-success">Xuất viện</span>
-                {% elif record.status == "DIEU_TRI" %}
-                    <span class="badge bg-warning">Đang điều trị</span>
-                {% else %}
-                    <span class="badge bg-secondary">Không xác định</span>
-                {% endif %}
-            </td>
-        </tr>
+    <h2 class="text-center fw-bold" style="color: #218838;">Chi tiết hồ sơ bệnh án</h2>
+    <table class>
+        <thead class="table-success">
+            <tr>
+                <th>ID</th>
+                <th>Tên bác sĩ</th>
+                <th>Tên thú cưng</th>
+                <th>Chẩn đoán</th>
+                <th>Đơn thuốc</th>
+                <th>Ghi chú</th>
+                <th>Trạng thái</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ record.id }}</td>
+                <td>{{ record.doctor_name }}</td>
+                <td>{{ record.booking.pet_name }}</td>
+                <td>{{ record.diagnosis }}</td>
+                <td>{{ record.prescription }}</td>
+                <td>{{ record.notes }}</td>
+                <td>
+                    {% if record.status == "NHAP_VIEN" %}
+                        <span class="badge bg-danger">Nhập viện</span>
+                    {% elif record.status == "XUAT_VIEN" %}
+                        <span class="badge bg-success">Xuất viện</span>
+                    {% elif record.status == "DIEU_TRI" %}
+                        <span class="badge bg-warning">Đang điều trị</span>
+                    {% else %}
+                        <span class="badge bg-secondary">Không xác định</span>
+                    {% endif %}
+                </td>
+            </tr>
+        </tbody>
     </table>
-
-    <a href="{% url 'update_Bacsi' record.id %}" class="btn btn-primary">Cập nhật</a>
-    <a href="{% url 'delete_Bacsi' record.id %}" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</a>
+    
+    <a href="{% url 'update_Bacsi' record.id %}" class="btn btn-success mt-2">Cập nhật</a>
+    <a href="{% url 'delete_Bacsi' record.id %}" class="btn btn-danger mt-2" onclick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</a>
 </div>
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends "Bacsi/base.html" %}
 
 {% block content %}
-<h2>Cập nhật hồ sơ bệnh án</h2>
+<h2 class="text-center fw-bold" style="color: #218838;">Cập nhật hồ sơ bệnh án</h2>
 <form method="post">
     {% csrf_token %}
     
@@ -25,7 +25,7 @@
         <option value="DIEU_TRI" {% if record.status == "DIEU_TRI" %}selected{% endif %}>Đang điều trị</option>
     </select>
 
-    <button type="submit" class="btn btn-primary mt-2">Lưu thay đổi</button>
+    <button type="submit" class="btn btn-success mt-2">Lưu thay đổi</button>
 </form>
 <a href="{% url 'Bacsi_detail' record.id %}" class="btn btn-secondary mt-2">Quay lại</a>
 {% endblock %}

@@ -57,9 +57,7 @@ main {
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == '/Bacsi/list/' %}active{% endif %}" href="/Bacsi/list/">Xem danh sách</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == '/Bacsi/create/' %}active{% endif %}" href="/Bacsi/create/">Tạo hồ sơ</a>
-                    </li>
+                    
                     
                 </ul>
             </div>
@@ -76,7 +74,7 @@ main {
                 <div class="col-md-4 care">
                     <h4>Đánh Giá Của Khách Hàng</h4>
                     <ul>
-                        <li><a href="#">Nhấn Vào Để Xem</a></li>
+                        <li><a href="{% url 'danh_gia_nguoi_dung' %}">Nhấn Vào Để Xem</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">

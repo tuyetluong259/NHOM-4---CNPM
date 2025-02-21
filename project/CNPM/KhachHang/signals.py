@@ -15,18 +15,22 @@ def sync_appointment_to_booking(sender, instance, **kwargs):
     prevent_recursion = True
     Booking.objects.update_or_create(
         phone_number=instance.phone_number,
-        defaults={
+        defaults = { 
             'owner_name': instance.owner_name,
             'email': instance.email,
             'address': instance.address,
             'pet_name': instance.pet_name,
+            'pet_species': instance.pet_species,  # Bổ sung cột loài vật nuôi
             'pet_gender': instance.pet_gender,
             'pet_condition': instance.pet_condition,
             'appointment_date': instance.appointment_date,
             'appointment_time': instance.appointment_time,
             'doctor_name': instance.doctor_name,
-            'staff_notes': instance.staff_notes
+            'staff_notes': instance.staff_notes,
+            'is_paid': instance.is_paid,  # Bổ sung trạng thái thanh toán
+            'fee_amount': instance.fee_amount,  # Bổ sung phí khám cố định
         }
+
     )
     prevent_recursion = False  # Reset cờ sau khi cập nhật xong
 

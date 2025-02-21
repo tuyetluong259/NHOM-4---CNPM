@@ -21,7 +21,8 @@ def sync_booking_to_medical_record(sender, instance, **kwargs):
             'status': instance.status,
             'diagnosis': instance.diagnosis,
             'prescription': instance.prescription,
-            'notes': instance.notes
+            'notes': instance.notes,
+            'cage_number': instance.cage_number  # Thêm cage_number
         }
     )
     prevent_recursion = False
@@ -40,6 +41,7 @@ def sync_medical_record_to_booking(sender, instance, **kwargs):
     booking.diagnosis = instance.diagnosis
     booking.prescription = instance.prescription
     booking.notes = instance.notes
+    booking.cage_number = instance.cage_number  # Thêm cage_number
     booking.save()
     prevent_recursion = False
 

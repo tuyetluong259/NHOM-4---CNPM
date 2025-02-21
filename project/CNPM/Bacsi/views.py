@@ -14,6 +14,39 @@ def medical_records(request):
 def Bacsi_detail(request, record_id):
     record = get_object_or_404(MedicalRecord, id=record_id)
     return render(request, "Bacsi/detail.html", {"record": record})
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import MedicalRecord
+
+def inpatient_care(request):
+    records = MedicalRecord.objects.filter(status="NHAP_VIEN").select_related("booking")
+
+    if request.method == "POST":
+        record_id = request.POST.get("record_id")
+        cage_number = request.POST.get("cage_number")
+        status = request.POST.get("status")
+        notes = request.POST.get("notes")
+        diagnosis = request.POST.get("diagnosis")
+        prescription = request.POST.get("prescription")
+
+        record = get_object_or_404(MedicalRecord, id=record_id)
+
+        # Cập nhật thông tin
+        if cage_number:
+            record.cage_number = cage_number
+        if status:
+            record.status = status
+        if notes:
+            record.notes = notes
+        if diagnosis:
+            record.diagnosis = diagnosis
+        if prescription:
+            record.prescription = prescription
+
+        record.save()
+
+        return redirect("inpatient_care")  # Reload trang
+
+    return render(request, "Bacsi/inpatient_care.html", {"records": records})
 
 # Tạo mới MedicalRecord
 def create_Bacsi(request):
@@ -24,9 +57,6 @@ def create_Bacsi(request):
         MedicalRecord.objects.create(booking=booking, doctor_name=doctor_name)
         return redirect("list_Bacsi")
     return render(request, "Bacsi/create.html")
-def inpatient_care(request):
-    records = MedicalRecord.objects.all()  # Lấy danh sách hồ sơ bệnh nhân
-    return render(request, 'Bacsi/inpatient_care.html', {'records': records})
 
 # Cập nhật MedicalRecord
 

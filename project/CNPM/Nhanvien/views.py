@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Booking, PetHospitalization, DoctorSchedule, Room
-
+from .forms import BookingForm
 
 # Trang chủ Nhân viên
 def home_NV(request):
@@ -26,6 +26,22 @@ def add_booking(request):
         return redirect('booking')  # Quay lại trang danh sách đặt lịch
 
     return render(request, 'Nhanvien/add_booking.html')"""
+
+def pet(request): 
+    pets = Booking.objects.filter(status='NHAP_VIEN')  # Chỉ lấy thú cưng đang nhập viện
+    
+    if request.method == "POST":
+        pet_id = request.POST.get("pet_id")  # Lấy ID thú cưng từ form
+        pet = get_object_or_404(Booking, id=pet_id)
+        form = BookingForm(request.POST, instance=pet)
+
+        if form.is_valid():
+            form.save()
+            return redirect('pet')  # Quay lại danh sách sau khi cập nhật thành công
+    else:
+        form = BookingForm()
+
+    return render(request, 'Nhanvien/pet.html', {'pets': pets, 'form': form})
 
 def list_bookings(request):
     bookings = Booking.objects.all().order_by("-created_at")  # Sắp xếp mới nhất lên đầu
@@ -60,9 +76,6 @@ def add_schedule(request):
     return render(request, 'Nhanvien/add_schedule.html')
 
 # Quản lý thú cưng nhập viện (Pet Hospitalization)
-def pet(request):
-    pets = PetHospitalization.objects.all()
-    return render(request, 'Nhanvien/pet.html', {'pets': pets})
 
 # Thêm mới hồ sơ nhập viện cho thú cưng
 def add_pet(request):
@@ -80,10 +93,11 @@ def add_pet(request):
 
     return render(request, 'Nhanvien/add_pet.html')
 
-# Quản lý phòng khám (Room)
+
 def room(request):
-    rooms = Room.objects.all()
-    return render(request, 'Nhanvien/room.html', {'rooms': rooms})
+    cages = Booking.objects.filter(status='NHAP_VIEN')  # Chỉ lấy các thú cưng đang nhập viện
+    return render(request, 'Nhanvien/room.html', {'cages': cages})
+
 
 # Thêm mới phòng khám
 def add_room(request):

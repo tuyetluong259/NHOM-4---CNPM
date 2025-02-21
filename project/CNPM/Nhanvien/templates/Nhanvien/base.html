@@ -70,10 +70,7 @@ main {
                         <a class="nav-link {% if request.resolver_match.url_name == 'pet' %}active{% endif %}" 
                            href="{% url 'pet' %}">Quản lý Thú cưng</a>
                     </li>
-                    <li class="nav-item me-3">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'schedule' %}active{% endif %}" 
-                           href="{% url 'schedule' %}">Sắp lịch bác sĩ</a>
-                    </li>
+                    
                     <li class="nav-item">
                         <a class="nav-link {% if request.resolver_match.url_name == 'room' %}active{% endif %}" 
                            href="{% url 'room' %}">Quản lý Chuồng</a>
@@ -103,7 +100,7 @@ main {
             <div class="col-md-4 care">
                 <h4>Đánh Giá Của Khách Hàng</h4>
                 <ul>
-                    <li><a href="#">Nhấn Vào Để Xem</a></li>
+                    <li><a href="{% url 'danh_gia_nguoi_dung' %}">Nhấn Vào Để Xem</a></li>
                 </ul>
             </div>
             <div class="col-md-4">

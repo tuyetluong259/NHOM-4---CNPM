@@ -105,7 +105,7 @@ h1 {
 <!-- Thêm Đánh Giá Mới -->
 <div class="form-container">
   <h3>Đánh Giá Mới</h3>
-  <form>
+  <form id="reviewForm"> <!-- Thêm ID đúng vào form -->
       <div class="mb-3">
           <label for="petName" class="form-label">Tên Thú Cưng</label>
           <input type="text" class="form-control" id="petName" placeholder="Tên thú cưng">
@@ -133,8 +133,22 @@ h1 {
       <button type="submit" class="btn btn-primary">Gửi Đánh Giá</button>
   </form>
 </div>
-</main>
 
+<Script>
+ document.addEventListener("DOMContentLoaded", function () {
+    console.log("Script đã tải thành công!"); // Kiểm tra script có chạy không
+
+    document.getElementById("reviewForm").addEventListener("submit", function (event) {
+        event.preventDefault(); // Ngăn chặn form gửi đi ngay lập tức
+        alert("Đã gửi đánh giá thành công!");
+        console.log("Đánh giá đã được gửi."); // Kiểm tra sự kiện có chạy không
+        this.reset(); // Reset form sau khi gửi
+    });
+});
+
+
+
+</Script>
 <!-- Footer -->
 <footer class="footer mt-5">
   <div class="container-fluid col-10">
@@ -142,7 +156,7 @@ h1 {
           <div class="col-md-4 care">
               <h4>Đánh Giá Của Khách Hàng</h4>
               <ul>
-                  <li><a href="#">Nhấn Vào Để Xem</a></li>
+                  <li><a href="{% url 'danh_gia_nguoi_dung' %}">Nhấn Vào Để Xem</a></li>
               </ul>
           </div>
           <div class="col-md-4">
