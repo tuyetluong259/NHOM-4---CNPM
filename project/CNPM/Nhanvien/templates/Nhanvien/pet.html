@@ -1,0 +1,64 @@
+{% extends "Nhanvien/base.html" %} 
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center fw-bold" style="color: #218838;">Danh Sách Thú Cưng Nhập Viện</h2>
+
+    <table class>
+        <thead>
+            <tr>
+                <th>Tên Thú Cưng</th>
+                <th>Loài</th>
+                <th>Chủ Sở Hữu</th>
+                <th>Số Điện Thoại</th>
+                <th>Chuồng</th>
+                <th>Tình Trạng</th>
+                <th>Bác Sĩ Phụ Trách</th>
+                <th>Hành Động</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pet in pets %}
+            <tr>
+                <td>{{ pet.pet_name }}</td>
+                <td>{{ pet.pet_species }}</td>
+                <td>{{ pet.owner_name }}</td>
+                <td>{{ pet.phone_number }}</td>
+                <td>{{ pet.cage_number }}</td>
+                <td>{{ pet.get_status_display }}</td>  <!-- Hiển thị tình trạng -->
+                <td>{{ pet.doctor_name }}</td>  <!-- Hiển thị bác sĩ phụ trách -->
+                <td>
+                    <!-- Nút chỉnh sửa sẽ mở modal -->
+                    <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal{{ pet.id }}">Cập nhật</button>
+                </td>
+            </tr>
+
+            <!-- Modal cập nhật -->
+            <div class="modal fade" id="editModal{{ pet.id }}" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Cập Nhật Thông Tin Thú Cưng</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="pet_id" value="{{ pet.id }}">
+                                
+                                {{ form.as_p }}
+
+                                <button type="submit" class="btn btn-success">Lưu thay đổi</button>
+
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+

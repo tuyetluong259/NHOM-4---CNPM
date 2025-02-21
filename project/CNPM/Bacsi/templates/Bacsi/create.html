@@ -1,0 +1,16 @@
+{% extends "Bacsi/base.html" %}
+
+{% block content %}
+<h2 class="text-center fw-bold" style="color: #218838;">Thêm hồ sơ bệnh án</h2>
+<form method="post">
+    {% csrf_token %}
+    <label for="booking_id">ID Đặt lịch:</label>
+    <input type="number" name="booking_id" required class="form-control">
+    
+    <label for="doctor_name">Tên bác sĩ:</label>
+    <input type="text" name="doctor_name" required class="form-control">
+
+    <button type="submit" class="btn btn-success mt-2">Lưu</button>
+</form>
+<a href="{% url 'list_Bacsi' %}" class="btn btn-secondary mt-2">Quay lại</a>
+{% endblock %}

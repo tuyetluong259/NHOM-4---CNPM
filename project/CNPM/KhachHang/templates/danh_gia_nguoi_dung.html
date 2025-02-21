@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Đánh giá người dùng</title>
+    <!-- CSS -->
+    {% load static %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="{% static 'KhachHang/css/style.css' %}" rel="stylesheet" />
+    <link href="{% static 'KhachHang/css/owl.carousel.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'KhachHang/css/all.min.css' %}" rel="stylesheet" />
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="{% static 'KhachHang/js/j3.js' %}"></script>
+    <script src="{% static 'KhachHang/js/all.min.js' %}"></script>
+    <script src="{% static 'KhachHang/js/myscript.js' %}"></script>
+</head>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+  <div class="container-fluid">
+    <!-- Navbar brand -->
+    <!-- logo -->
+    <a class="navbar-brand" target="_blank" href="http://127.0.0.1:8000/">
+      <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/473723691_1002491608374754_5189314962434618562_n.png?_nc_cat=111&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeEDeShnCPyE1crSUjUpyJ8js4fz9kghMoezh_P2SCEyh6VuAGwQzZ1lHCBkryZeVShFS0ItXLDNl8s1ggq5ca-g&_nc_ohc=BOXPLlxyVEkQ7kNvgH0roAq&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1gEg1AWa_qVQ541W40Cwr2BLuMcVt_VZi5_YO2B74wu-BA&oe=67B493C8" 
+      height="60" alt=""
+        loading="lazy" style="margin-top: -3px;" />
+    <!-- logo -->
+    <a class="navbar-brand" href="#">Pet Health Care System</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>     
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Khách Hàng
+          </a>
+
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'pet_list' %}">Quản lý danh sách thú cưng</a></li>
+            <li><a class="dropdown-item" href="{% url 'dang_ky_kham_benh' %}">Đăng ký khám bệnh</a></li>
+            <li><a class="dropdown-item" href="{% url 'danh_gia_nguoi_dung' %}">Đánh giá người dùng</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{% url 'quan_ly_lich_hen' %}">Quản lí lịch hẹn</a></li>
+          </ul>
+        </li>
+      </ul>
+  </li>
+</nav>
+</head>
+<body>
+</header>
+<style>
+body {
+  padding-top: 70px;  /* Điều chỉnh cho tiêu đề không bị che */
+}
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.card {
+  margin-bottom: 20px;
+}
+.form-container {
+  margin-top: 40px;
+}
+</style>
+<body>
+
+
+
+<!-- Nội dung trang -->
+<main class="container mt-4">
+<h1>Đánh Giá Các Lần Khám</h1>
+
+<!-- Các đánh giá trước đó -->
+<div class="review-container">
+    <h3>Các Đánh Giá Trước Đó</h3>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Tên Thú Cưng: Mèo Tom</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Ngày Khám: 12/12/2024</h6>
+            <p class="card-text">Dịch vụ: Khám sức khỏe định kỳ</p>
+            <p class="card-text">Đánh giá: Rất hài lòng</p>
+            <p class="card-text">Nhận xét: Thú cưng đã được chăm sóc rất tốt, bác sĩ rất tận tâm.</p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Tên Thú Cưng: Chó Max</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Ngày Khám: 15/12/2024</h6>
+            <p class="card-text">Dịch vụ: Tiêm phòng</p>
+            <p class="card-text">Đánh giá: Hài lòng</p>
+            <p class="card-text">Nhận xét: Tiêm phòng nhanh chóng và hiệu quả, tuy nhiên cần cải thiện thời gian chờ đợi.</p>
+        </div>
+    </div>
+    <!-- Thêm nhiều đánh giá khác tại đây -->
+</div>
+
+<!-- Thêm Đánh Giá Mới -->
+<div class="form-container">
+  <h3>Đánh Giá Mới</h3>
+  <form id="reviewForm"> <!-- Thêm ID đúng vào form -->
+      <div class="mb-3">
+          <label for="petName" class="form-label">Tên Thú Cưng</label>
+          <input type="text" class="form-control" id="petName" placeholder="Tên thú cưng">
+      </div>
+      <div class="mb-3">
+          <label for="visitDate" class="form-label">Ngày Khám</label>
+          <input type="date" class="form-control" id="visitDate">
+      </div>
+      <div class="mb-3">
+          <label for="service" class="form-label">Dịch Vụ</label>
+          <input type="text" class="form-control" id="service" placeholder="Dịch vụ đã thực hiện">
+      </div>
+      <div class="mb-3">
+          <label for="rating" class="form-label">Đánh Giá</label>
+          <select class="form-select" id="rating">
+              <option value="very_satisfied">Rất hài lòng</option>
+              <option value="satisfied">Hài lòng</option>
+              <option value="dissatisfied">Không hài lòng</option>
+          </select>
+      </div>
+      <div class="mb-3">
+          <label for="reviewText" class="form-label">Nhận Xét</label>
+          <textarea class="form-control" id="reviewText" rows="3" placeholder="Nhận xét của bạn"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Gửi Đánh Giá</button>
+  </form>
+</div>
+
+<Script>
+ document.addEventListener("DOMContentLoaded", function () {
+    console.log("Script đã tải thành công!"); // Kiểm tra script có chạy không
+
+    document.getElementById("reviewForm").addEventListener("submit", function (event) {
+        event.preventDefault(); // Ngăn chặn form gửi đi ngay lập tức
+        alert("Đã gửi đánh giá thành công!");
+        console.log("Đánh giá đã được gửi."); // Kiểm tra sự kiện có chạy không
+        this.reset(); // Reset form sau khi gửi
+    });
+});
+
+
+
+</Script>
+<!-- Footer -->
+<footer class="footer mt-5">
+  <div class="container-fluid col-10">
+      <div class="row pt-3 pb-3">
+          <div class="col-md-4 care">
+              <h4>Đánh Giá Của Khách Hàng</h4>
+              <ul>
+                  <li><a href="{% url 'danh_gia_nguoi_dung' %}">Nhấn Vào Để Xem</a></li>
+              </ul>
+          </div>
+          <div class="col-md-4">
+              <h4 class="care">Pet Care</h4>
+              <ul>
+                  <li>Phone: 0889969020</li>
+                  <li>Maps: 25 Tô Ký - Tân Chánh Hiệp - Quận 12</li>
+                  <li>Social:</li>
+              </ul>
+          </div>
+          <div class="col-md-4">
+              <h4>Hỗ Trợ Khách Hàng</h4>
+              <ul>
+                  <li><a href="#">Chính Sách Mua Hàng</a></li>
+                  <li><a href="#">Điều Khoản Dịch Vụ</a></li>
+                  <li><a href="#">Hình Thức Thanh Toán</a></li>
+              </ul>
+          </div>
+      </div>
+  </div>
+</footer>  
+
+</body>
+</html>

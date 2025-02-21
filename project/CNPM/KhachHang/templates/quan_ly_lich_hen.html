@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông Tin Khác - Quản lý lịch hẹn</title>
+    <!-- CSS -->
+    {% load static %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="{% static 'KhachHang/css/style.css' %}" rel="stylesheet" />
+    <link href="{% static 'KhachHang/css/owl.carousel.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'KhachHang/css/all.min.css' %}" rel="stylesheet" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 150%;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #218838;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            display: none;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background: #007bff;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background: #f2f2f2;
+        }
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        input {
+            padding: 5px;
+            width: 90%;
+            margin-bottom: 5px;
+        }
+        .actions {
+            display: flex;
+            justify-content: space-around;
+        }
+        .delete-btn {
+            background: #dc3545;
+        }
+        .delete-btn:hover {
+            background: #c82333;
+        }
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .content {
+            flex: 1;
+        }
+
+        .header {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Đảm bảo nội dung đủ chiều cao */
+}
+
+/* Nội dung chính sẽ mở rộng để đẩy footer xuống */
+main {
+    flex: 1;
+    padding-bottom: 100px; /* Tránh bị footer che */
+}
+
+/* Định dạng footer */
+.footer {
+    background-color: rgb(40, 126, 98);
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+    position: relative; /* Để footer không che nội dung */
+}
+    </style>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="appointment_id" value="{{ appointment.id }}">
+        <button type="submit" name="delete_appointment" class="btn btn-danger">Xóa</button>
+    </form>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <div class="container-fluid">
+          <!-- Navbar brand -->
+          <!-- logo -->
+          <a class="navbar-brand" target="_blank" href="http://127.0.0.1:8000/">
+            <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/473723691_1002491608374754_5189314962434618562_n.png?_nc_cat=111&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeEDeShnCPyE1crSUjUpyJ8js4fz9kghMoezh_P2SCEyh6VuAGwQzZ1lHCBkryZeVShFS0ItXLDNl8s1ggq5ca-g&_nc_ohc=BOXPLlxyVEkQ7kNvgH0roAq&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1gEg1AWa_qVQ541W40Cwr2BLuMcVt_VZi5_YO2B74wu-BA&oe=67B493C8" 
+            height="60" alt=""
+              loading="lazy" style="margin-top: -3px;" />
+          <!-- logo -->
+          <a class="navbar-brand" href="#">Pet Health Care System</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>     
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Khách Hàng
+                </a>
+
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{% url 'pet_list' %}">Quản lý danh sách thú cưng</a></li>
+                  <li><a class="dropdown-item" href="{% url 'dang_ky_kham_benh' %}">Đăng ký khám bệnh</a></li>
+                  <li><a class="dropdown-item" href="{% url 'danh_gia_nguoi_dung' %}">Đánh giá người dùng</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="{% url 'quan_ly_lich_hen' %}">Quản lý lịch hẹn</a></li>
+                </ul>
+              </li>
+            </ul>
+        </li>
+            
+          </div>
+        </div>   
+        </nav>
+    
+        <main class="container mt-5">
+        <h2 style="text-align: center; font-weight: bold; color: #45a049;">Danh sách lịch hẹn</h2>
+
+    <!-- Nút bấm để hiển thị bảng -->
+    <button onclick="toggleTable()">Xem danh sách lịch hẹn</button>
+
+    <!-- Bảng lịch hẹn -->
+    <table id="appointmentTable">
+        <thead>
+            <tr>
+                <th>Chủ thú cưng</th>
+                <th>Số điện thoại</th>
+                <th>Email</th>
+                <th>Thú cưng</th>
+                <th>Ngày hẹn</th>
+                <th>Giờ hẹn</th>
+                <th>Bác sĩ</th>
+                <th>Ghi chú</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appointment in appointments %}
+            <tr>
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="appointment_id" value="{{ appointment.id }}">
+                    <td><input type="text" name="owner_name" value="{{ appointment.owner_name }}" required></td>
+                    <td><input type="text" name="phone_number" value="{{ appointment.phone_number }}" required></td>
+                    <td><input type="email" name="email" value="{{ appointment.email }}" required></td>
+                    <td><input type="text" name="pet_name" value="{{ appointment.pet_name }}" required></td>
+                    <td><input type="date" name="appointment_date" value="{{ appointment.appointment_date|date:'Y-m-d' }}" required></td>
+                    <td><input type="time" name="appointment_time" value="{{ appointment.appointment_time|time:'H:i' }}" required></td>
+                    <td><input type="text" name="doctor_name" value="{{ appointment.doctor_name }}"></td>
+                    <td><input type="text" name="staff_notes" value="{{ appointment.staff_notes }}"></td>
+                    <td class="actions"> 
+                        <button type="button" class="delete-btn" data-id="{{ appointment.id }}" onclick="cancelBooking(this)">Hủy</button>
+                    </td>
+                </form>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="9">Không có lịch hẹn nào.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+    </main>
+    <script>
+        function toggleTable() {
+            var table = document.getElementById("appointmentTable");
+            table.style.display = table.style.display === "none" ? "block" : "none";
+        }
+        function cancelBooking(button, appointmentId) {  
+            let row = button.closest("tr");
+
+            // Lấy dữ liệu từ dataset
+            let appointmentDateStr = row.querySelector("[name='appointment_date']").value; // Lấy từ cột appointment_date
+            let feeAmountStr = row.dataset.paymentAmount || "200000"; // Mặc định phí khám là 200.000 VNĐ
+
+            let appointmentDate = new Date(appointmentDateStr);
+            let feeAmount = parseFloat(feeAmountStr);
+
+            if (isNaN(appointmentDate.getTime())) {
+                showErrorModal("❌ Lỗi: Ngày đặt lịch không hợp lệ.");
+                return;
+            }
+
+            // Lấy ngày hôm nay theo múi giờ Việt Nam
+            let now = new Date();
+            let vietnamTime = new Date(now.getTime() + (7 * 60 * 60 * 1000)); // UTC+7
+            vietnamTime.setUTCHours(0, 0, 0, 0); // Đặt về 00:00 UTC+7
+
+            // Tính số ngày còn lại trước ngày khám
+            let daysBefore = Math.floor((appointmentDate - vietnamTime) / (1000 * 60 * 60 * 24));
+
+            // Xác định tỷ lệ hoàn tiền
+            let refundPercent = daysBefore >= 7 ? 100 :
+                                daysBefore >= 3 ? 75 : 0;
+            
+            let refundAmount = (feeAmount * refundPercent) / 100;
+            let formatter = new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" });
+
+            // ✅ Định dạng ngày theo YYYY-MM-DD (Chuẩn)
+            let cancelDateStr = vietnamTime.toISOString().split('T')[0];
+
+            let confirmMessage = `⚠️ Bạn có chắc chắn muốn hủy booking #${appointmentId} không?\n\n
+        📅 Ngày đặt lịch: ${appointmentDateStr}\n
+        📅 Ngày hủy: ${cancelDateStr}\n
+        💵 Phí khám: ${formatter.format(feeAmount)}\n
+        🔄 Mức hoàn tiền: ${refundPercent}%\n
+        💰 Số tiền hoàn lại: ${formatter.format(refundAmount)}`;
+
+            if (confirm(confirmMessage)) {
+                row.remove();
+                let successMessage = refundPercent > 0
+                    ? `✅ Booking #${appointmentId} đã bị hủy. Bạn được hoàn lại ${formatter.format(refundAmount)} (${refundPercent}%).`
+                    : `✅ Booking #${appointmentId} đã bị hủy. Không được hoàn tiền.`;
+
+                showSuccessModal(successMessage);
+            }
+        }
+
+        // Hàm hiển thị thông báo lỗi
+        function showErrorModal(message) {
+            alert(message);
+        }
+
+        // Hàm hiển thị thông báo thành công
+        function showSuccessModal(message) {
+            alert(message);
+        }
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<footer class="footer mt-5">
+    <div class="container-fluid col-10">
+        <div class="row pt-3 pb-3">
+            <div class="col-md-4 care">
+                <h4>Đánh Giá Của Khách Hàng</h4>
+                <ul>
+                    <li><a href="{% url 'danh_gia_nguoi_dung' %}">Nhấn Vào Để Xem</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h4 class="care">Pet Care</h4>
+                <ul>
+                    <li>Phone: 0889969020</li>
+                    <li>Maps: 25 Tô Ký - Tân Chánh Hiệp - Quận 12</li>
+                    <li>Social:</li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h4>Hỗ Trợ Khách Hàng</h4>
+                <ul>
+                    <li><a href="#">Chính Sách Mua Hàng</a></li>
+                    <li><a href="#">Điều Khoản Dịch Vụ</a></li>
+                    <li><a href="#">Hình Thức Thanh Toán</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+  </footer> 
+</body>
+</html>
