@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'admin_panel',
     'home',
     'Nhanvien',
-    'app',
+    'KhachHang',
+    'Bacsi'
 ]
 
 MIDDLEWARE = [
@@ -59,7 +60,9 @@ ROOT_URLCONF = 'CNPM.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "home/templates"],
+        'DIRS': [BASE_DIR / "home/templates",
+                 BASE_DIR / "KhachHang/templates",],
+
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -131,7 +134,8 @@ STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
        os.path.join(BASE_DIR, "Nhanvien/static"),
-       os.path.join(BASE_DIR, "app/static"),
+       os.path.join(BASE_DIR, "KhachHang/static"),
+       os.path.join(BASE_DIR, "Bacsi/static"),
 ]
 
 # Default primary key field type

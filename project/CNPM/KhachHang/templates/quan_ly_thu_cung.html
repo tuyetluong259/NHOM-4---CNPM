@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Đánh giá người dùng</title>
+    <!-- CSS -->
+    {% load static %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="{% static 'KhachHang/css/style.css' %}" rel="stylesheet" />
+    <link href="{% static 'KhachHang/css/owl.carousel.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'KhachHang/css/all.min.css' %}" rel="stylesheet" />
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="{% static 'KhachHang/js/j3.js' %}"></script>
+    <script src="{% static 'KhachHang/js/all.min.js' %}"></script>
+    <script src="{% static 'KhachHang/js/myscript.js' %}"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" target="_blank" href="http://127.0.0.1:8000/">
+                <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/473723691_1002491608374754_5189314962434618562_n.png?_nc_cat=111&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeEDeShnCPyE1crSUjUpyJ8js4fz9kghMoezh_P2SCEyh6VuAGwQzZ1lHCBkryZeVShFS0ItXLDNl8s1ggq5ca-g&_nc_ohc=BOXPLlxyVEkQ7kNvgH0roAq&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1gEg1AWa_qVQ541W40Cwr2BLuMcVt_VZi5_YO2B74wu-BA&oe=67B493C8" height="60" alt="" loading="lazy" style="margin-top: -3px;" />
+            </a>
+            <a class="navbar-brand" href="#">Pet Health Care System</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>     
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Khách Hàng
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'quan_ly_thu_cung' %}">Quản lý danh sách thú cưng</a></li>
+                            <li><a class="dropdown-item" href="{% url 'dang_ky_kham_benh' %}">Đăng ký khám bệnh</a></li>
+                            <li><a class="dropdown-item" href="{% url 'danh_gia_nguoi_dung' %}">Đánh giá người dùng</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{% url 'thong_tin_khac' %}">Thông tin khác</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4 d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+        <div class="w-100">
+            <h2 class="text-center">Quản Lý Danh Sách Thú Cưng</h2>
+            <table class="table table-bordered mt-3">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên</th>
+                        <th>Loài</th>
+                        <th>Giống</th>
+                        <th>Chủ Sở Hữu</th>
+                        <th>Chi tiết</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Lucky</td>
+                        <td>Chó</td>
+                        <td>Poodle</td>
+                        <td>Nguyễn Văn A</td>
+                        <td>
+                            <button class="btn btn-primary" onclick="showPetDetails(1, 'Lucky')">Xem Chi Tiết</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Tom</td>
+                        <td>Mèo</td>
+                        <td>Ba Tư</td>
+                        <td>Trần Thị B</td>
+                        <td>
+                            <button class="btn btn-primary" onclick="showPetDetails(2, 'Tom')">Xem Chi Tiết</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    
+
+    <!-- Modal hiển thị thông tin chi tiết thú cưng -->
+    <div class="modal fade" id="petDetailModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Thông Tin Chi Tiết</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4 id="petName"></h4>
+                    <h5>Lịch sử khám chữa bệnh</h5>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Ngày khám</th>
+                                <th>Bác sĩ</th>
+                                <th>Chẩn đoán</th>
+                            </tr>
+                        </thead>
+                        <tbody id="medicalHistory">
+                            <tr>
+                                <td>10/01/2024</td>
+                                <td>BS. Nam</td>
+                                <td>Cảm cúm</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h5>Lịch sử tiêm vaccine</h5>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Ngày tiêm</th>
+                                <th>Tên vaccine</th>
+                                <th>Trạng thái</th>
+                            </tr>
+                        </thead>
+                        <tbody id="vaccineHistory">
+                            <tr>
+                                <td>01/12/2023</td>
+                                <td>Vaccine dại</td>
+                                <td>Hoàn thành</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPetDetails(id, name) {
+            document.getElementById('petName').innerText = "Thú cưng: " + name;
+
+            // Dữ liệu mẫu
+            const medicalRecords = {
+                1: [
+                    { date: "10/01/2024", doctor: "BS. Nam", diagnosis: "Cảm cúm" },
+                    { date: "15/02/2024", doctor: "BS. Lan", diagnosis: "Viêm da" }
+                ],
+                2: [
+                    { date: "05/03/2024", doctor: "BS. Hoa", diagnosis: "Nhiễm trùng tai" }
+                ]
+            };
+
+            const vaccineRecords = {
+                1: [
+                    { date: "01/12/2023", vaccine: "Vaccine dại", status: "Hoàn thành" },
+                    { date: "05/02/2024", vaccine: "Vaccine 7 bệnh", status: "Hoàn thành" }
+                ],
+                2: [
+                    { date: "10/01/2024", vaccine: "Vaccine dại", status: "Hoàn thành" }
+                ]
+            };
+
+            // Cập nhật lịch sử khám bệnh
+            let medicalTable = document.getElementById('medicalHistory');
+            medicalTable.innerHTML = "";
+            if (medicalRecords[id]) {
+                medicalRecords[id].forEach(record => {
+                    medicalTable.innerHTML += `<tr>
+                        <td>${record.date}</td>
+                        <td>${record.doctor}</td>
+                        <td>${record.diagnosis}</td>
+                    </tr>`;
+                });
+            } else {
+                medicalTable.innerHTML = "<tr><td colspan='3'>Không có dữ liệu</td></tr>";
+            }
+
+            // Cập nhật lịch sử vaccine
+            let vaccineTable = document.getElementById('vaccineHistory');
+            vaccineTable.innerHTML = "";
+            if (vaccineRecords[id]) {
+                vaccineRecords[id].forEach(record => {
+                    vaccineTable.innerHTML += `<tr>
+                        <td>${record.date}</td>
+                        <td>${record.vaccine}</td>
+                        <td>${record.status}</td>
+                    </tr>`;
+                });
+            } else {
+                vaccineTable.innerHTML = "<tr><td colspan='3'>Không có dữ liệu</td></tr>";
+            }
+
+            // Hiển thị modal
+            var myModal = new bootstrap.Modal(document.getElementById('petDetailModal'));
+            myModal.show();
+        }
+    </script>
+    <!-- Footer -->
+    <footer class="footer mt-5">
+        <div class="container-fluid col-10">
+            <div class="row pt-3 pb-3">
+                <div class="col-md-4 care">
+                    <h4>Đánh Giá Của Khách Hàng</h4>
+                    <ul>
+                        <li><a href="#">Nhấn Vào Để Xem</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4 class="care">Pet Care</h4>
+                    <ul>
+                        <li>Phone: 0889969020</li>
+                        <li>Maps: 25 Tô Ký - Tân Chánh Hiệp - Quận 12</li>
+                        <li>Social:</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4>Hỗ Trợ Khách Hàng</h4>
+                    <ul>
+                        <li><a href="#">Chính Sách Mua Hàng</a></li>
+                        <li><a href="#">Điều Khoản Dịch Vụ</a></li>
+                        <li><a href="#">Hình Thức Thanh Toán</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
