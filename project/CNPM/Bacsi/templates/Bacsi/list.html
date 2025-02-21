@@ -1,9 +1,9 @@
 {% extends "Bacsi/base.html" %}
 
 {% block content %}
-<h2>Danh sách hồ sơ bệnh án</h2>
+<h2 class="text-center fw-bold" style="color: #218838;">Danh sách hồ sơ bệnh án</h2>
 
-<table class="table">
+<table class>
     <thead>
         <tr>
             <th>ID</th>
@@ -33,7 +33,8 @@
             <td>
                 <a href="{% url 'Bacsi_detail' record.id %}" class="btn btn-info">Xem</a>
                 <a href="{% url 'update_Bacsi' record.id %}" class="btn btn-warning">Cập nhật</a>
-                <a href="{% url 'delete_Bacsi' record.id %}" class="btn btn-danger">Xóa</a>
+                
+                <a href="{% url 'delete_Bacsi' record.id %}" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</a>
             </td>
         </tr>
         {% endfor %}

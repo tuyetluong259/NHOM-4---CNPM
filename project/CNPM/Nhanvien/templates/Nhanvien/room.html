@@ -1,30 +1,28 @@
-{% extends 'Nhanvien/base.html' %}
-
-{% block title %}Quản lý Phòng Khám{% endblock %}
+{% extends "Nhanvien/base.html" %}
 
 {% block content %}
-    <h1 class="my-5 text-center">Danh sách Phòng Khám</h1>
+<div class="container mt-4">
+    <h2 class="text-center fw-bold" style="color: #218838;">Quản Lý Chuồng</h2>
 
-    <table class="table table-bordered table-striped">
+    <table class>
         <thead>
             <tr>
-                <th>Room Number</th>
-                <th>Capacity</th>
+                <th>Số Chuồng</th>
+                <th>Tên Thú Cưng</th>
+                <th>Tên Chủ</th>
+                <th>Bác Sĩ Phụ Trách</th>
             </tr>
         </thead>
         <tbody>
-            {% for room in rooms %}
-                <tr>
-                    <td>{{ room.room_number }}</td>
-                    <td>{{ room.capacity }}</td>
-                </tr>
-            {% empty %}
-                <tr>
-                    <td colspan="2" class="text-center">Không có phòng khám nào.</td>
-                </tr>
+            {% for cage in cages %}
+            <tr>
+                <td>{{ cage.cage_number }}</td>  <!-- Hiển thị số chuồng -->
+                <td>{{ cage.pet_name }}</td>  <!-- Hiển thị tên thú cưng -->
+                <td>{{ cage.owner_name }}</td>  <!-- Hiển thị tên chủ -->
+                <td>{{ cage.doctor_name }}</td>  <!-- Hiển thị bác sĩ phụ trách -->
+            </tr>
             {% endfor %}
         </tbody>
     </table>
-
-    <a href="{% url 'add_room' %}" class="btn btn-primary">Thêm Phòng Khám Mới</a>
+</div>
 {% endblock %}

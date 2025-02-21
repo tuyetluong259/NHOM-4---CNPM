@@ -109,7 +109,7 @@
 <main class="mt-1 pt-1">
   <div class="container">
       <!-- Heading -->
-      <h1 class="my-5 text-center" style="color: rgba(7, 78, 35, 0.82)" >Đăng kí khám bệnh</h1>
+      <h1 class="text-center fw-bold" style="color: #218838;">Đăng kí khám bệnh</h1>
       <!--Grid row-->
       <div class="row">
           <!--Grid column-->
@@ -165,7 +165,13 @@
                   <div class="form-outline mb-4">
                       <input type="text" id="pet_name" name="pet_name"  placeholder="Box"  class="form-control" aria-label="Apartment or suite" aria-describedby="basic-addon1" />
                   </div>
-                
+                  <!-- Loài thú cưng -->
+                  <p class="mb-0">
+                    Loài thú cưng:
+                  </p>
+                  <div class="form-outline mb-4">
+                    <input type="text" id="pet_species" name="pet_species" class="form-control" placeholder="Chó, mèo, v.v." />
+                  </div>
                   <!--Grid row-->
                   <p class="mb-0">Giới tính thú cưng:</p>
                 <div class="form-outline mb-4">
@@ -195,6 +201,22 @@
               <div class="form-outline mb-4">
                    <input type="time" class="form-control"  placeholder="hh:mm" name="appointment_time" required/>
               </div>
+              <!-- Trạng thái đã thanh toán -->
+              <p class="mb-0">Trạng thái thanh toán:</p>
+              <div class="form-outline mb-4">
+                  <select id="is_paid" name="is_paid" class="form-control" disabled>
+                      <option value="1" selected>Đã thanh toán</option>
+                  </select>
+              </div>
+              
+
+                <!-- Phí khám cố định -->
+                <p class="mb-0">
+                  Phí khám:
+                </p>
+                <div class="form-outline mb-4">
+                  <input type="text" id="fee_amount" name="fee_amount" class="form-control" value="200000" readonly />
+                </div>
                 <p class="mb-0">
                   Lựa chọn bác sĩ( nếu có nhu cầu):
               </p>
@@ -234,7 +256,7 @@
                       <input type="text" class="form-control" name="doctor" placeholder="Nhập tên bác sĩ mong muốn..." />
                     </div>
                   </div>
-                 
+                  
                   <p class="mb-0">
                     Ghi chú cho nhân viên( nếu có):
                 </p>
@@ -246,7 +268,11 @@
                       </div>                    
                   <hr class="mb-4" />                    
   <!-- Thông báo -->             
-  <button type="submit" class="btn btn-primary" style="background-color:rgb(13, 120, 72);">Đăng kí khám bệnh</button>
+  <button type="submit" name="delete_appointment" class="delete-btn" 
+    onclick="return confirm('Đăng kí khám bệnh thành công!\nHotline: 0675048574 - Chuyên viên tư vấn')" 
+    style="background-color: rgb(13, 120, 72); color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer;">
+    Đăng kí khám bệnh
+</button>
 
    <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -310,7 +336,7 @@
           <div class="col-md-4 care">
               <h4>Đánh Giá Của Khách Hàng</h4>
               <ul>
-                  <li><a href="#">Nhấn Vào Để Xem</a></li>
+                  <li><a href="{% url 'danh_gia_nguoi_dung' %}">Nhấn Vào Để Xem</a></li>
               </ul>
           </div>
           <div class="col-md-4">

@@ -22,6 +22,7 @@ class MedicalRecord(models.Model):
     doctor_name = models.CharField(max_length=255, null=True, blank=True)
     diagnosis = models.TextField(null=True, blank=True)
     prescription = models.TextField(null=True, blank=True)
+    cage_number = models.IntegerField(null=True, blank=True)
     notes = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
