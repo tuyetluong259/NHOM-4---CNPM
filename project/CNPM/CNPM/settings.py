@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'admin_panel',
     'home',
     'Nhanvien',
+    'app',
 ]
 
 MIDDLEWARE = [
@@ -130,6 +131,7 @@ STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
        os.path.join(BASE_DIR, "Nhanvien/static"),
+       os.path.join(BASE_DIR, "app/static"),
 ]
 
 # Default primary key field type

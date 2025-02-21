@@ -1,0 +1,318 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tài khoản</title>
+    <!-- CSS -->
+     {% load static %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="{% static 'app/css/style.css' %}" rel="stylesheet" />
+    <link href="{% static 'app/css/owl.carousel.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'app/css/all.min.css' %}" rel="stylesheet" />
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="{% static 'app/js/j3.js' %}"></script>
+    <script src="{% static 'app/js/all.min.js' %}"></script>
+    <script src="{% static 'app/js/myscript.js' %}"></script>
+</head>
+<body>
+  <header>
+    <!-- Intro settings -->
+    <style>
+      #intro {
+        /* Margin to fix overlapping fixed navbar */
+        margin-top: 58px;
+      }
+
+      @media (max-width: 991px) {
+        #intro {
+          /* Margin to fix overlapping fixed navbar */
+          margin-top: 45px;
+        }
+      }
+    </style>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+      <div class="container-fluid">
+        <!-- Navbar brand -->
+        <!-- logo -->
+        <a class="navbar-brand" target="_blank" href="http://127.0.0.1:8000/">
+          <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/473723691_1002491608374754_5189314962434618562_n.png?_nc_cat=111&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeEDeShnCPyE1crSUjUpyJ8js4fz9kghMoezh_P2SCEyh6VuAGwQzZ1lHCBkryZeVShFS0ItXLDNl8s1ggq5ca-g&_nc_ohc=BOXPLlxyVEkQ7kNvgH0roAq&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1gEg1AWa_qVQ541W40Cwr2BLuMcVt_VZi5_YO2B74wu-BA&oe=67B493C8" 
+          height="60" alt=""
+            loading="lazy" style="margin-top: -3px;" />
+        <!-- logo -->
+        <a class="navbar-brand" href="#">Pet Health Care System</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>     
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Khách Hàng
+              </a>
+
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'quan_ly_thu_cung' %}">Quản lý danh sách thú cưng</a></li>
+                <li><a class="dropdown-item" href="{% url 'chi_tiet_thu_cung' %}">Thông tin chi tiết của thú cưng</a></li>
+                <li><a class="dropdown-item" href="{% url 'dang_ky_kham_benh' %}">Đăng ký khám bệnh</a></li>
+                <li><a class="dropdown-item" href="{% url 'danh_gia_nguoi_dung' %}">Đánh giá người dùng</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="{% url 'thong_tin_khac' %}">Thông tin khác</a></li>
+              </ul>
+            </li>
+          </ul>
+      </li>
+          <!-- Right elements -->
+    <div class="d-flex align-items-center">
+      <!-- Icon -->
+      <a class="text-reset me-3" href="#">
+        <i class="fas fa-shopping-cart"></i>
+      </a>
+
+      <!-- Notifications -->
+      <div class="dropdown">
+        <a
+          data-mdb-dropdown-init
+          class="text-reset me-3 dropdown-toggle hidden-arrow"
+          href="#"
+          id="navbarDropdownMenuLink"
+          role="button"
+          aria-expanded="false"
+        >
+          <i class="fas fa-bell"></i>
+          <span class="badge rounded-pill badge-notification bg-danger">99+</span>
+        </a>       
+      </div>
+      <!-- Avatar -->
+      <div class="dropdown">
+        <a
+          data-mdb-dropdown-init
+          class="dropdown-toggle d-flex align-items-center hidden-arrow"
+          href="#"
+          id="navbarDropdownMenuAvatar"
+          role="button"
+          aria-expanded="false"
+        >
+          <img
+            src="data:image/jpeg;base64,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"
+            class="rounded-circle"
+            height="25"
+            alt="Black and White Portrait of a Man" 
+            loading="lazy"
+          />
+        </a>
+      </div>
+    </div>
+    <!-- Right elements -->
+    </nav>
+    </head>
+    <body>
+    </header>
+        <!-- Navbar -->
+        <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-mdb-ride="carousel">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>           
+         
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="10000">
+              <img src="https://www.vets4pets.com/contentassets/389e5c6089c14bc5befbbcf20fadec2b/senior-dog-golden-retriever-close-up.jpg" class="d-block w-100" alt="Wild Landscape">
+              <div class="mask" style="background-color: rgba(5, 113, 19, 0.4)"></div>
+              <div class="carousel-caption d-none d-sm-block mb-5">
+                <h1 class="mb-4">
+                        <strong>
+                          Pet House - Nơi Yêu Thương Thú Cưng Bắt Đầu</strong>
+                      </h1>
+        
+                      <p>
+                        <strong>Cơ sở chăm sóc thú cưng số 1 tại Thành Phố Hồ Chí Minh</strong>
+                      </p>
+        
+                      <p class="mb-4 d-none d-md-block">
+                        <strong>
+                          "Ngôi Nhà Yêu Thương Cho Thú Cưng Của Bạn"</strong>
+                      </p>
+              </div>
+            </div>     
+          </div>       
+
+
+
+      <!--Main layout-->
+      <main class="my-5">
+        <div class="container">
+       <!--video + thông tin -->
+    <section>
+      <div class="row">
+        <div class="col-md-6 gx-5 mb-4">
+          <div class="bg-image hover-overlay shadow-2-strong" data-mdb-ripple-init data-mdb-ripple-color="light">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/cxanD69Bqic?si=-Ok6fFxqo59y_Wp-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <a href="#!">
+              <div class="mask" style="background -color: rgba(251, 251, 251, 0.15);"></div>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-md-6 gx-5 mb-4" style="color: rgba(13, 78, 6, 0.82)" >
+          <h3><strong>
+            Pet House - Thiên Đường Dành Cho Thú Cưng Của Bạn</strong></h3>
+          <p class="text-muted">
+            Chào mừng bạn đến với Pet House, không gian dành riêng cho những ai yêu thương và
+            chăm sóc thú cưng! Chúng tôi hiểu rằng thú cưng không chỉ là những người bạn nhỏ mà còn là
+            thành viên quan trọng trong gia đình bạn.
+          </p>
+          <p><strong>Hãy để Pet House đồng hành cùng bạn trên hành trình chăm sóc và yêu thương những người bạn nhỏ đáng yêu!</strong></p>
+          <p class="text-muted">
+            Pet House là nơi mang đến cho thú cưng của bạn những dịch vụ chăm sóc toàn diện và sản phẩm chất lượng cao, giúp thú cưng luôn khỏe mạnh và hạnh phúc. Với sứ mệnh trở thành ngôi nhà thứ hai cho các bé thú cưng, Pet House cung cấp đa dạng các dịch vụ như spa, grooming, khám sức khỏe định kỳ, và khách sạn cho thú cưng.
+          </p>
+        </div>
+      </div>
+    </section>
+   <!--video + thông tin -->        
+          <section class="text-center">
+            <h3 style="color: rgba(13, 78, 6, 0.82)"><strong>Xin chào! Chào mừng bạn đến với Pet House!       
+            </strong></h3>
+    <!--tab --> 
+   <div class="d-grid gap-2 col-6 mx-auto">
+    <button class="btn btn-outline-success"  style="margin: 30px;"type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Tài khoản của tôi</button>
+   </div>
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+      <div class="offcanvas-header">
+        <h2 class="offcanvas-title" style="color: rgba(13, 78, 6, 0.82)"  id="offcanvasWithBothOptionsLabel">TÀI KHOẢN CỦA TÔI</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="list-group list-group-light">
+       <a href="http://127.0.0.1:8000/giao_dien_khach_hang/#" class="list-group-item list-group-item-action px-3 border-0 " data-mdb-ripple-init
+         aria-current="true">TRANG TÀI KHOẢN</a>
+       <a href="http://127.0.0.1:8000/dang-ky-kham-benh/" class="list-group-item list-group-item-action px-3 border-0" data-mdb-ripple-init>ĐĂNG KÍ KHÁM BỆNH</a>
+       <a href="#" class="list-group-item list-group-item-action px-3 border-0" data-mdb-ripple-init>HỦY ĐĂNG KÍ KHÁM BỆNH</a>
+       <a href="#" class="list-group-item list-group-item-action px-3 border-0" data-mdb-ripple-init>KIỂM TRA TÌNH TRẠNG THÚ CƯNG</a>
+     </div>
+      <div class="offcanvas-body">
+        <p>Mọi thắc mắc khách hàng về "Pet House" liên hệ:               
+          Hotline: 0675048574 - Chuyên viên tư vấn
+        </p>        
+      </div>
+    </div>
+    <!--tab -->
+
+            <div class="row">
+              <div class="col-lg-4 col-md-12 mb-4">
+                <div class="card">
+                  <div class="bg-image hover-zoom" data-mdb-ripple-init data-mdb-ripple-color="light">
+                    <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/475249057_1811398709659785_4337613773793109901_n.png?stp=dst-png_s480x480&_nc_cat=102&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeFXXNEwlU9gNp4md706pzqD_ScSXHafPdv9JxJcdp8923lnQnpdNnAvGyrHFUu7AA49g0nKXM-rQrK_L2d4oRPl&_nc_ohc=FSiqAJvvOVkQ7kNvgHkHR1B&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1gGtoeh2OSe8J8NbCdA-XcEsZQ9CGYyZOeZku61UrV8RzA&oe=67C6D21A" class="w-100" />
+                    <a href="#!">
+                      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                    </a>
+                  </div>
+                  <div class="card-body">
+                                        
+                    <a class="btn btn-primary m-2" style="background-color:rgb(13, 120, 72);" href="http://127.0.0.1:8000/dang-ky-kham-benh/" role="button" rel="nofollow"
+                   data-mdb-ripple-init target="_blank">Đăng kí khám </a>     
+                   <a class="btn btn-primary m-2" style="background-color:rgb(13, 120, 72);"  href="http://127.0.0.1:8000/dang-ky-kham-benh/" role="button" rel="nofollow"
+                   data-mdb-ripple-init target="_blank">Hủy đăng kí </a>       
+
+                  </div>
+                </div>
+              </div>
+    
+              <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                  <div class="bg-image hover-overlay" data-mdb-ripple-init data-mdb-ripple-color="light">
+                    <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/473038159_488662543908252_6544356066530044815_n.png?stp=dst-png_s480x480&_nc_cat=110&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeGQjwAr-ZvKkuhxz38k-GAXVaymd5-uj3BVrKZ3n66PcLwVUJfruM-c2j-oXh-CXyYQ-FxY5nxZT_Md9PJUqaPl&_nc_ohc=zvp8g1KKUUEQ7kNvgHh-PAN&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1gGGp5weYuY360FCN1NEjg6mJoQP1bvllmo2Y0QXRga2eg&oe=67B5EE66" class="w-100"   />
+                    <a href="#!">
+                      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                    </a>
+                  </div>
+                  <div class="card-body">     
+                    <a class="btn btn-primary m-2" style="background-color:rgb(13, 120, 72);" href="http://127.0.0.1:8000/chi-tiet-thu-cung/" role="button" rel="nofollow"
+                   data-mdb-ripple-init target="_blank"> Kiểm tra tình trạng thú cưng</a>    
+                   
+                  </div>
+                </div>
+              </div>
+    <!--Section: Content-->
+              <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                  <div class="bg-image hover-overlay" data-mdb-ripple-init data-mdb-ripple-color="light">
+                    <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/474102782_2987857414723550_2367006798482007857_n.png?stp=dst-png_s480x480&_nc_cat=107&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeEyPrz7V7mkyeSIDHbNC3zRFYyUeINyf28VjJR4g3J_bzBUIeHIcHCmpsIGzqXNfSIwVH29gEeFTOmLdW_OWPe6&_nc_ohc=r-1Lc31uAo0Q7kNvgGqOvR2&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1gFXeZLqk2IIWzgZTZfWyokNGD8iwni0myj98aL9QPNrnA&oe=67B831FB" class="img-fluid" />
+                    <a href="#!">
+                      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                    </a>
+                  </div>
+                  <div class="card-body">                                      
+                    <a class="btn btn-primary m-2" style="background-color:rgb(13, 120, 72);"  href="http://127.0.0.1:8000/dang-ky-kham-benh/" role="button" rel="nofollow"
+                    data-mdb-ripple-init target="_blank">Đơn hàng </a> 
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+           
+            </div>
+          </section>
+          <!--Section: Content-->
+    
+          <!-- Pagination -->
+          <nav class="my-4" aria-label="...">
+            <ul class="pagination pagination-circle justify-content-center">
+              <li class="page-item">
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item active" aria-current="page">
+                <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </main>
+      <!--Main layout-->
+    
+      <!--Footer-->
+      <footer class="bg-light text-lg-start">       
+        
+        
+        <hr class="m-0" />
+    
+        <div class="text-center py-4 align-items-center">
+          <p>Follow PetHouse on social media</p>
+          <a href="https://github.com/tuyetluong259/NHOM-4---CNPM" class="btn btn-success" role="button" data-mdb-ripple-init
+            rel="nofollow" target="_blank">
+            <i class="fab fa-youtube"></i>
+          </a>
+          <a href="https://github.com/tuyetluong259/NHOM-4---CNPM"  class="btn btn-success" role="button" rel="nofollow" data-mdb-ripple-init
+            target="_blank">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://github.com/tuyetluong259/NHOM-4---CNPM"  class="btn btn-success"  role="button" rel="nofollow" data-mdb-ripple-init
+            target="_blank">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://github.com/tuyetluong259/NHOM-4---CNPM"  class="btn btn-success"  role="button" rel="nofollow" data-mdb-ripple-init
+            target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+    
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(50, 195, 62, 0.2);">
+          <a class="text-dark" href=" ">PETHOUSE.COM</a>
+        </div>
+        <!-- Copyright -->
+      </footer>
+      <!--Footer-->
+</body>
+</html> 
